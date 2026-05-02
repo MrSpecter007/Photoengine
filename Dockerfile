@@ -42,19 +42,16 @@ RUN chown wagtail:wagtail /app
 # Copy the source code of the project into the container.
 COPY --chown=wagtail:wagtail . .
 
-# Use user "wagtail" to run the build commands below and the server itself.
+# Use user "wagtail" for build-time Django tasks.
 USER wagtail
 
 # Collect static files.
 RUN python manage.py collectstatic --noinput --clear
 
-# Runtime command that executes when "docker run" is called, it does the
-# following:
-#   1. Migrate the database.
-#   2. Start the application server.
-# WARNING:
-#   Migrating database at the same time as starting the server IS NOT THE BEST
-#   PRACTICE. The database should be migrated manually or using the release
-#   phase facilities of your hosting platform. This is used only so the
-#   Wagtail instance can be started with a simple "docker run" command.
-CMD set -xe; python manage.py migrate --noinput; gunicorn PhotoEngine.wsgi:application
+# Runtime needs root briefly so mounted Docker volumes can be chowned before
+# dropping back to the wagtail user.
+USER root
+
+# Runtime command ensures writable media/static directories on mounted volumes,
+# then drops privileges back to the wagtail user before serving requests.
+CMD sh -c "mkdir -p /app/media/original_images /app/staticfiles && chown -R wagtail:wagtail /app/media /app/staticfiles && su wagtail -s /bin/sh -c 'python manage.py migrate --noinput && gunicorn PhotoEngine.wsgi:application'"
