@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/proofing.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<div
+    class="gallery-grid-block jepret-padding-large client-proofing"
+    data-proofing-root
+    data-toggle-url="{{ toggle_selection_url }}"
+>
+    <div class="gallery-header text-center jepret-margin-bottom client-proofing__header">
+        <p class="client-proofing__eyebrow">Private proofing gallery</p>
+        <h2>{{ page.client_name }} - Proofs</h2>
+        <p class="client-proofing__meta">Session date: {{ page.shoot_date|date:"F j, Y" }}</p>
+
+        {% if page.download_link_high_res %}
+        <a href="{{ page.download_link_high_res }}" target="_blank" rel="noopener noreferrer" class="button style-1">
+            Download Final High-Res Deliverables
+        </a>
+        {% elif page.is_locked %}
+        <p><em>Your selections have been submitted for retouching.</em></p>
+        {% else %}
+        <p><em>Click the heart icon to select your favorites.</em></p>
+        <div id="selection-counter" class="client-proofing__counter">
+            Selected: <span id="count">{{ selected_count }}</span>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="gallery-grid-item-wrap client-proofing__grid">
+        {% for proof in proof_images %}
+        <div class="column column-3 gallery-grid-item proof-container">
+            {% image proof.image fill-800x800 as img %}
+            <div class="client-proofing__image-frame">
+                <img src="{{ img.url }}" alt="{{ proof.image.title|default:'Proof image' }}" class="gallery-item proof-image client-proofing__image">
+
+                {% if not page.is_locked %}
+                <button
+                    class="proof-selector client-proofing__selector {% if proof.selected_by_client %}is-selected{% endif %}"
+                    data-proof-uuid="{{ proof.proof_uuid }}"
+                    aria-label="Select image"
+                    aria-pressed="{% if proof.selected_by_client %}true{% else %}false{% endif %}"
+                    type="button"
+                >
+                    <span class="icon-heart heart-icon" aria-hidden="true"></span>
+                </button>
+                {% endif %}
+            </div>
+        </div>
+        {% empty %}
+        <div class="client-proofing__empty-state">
+            <p>No proof images have been added to this gallery yet.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
+
+{% block extra_js %}
+<script src="{% static 'js/client-proofing-gallery.js' %}"></script>
+{% endblock extra_js %}

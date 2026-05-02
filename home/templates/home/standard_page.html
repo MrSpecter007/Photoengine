@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/standard-page.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<article class="standard-page">
+    {% if page.header_image %}
+    <div class="standard-page__hero">
+        {% image page.header_image fill-1600x720 class="standard-page__hero-image" %}
+    </div>
+    {% endif %}
+
+    <div class="standard-page__content jepret-padding-large">
+        {% for block in page.body %}
+            {% include_block block %}
+        {% empty %}
+        <section class="standard-page__section standard-page__section--empty">
+            <p class="standard-page__empty-copy">This page is ready for content.</p>
+        </section>
+        {% endfor %}
+    </div>
+</article>
+{% endblock content %}

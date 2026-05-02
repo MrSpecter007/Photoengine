@@ -1,0 +1,28 @@
+services:
+  db:
+    image: postgres:16-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=wagtail
+      - POSTGRES_USER=wagtail
+      - POSTGRES_PASSWORD=wagtail_secret_pass
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+      - media_data:/app/media
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgres://wagtail:wagtail_secret_pass@db:5432/wagtail
+      - DEBUG=1
+      - SECRET_KEY=django-insecure-dev-key
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
+  media_data:

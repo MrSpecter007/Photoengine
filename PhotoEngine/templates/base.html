@@ -1,0 +1,135 @@
+{% load static wagtailcore_tags wagtailuserbar %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/plugin.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font.css' %}">
+    {% block extra_css %}{% endblock extra_css %}
+
+    <!-- document title -->
+    <title>{% block title %}Jepret - Modern Photography{% endblock %}</title>
+</head>
+
+<body>
+    <!-- MAIN WRAPPER START
+            ============================================= -->
+    <div class="main-wrapper clearfix">
+        <!-- HEADER START
+                ============================================= -->
+        <header id="header">
+            <div class="header-style1-wrap">
+                <div class="header-content-left">
+                    <!-- LOGO START
+                        ============================================= -->
+                    <div class="logo">
+                        <h2 class="logo-title">
+                            <a href="/">JEPRET</a>
+                        </h2>
+                    </div>
+                    <!-- LOGO END -->
+                </div>
+                <div class="header-content-right">
+                    <!-- NAVIGATION START
+                        ============================================= -->
+                    <nav class="main-nav col-span-9  sm:col-span-12">
+                        <!-- Mobile menu toggle button -->
+                        <button class="jepret-menu-mobile">
+                            <i class="icon icon-reorder"></i>
+                        </button>
+                        <!-- Sample menu definition -->
+                        <ul id="main-menu" class="sm sm-clean mobile-menu">
+                            <li class="menu-item has-submenu">
+                                <a href="#">Landing</a>
+                                <ul class="sub-menu">
+                                    <li class="menu-item-sub"><a href="#">video background</a></li>
+                                    <li class="menu-item-sub"><a href="#">Personal Photographer</a></li>
+                                    <li class="menu-item-sub"><a href="#">Photography Studio</a></li>
+                                    <li class="menu-item-sub"><a href="#">slider</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-item has-submenu">
+                                <a href="#">Albums</a>
+                                <ul class="sub-menu">
+                                    <li class="menu-item-sub"><a href="#">Adora</a></li>
+                                    <li class="menu-item-sub"><a href="#">Album grid</a></li>
+                                    <li class="menu-item-sub"><a href="#">Album Masonry</a></li>
+                                    <li class="menu-item-sub"><a href="#">Carousel</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-item has-submenu">
+                                <a href="#">Gallery</a>
+                                <ul class="sub-menu">
+                                    <li class="menu-item-sub"><a href="#">Default creative grid</a></li>
+                                    <li class="menu-item-sub"><a href="#">Standard Grid</a></li>
+                                    <li class="menu-item-sub"><a href="#">Standard Masonry</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-item has-submenu">
+                                <a href="#">Pages</a>
+                                <ul class="sub-menu">
+                                    <li class="menu-item-sub"><a href="#">Contact</a></li>
+                                    <li class="menu-item-sub"><a href="#">Archive</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-item ">
+                                <a href="#">Blog</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- NAVIGATION END -->
+                </div>
+            </div>
+        </header>
+        <!-- HEADER END -->
+        
+        <!-- Content -->
+        <section class="content">
+            {% block top_bar %}
+            <div class="top-bar"></div>
+            {% endblock top_bar %}
+            {% block side_bars %}
+            <div class="left-bar"></div>
+            <div class="right-bar"></div>
+            {% endblock side_bars %}
+            
+            <!-- Dynamic Wagtail Content Block -->
+            {% block content %}
+            {% endblock content %}
+            
+        </section>
+        <!-- End Content -->
+        
+        <!-- Footer -->
+        <footer id="footer">
+            <div class="copyright">
+                <p class="copyright-text">JEPRET THEME BY THEMES AWESOME</p>
+            </div>
+        </footer>
+        <!-- end Footer -->
+    </div>
+    <!-- MAIN WRAPPER END -->
+
+    <!-- Footer Scripts
+            ============================================= -->
+    <!-- JavaScripts
+        ============================================= -->
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/jquery.smartmenus.min.js' %}"></script>
+    <script src="{% static 'js/aos.js' %}"></script>
+    <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'js/lightgallery-all.min.js' %}"></script>
+    <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/isotope.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block extra_js %}{% endblock extra_js %}
+    
+    {% wagtailuserbar %}
+</body>
+
+</html>

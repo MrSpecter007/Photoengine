@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+{% load static wagtailimages_tags %}
+
+{% block title %}Jepret - Modern Photographer{% endblock title %}
+
+{% block top_bar %}{% endblock top_bar %}
+
+{% block content %}
+    <!-- About block -->
+    <div class="about-block">
+        <div class="container">
+            <div class="row clearfix">
+                <div class="column column-2 about-img-wrap" data-aos="fade-right">
+                    {% if page.about_image %}
+                        {% image page.about_image original as about_img %}
+                        <img src="{{ about_img.url }}" alt="{{ page.about_image.title|default:'About image' }}" id="scroll-move">
+                    {% else %}
+                        <img src="{% static 'img/about-image2.jpg' %}" alt="about-img" id="scroll-move">
+                    {% endif %}
+                </div>
+                <div class="column column-2 about-text-wrap" data-aos="fade-left">
+                    <div class="title-wrap">
+                        <h5 class="the-title">{{ page.about_eyebrow }}</h5>
+                        <h3 class="sub-title">{{ page.about_heading|linebreaksbr }}</h3>
+                        <span class="divider-separator"></span>
+                    </div>
+                    <div class="desc-wrap">
+                        <p>{{ page.about_paragraph_one }}</p>
+                        <p>{{ page.about_paragraph_two }}</p>
+                    </div>
+                    <div class="signature-img-wrap">
+                        {% if page.signature_image %}
+                            {% image page.signature_image original as signature_img %}
+                            <img src="{{ signature_img.url }}" alt="{{ page.signature_image.title|default:'Signature image' }}" class="siganature-img">
+                        {% else %}
+                            <img src="{% static 'img/signatur-michelg-dark.jpg' %}" alt="siganature-img" class="siganature-img">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end About block -->
+
+    <!-- Projects block -->
+    <div class="projects-block" id="mousehover">
+        <div class="container" id="opacity">
+            <div class="row clearfix">
+                <div class="column column-2 project-text-wrap" id="scroll-move2">
+                    <h5 class="the-title">{{ page.projects_eyebrow }}</h5>
+                    <h3 class="sub-title">{{ page.projects_heading|linebreaksbr }}</h3>
+                    <span class="divider-separator"></span>
+                    <div class="desc-wrap">
+                        <p>{{ page.projects_paragraph_one }}</p>
+                        <p>{{ page.projects_paragraph_two }}</p>
+                    </div>
+                    <div class="projects-button">
+                        <a href="{{ page.projects_button_link|default:'#' }}" class="button style-3">{{ page.projects_button_text }}</a>
+                    </div>
+                </div>
+                <div class="column column-2 project-img-wrap" id="scroll-move3">
+                    <div class="smart-img-wrap">
+                        <div class="smart-img img-1" id="project-item1">
+                            {% if page.project_image_one %}
+                                {% image page.project_image_one original as project_img_one %}
+                                <img src="{{ project_img_one.url }}" alt="{{ page.project_image_one.title|default:'Project image 1' }}">
+                            {% else %}
+                                <img src="{% static 'img/smart-img-1.jpg' %}" alt="smart-img-1">
+                            {% endif %}
+                        </div>
+                        <div class="smart-img img-2" id="project-item2">
+                            {% if page.project_image_two %}
+                                {% image page.project_image_two original as project_img_two %}
+                                <img src="{{ project_img_two.url }}" alt="{{ page.project_image_two.title|default:'Project image 2' }}">
+                            {% else %}
+                                <img src="{% static 'img/smart-img-2.jpg' %}" alt="smart-img-2">
+                            {% endif %}
+                        </div>
+                        <div class="smart-img img-3" id="project-item3">
+                            {% if page.project_image_three %}
+                                {% image page.project_image_three original as project_img_three %}
+                                <img src="{{ project_img_three.url }}" alt="{{ page.project_image_three.title|default:'Project image 3' }}" data-aos="fade-up">
+                            {% else %}
+                                <img src="{% static 'img/smart-img-3.jpg' %}" alt="smart-img-3" data-aos="fade-up">
+                            {% endif %}
+                        </div>
+                        <div class="smart-img img-4" id="project-item4">
+                            {% if page.project_image_four %}
+                                {% image page.project_image_four original as project_img_four %}
+                                <img src="{{ project_img_four.url }}" alt="{{ page.project_image_four.title|default:'Project image 4' }}" data-aos="fade-up">
+                            {% else %}
+                                <img src="{% static 'img/tr-006-1024x683.jpg' %}" alt="smart-img-4" data-aos="fade-up">
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end Project block -->
+
+    <!-- Testimonial block -->
+    <div class="testimonial-block">
+        <div class="container">
+            <div class="row clearfix">
+                <div class="column column-1 testimonial-inner-wrap" id="scroll-move4" data-aos="fade-up">
+                    <h1 class="testimonial-text">{{ page.testimonial_quote }}</h1>
+                    <div class="client-wrap">
+                        {% if page.testimonial_client_image %}
+                            {% image page.testimonial_client_image fill-150x150 as client_img %}
+                            <img class="client-img" src="{{ client_img.url }}" alt="{{ page.testimonial_client_name }}">
+                        {% else %}
+                            <img class="client-img" src="{% static 'img/bobby-rodriguezz-631332-unsp5lash-150x150.jpg' %}" alt="client-img">
+                        {% endif %}
+                        <div class="client-desc-wrap">
+                            <h5 class="client-name">{{ page.testimonial_client_name }}</h5>
+                            <span class="client-job">{{ page.testimonial_client_job }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end Testimonial block -->
+
+    <!-- Partner block -->
+    <div class="partner-block">
+        <div class="container">
+            <div class="row partner-title-wrap clearfix">
+                <div class="column column-2" data-aos="fade-up">
+                    <h2 class="the-title">
+                        {{ page.partners_heading }}
+                    </h2>
+                    <span class="divider-separator"></span>
+                </div>
+                <div class="column column-2" data-aos="fade-up">
+                    <p>
+                        {{ page.partners_intro }}
+                    </p>
+                </div>
+            </div>
+            <div class="row partner-list-wrap clearfix">
+                <div class="column column-4" data-aos="fade-up">
+                    <div class="partner-logo-wrap">
+                        {% if page.partner_one_image %}
+                            {% image page.partner_one_image original as partner_one_img %}
+                            <img src="{{ partner_one_img.url }}" alt="{{ page.partner_one_name }}" class="partner-logo">
+                        {% else %}
+                            <img src="{% static 'img/3.jpg' %}" alt="partner-logo" class="partner-logo">
+                        {% endif %}
+                        <div class="partner-desc-wrap">
+                            <div class="partner-desc">
+                                <h3 class="partner-name">{{ page.partner_one_name }}</h3>
+                                <p>{{ page.partner_one_description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column column-4" data-aos="fade-up">
+                    <div class="partner-logo-wrap">
+                        {% if page.partner_two_image %}
+                            {% image page.partner_two_image original as partner_two_img %}
+                            <img src="{{ partner_two_img.url }}" alt="{{ page.partner_two_name }}" class="partner-logo">
+                        {% else %}
+                            <img src="{% static 'img/4.jpg' %}" alt="partner-logo" class="partner-logo">
+                        {% endif %}
+                        <div class="partner-desc-wrap">
+                            <div class="partner-desc">
+                                <h3 class="partner-name">{{ page.partner_two_name }}</h3>
+                                <p>{{ page.partner_two_description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column column-4" data-aos="fade-up">
+                    <div class="partner-logo-wrap">
+                        {% if page.partner_three_image %}
+                            {% image page.partner_three_image original as partner_three_img %}
+                            <img src="{{ partner_three_img.url }}" alt="{{ page.partner_three_name }}" class="partner-logo">
+                        {% else %}
+                            <img src="{% static 'img/2.jpg' %}" alt="partner-logo" class="partner-logo">
+                        {% endif %}
+                        <div class="partner-desc-wrap">
+                            <div class="partner-desc">
+                                <h3 class="partner-name">{{ page.partner_three_name }}</h3>
+                                <p>{{ page.partner_three_description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column column-4" data-aos="fade-up">
+                    <div class="partner-logo-wrap">
+                        {% if page.partner_four_image %}
+                            {% image page.partner_four_image original as partner_four_img %}
+                            <img src="{{ partner_four_img.url }}" alt="{{ page.partner_four_name }}" class="partner-logo">
+                        {% else %}
+                            <img src="{% static 'img/5.jpg' %}" alt="partner-logo" class="partner-logo">
+                        {% endif %}
+                        <div class="partner-desc-wrap">
+                            <div class="partner-desc">
+                                <h3 class="partner-name">{{ page.partner_four_name }}</h3>
+                                <p>{{ page.partner_four_description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end Partner block -->
+
+    <!-- Contact  Block -->
+    <div class="contact-block">
+        <div class="container">
+            <div class="row">
+                <div class="column column-1" data-aos="fade-up">
+                    <h5 class="sub-title">{{ page.contact_eyebrow }}</h5>
+                    <h2 class="the-title">
+                        <a href="{{ page.contact_link|default:'#' }}">
+                            {{ page.contact_heading }} <span>{{ page.contact_heading_emphasis }}</span>
+                        </a>
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end Contact block -->
+{% endblock content %}
