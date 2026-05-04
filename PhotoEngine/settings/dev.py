@@ -1,15 +1,11 @@
 from .base import *
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-!86k82%gjmwie0+2@j0a+6+s5i20vpx$t4&_kj(-!^-mm_&r&+"
-
-# SECURITY WARNING: define the correct hosts in production!
-ALLOWED_HOSTS = ["*"]
-
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = env(
+    "DJANGO_EMAIL_BACKEND",
+    default="django.core.mail.backends.console.EmailBackend",
+)
 
 # OVERRIDE PRODUCTION STORAGE FOR LOCAL DEVELOPMENT
 # This allows standard Django runserver to serve CSS/JS without crashing on missing manifest files.

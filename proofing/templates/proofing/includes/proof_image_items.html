@@ -1,0 +1,194 @@
+{% load wagtailimages_tags home_image_tags site_i18n %}
+{% for proof in proof_images %}
+    {% image proof.image fill-900x900 as tile_image %}
+    {% safe_rendition proof.image "width-2400" as lightbox_image %}
+    {% if page.presentation_style == page.PRESENTATION_STYLE_ANIMATE_SCROLL_1 %}
+    <article class="content__item content__item-imgwrap{% cycle '' ' item-right' %} proof-container client-proofing__item client-proofing__item--animate {% if proof.selected_by_client %}is-selected{% endif %}" data-proof-item data-selected="{% if proof.selected_by_client %}true{% else %}false{% endif %}">
+        <a
+            href="{{ lightbox_image.url }}"
+            class="client-proofing__lightbox client-proofing__lightbox--panel"
+            data-sub-html="<div class='client-proofing__lightbox-caption'>Image {{ proof.image.title|default:'Proof image' }}</div>"
+            data-image-title="{{ proof.image.title|default:'Proof image' }}"
+            data-thumb="{{ tile_image.url }}"
+        >
+            <div
+                class="content__item-img bg-img client-proofing__panel-image"
+                style="background: url('{{ lightbox_image.url }}'); background-size: cover; background-position: 50% 50%;"
+            ></div>
+            <span class="client-proofing__image-title client-proofing__image-title--panel">
+                {% tr "Image" "Image" %} {{ proof.image.title|default:"Proof image" }}
+            </span>
+            <span class="client-proofing__selection-badge">{% tr "Selected" "Selectionnee" %}</span>
+        </a>
+        {% if show_client_selection_controls %}
+        <button
+            class="proof-selector client-proofing__selector client-proofing__selector--panel {% if proof.selected_by_client %}is-selected{% endif %}"
+            data-proof-uuid="{{ proof.proof_uuid }}"
+            aria-label="{% tr 'Select image' 'Selectionner l image' %}"
+            aria-pressed="{% if proof.selected_by_client %}true{% else %}false{% endif %}"
+            type="button"
+        >
+            <span class="icon-heart heart-icon" aria-hidden="true"></span>
+        </button>
+        {% endif %}
+    </article>
+    {% elif page.presentation_style == page.PRESENTATION_STYLE_ANIMATE_SCROLL_3 %}
+    <article class="content__item content__item--expand proof-container client-proofing__item client-proofing__item--animate {% if proof.selected_by_client %}is-selected{% endif %}" data-proof-item data-selected="{% if proof.selected_by_client %}true{% else %}false{% endif %}">
+        <div class="content__item-imgwrap{% cycle '' ' item-right' %} client-proofing__panel">
+            <a
+                href="{{ lightbox_image.url }}"
+                class="client-proofing__lightbox client-proofing__lightbox--panel"
+                data-sub-html="<div class='client-proofing__lightbox-caption'>Image {{ proof.image.title|default:'Proof image' }}</div>"
+                data-image-title="{{ proof.image.title|default:'Proof image' }}"
+                data-thumb="{{ tile_image.url }}"
+            >
+                <div
+                    class="content__item-img bg-img client-proofing__panel-image"
+                    style="background: url('{{ lightbox_image.url }}'); background-size: cover; background-position: 50% 50%;"
+                ></div>
+                <span class="client-proofing__selection-badge">{% tr "Selected" "Selectionnee" %}</span>
+            </a>
+            {% if show_client_selection_controls %}
+            <button
+                class="proof-selector client-proofing__selector client-proofing__selector--panel {% if proof.selected_by_client %}is-selected{% endif %}"
+                data-proof-uuid="{{ proof.proof_uuid }}"
+                aria-label="{% tr 'Select image' 'Selectionner l image' %}"
+                aria-pressed="{% if proof.selected_by_client %}true{% else %}false{% endif %}"
+                type="button"
+            >
+                <span class="icon-heart heart-icon" aria-hidden="true"></span>
+            </button>
+            {% endif %}
+        </div>
+        <h2 class="content__item-title{% cycle '' ' title-right' %}">
+            {% tr "Image" "Image" %} {{ proof.image.title|default:"Proof image" }}
+        </h2>
+        <p class="content__item-description{% cycle '' ' desc-right' %}">
+            {{ page.client_display_name }}
+        </p>
+    </article>
+    {% elif page.presentation_style == page.PRESENTATION_STYLE_GALLERY_CAROUSEL_1 or page.presentation_style == page.PRESENTATION_STYLE_GALLERY_CAROUSEL_2 %}
+    <div class="swiper-slide carousel-img proof-container client-proofing__item client-proofing__item--carousel {% if proof.selected_by_client %}is-selected{% endif %}" data-proof-item data-selected="{% if proof.selected_by_client %}true{% else %}false{% endif %}">
+        <div class="client-proofing__image-frame client-proofing__panel">
+            <a
+                href="{{ lightbox_image.url }}"
+                class="client-proofing__lightbox client-proofing__lightbox--panel"
+                data-sub-html="<div class='client-proofing__lightbox-caption'>Image {{ proof.image.title|default:'Proof image' }}</div>"
+                data-image-title="{{ proof.image.title|default:'Proof image' }}"
+                data-thumb="{{ tile_image.url }}"
+            >
+                <div
+                    class="client-proofing__carousel-image"
+                    style="background: url('{{ lightbox_image.url }}'); background-size: cover; background-position: center center;"
+                ></div>
+                <img
+                    src="{{ tile_image.url }}"
+                    alt="{{ proof.image.title|default:'Proof image' }}"
+                    class="hidden-img client-proofing__hidden-image"
+                >
+                <div class="carousel-overlay"></div>
+                <span class="icon-diagonal-arrows client-proofing__launch-icon" aria-hidden="true"></span>
+                <span class="client-proofing__selection-badge">{% tr "Selected" "Selectionnee" %}</span>
+                <div class="album-detail">
+                    <div class="album-title">
+                        <h3 class="the-title">{% tr "Image" "Image" %} {{ proof.image.title|default:"Proof image" }}</h3>
+                    </div>
+                </div>
+            </a>
+            {% if show_client_selection_controls %}
+            <button
+                class="proof-selector client-proofing__selector client-proofing__selector--panel {% if proof.selected_by_client %}is-selected{% endif %}"
+                data-proof-uuid="{{ proof.proof_uuid }}"
+                aria-label="{% tr 'Select image' 'Selectionner l image' %}"
+                aria-pressed="{% if proof.selected_by_client %}true{% else %}false{% endif %}"
+                type="button"
+            >
+                <span class="icon-heart heart-icon" aria-hidden="true"></span>
+            </button>
+            {% endif %}
+        </div>
+    </div>
+    {% elif page.presentation_style == page.PRESENTATION_STYLE_MASONRY %}
+    <article class="proof-container client-proofing__item column column-4 gallery-masonry-item {% if proof.selected_by_client %}is-selected{% endif %}" data-src="{{ lightbox_image.url }}" data-proof-item data-selected="{% if proof.selected_by_client %}true{% else %}false{% endif %}">
+        <div class="client-proofing__image-frame">
+            <a
+                href="{{ lightbox_image.url }}"
+                class="client-proofing__lightbox"
+                data-sub-html="<div class='client-proofing__lightbox-caption'>Image {{ proof.image.title|default:'Proof image' }}</div>"
+                data-image-title="{{ proof.image.title|default:'Proof image' }}"
+            >
+                {% safe_rendition proof.image "width-900" as masonry_image %}
+                <img
+                    src="{{ masonry_image.url }}"
+                    alt="{{ proof.image.title|default:'Proof image' }}"
+                    class="gallery-item proof-image client-proofing__image"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </a>
+            <span class="client-proofing__selection-badge">{% tr "Selected" "Selectionnee" %}</span>
+
+            {% if show_client_selection_controls %}
+            <button
+                class="proof-selector client-proofing__selector {% if proof.selected_by_client %}is-selected{% endif %}"
+                data-proof-uuid="{{ proof.proof_uuid }}"
+                aria-label="{% tr 'Select image' 'Selectionner l image' %}"
+                aria-pressed="{% if proof.selected_by_client %}true{% else %}false{% endif %}"
+                type="button"
+            >
+                <span class="icon-heart heart-icon" aria-hidden="true"></span>
+            </button>
+            {% endif %}
+
+            <div class="client-proofing__image-title">
+                {% tr "Image" "Image" %} {{ proof.image.title|default:"Proof image" }}
+            </div>
+        </div>
+    </article>
+    {% else %}
+    <article class="proof-container client-proofing__item {% if page.presentation_style == page.PRESENTATION_STYLE_GRID %}column column-3 gallery-grid-item{% else %}column column-4 gallery-grid-item clearfix{% endif %} {% if proof.selected_by_client %}is-selected{% endif %}"{% if page.presentation_style == page.PRESENTATION_STYLE_GRID %} data-src="{{ lightbox_image.url }}"{% else %} data-size="1280x857"{% endif %} data-proof-item data-selected="{% if proof.selected_by_client %}true{% else %}false{% endif %}">
+        <div class="client-proofing__image-frame">
+            <a
+                href="{{ lightbox_image.url }}"
+                class="client-proofing__lightbox{% if page.presentation_style == page.PRESENTATION_STYLE_DEFAULT %} img-wrap{% endif %}"
+                data-sub-html="<div class='client-proofing__lightbox-caption'>Image {{ proof.image.title|default:'Proof image' }}</div>"
+                data-image-title="{{ proof.image.title|default:'Proof image' }}"
+            >
+                <img
+                    src="{{ tile_image.url }}"
+                    alt="{{ proof.image.title|default:'Proof image' }}"
+                    class="gallery-item proof-image client-proofing__image"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </a>
+            <span class="client-proofing__selection-badge">{% tr "Selected" "Selectionnee" %}</span>
+
+            {% if show_client_selection_controls %}
+            <button
+                class="proof-selector client-proofing__selector {% if proof.selected_by_client %}is-selected{% endif %}"
+                data-proof-uuid="{{ proof.proof_uuid }}"
+                aria-label="{% tr 'Select image' 'Selectionner l image' %}"
+                aria-pressed="{% if proof.selected_by_client %}true{% else %}false{% endif %}"
+                type="button"
+            >
+                <span class="icon-heart heart-icon" aria-hidden="true"></span>
+            </button>
+            {% endif %}
+
+            <div class="client-proofing__image-title">
+                {% tr "Image" "Image" %} {{ proof.image.title|default:"Proof image" }}
+            </div>
+        </div>
+        {% if page.presentation_style == page.PRESENTATION_STYLE_GRID %}
+        <p class="portfolio-gallery-page__caption client-proofing__caption">
+            {% tr "Image" "Image" %} {{ proof.image.title|default:"Proof image" }}
+        </p>
+        {% endif %}
+    </article>
+    {% endif %}
+{% empty %}
+<div class="client-proofing__empty-state">
+    <p>{% tr "No proof images have been added to this gallery yet." "Aucune image d epreuve n a encore ete ajoutee a cette galerie." %}</p>
+</div>
+{% endfor %}

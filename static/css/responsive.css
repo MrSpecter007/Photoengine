@@ -783,7 +783,7 @@
   }
 
   .header-style1-wrap {
-    padding: 2px 19px 0;
+    padding: 2px 26px 0 19px;
   }
 
   #header .sm-clean li {
@@ -2063,5 +2063,117 @@
 
   .video-bg {
     min-height: calc(100vh + 50px);
+  }
+}
+
+@media (max-width: 1024px) {
+  .site-language-switcher {
+    min-width: 72px;
+    margin-top: 4px !important;
+    margin-left: 0 !important;
+    padding: 0 !important;
+    border-top: none;
+    box-shadow: none;
+  }
+
+  .projects-block .project-img-wrap {
+    display: flex;
+    justify-content: center;
+  }
+
+  .projects-block .smart-img-wrap {
+    width: min(100%, 64rem);
+    aspect-ratio: 1 / 0.95;
+    padding: 0;
+    margin: 0 auto;
+  }
+
+  .projects-block .smart-img.img-1 {
+    width: 52%;
+    left: 4%;
+    top: 4%;
+  }
+
+  .projects-block .smart-img.img-2 {
+    width: 40%;
+    top: 2%;
+    right: 4%;
+  }
+
+  .projects-block .smart-img.img-3 {
+    width: 42%;
+    left: 12%;
+    bottom: 3%;
+    margin: 0;
+  }
+
+  .projects-block .smart-img.img-4 {
+    width: 44%;
+    right: 6%;
+    bottom: 0;
+    left: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .site-language-switcher {
+    min-width: 100%;
+  }
+
+  .projects-block {
+    padding: 50px 0 57px 0;
+  }
+
+  .projects-block .smart-img-wrap {
+    width: min(100%, 44rem);
+    aspect-ratio: 1 / 1.08;
+  }
+
+  .projects-block .smart-img.img-1 {
+    width: 58%;
+    left: 0;
+    top: 0;
+  }
+
+  .projects-block .smart-img.img-2 {
+    width: 44%;
+    top: 6%;
+    right: 0;
+  }
+
+  .projects-block .smart-img.img-3 {
+    width: 45%;
+    left: 6%;
+    bottom: 10%;
+  }
+
+  .projects-block .smart-img.img-4 {
+    width: 48%;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+@media (max-width: 550px) {
+  .projects-block .smart-img-wrap {
+    width: min(100%, 36rem);
+    aspect-ratio: 1 / 1.14;
+  }
+
+  .projects-block .smart-img.img-1 {
+    width: 60%;
+  }
+
+  .projects-block .smart-img.img-2 {
+    width: 46%;
+  }
+
+  .projects-block .smart-img.img-3 {
+    width: 47%;
+    bottom: 8%;
+  }
+
+  .projects-block .smart-img.img-4 {
+    width: 50%;
   }
 }

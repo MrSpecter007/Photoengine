@@ -1,0 +1,275 @@
+<style>
+  :root {
+    --studio-admin-primary: {{ admin_experience.admin_primary_color }};
+    --studio-admin-surface: {{ admin_experience.admin_surface_color }};
+    --studio-admin-sidebar: {{ admin_experience.admin_sidebar_color }};
+    --studio-admin-text: {{ admin_experience.admin_text_color }};
+    --studio-admin-sidebar-text: {{ admin_experience.admin_sidebar_text_color }};
+    --studio-admin-sidebar-hover: {{ admin_experience.admin_sidebar_hover_color }};
+    --studio-admin-sidebar-hover-text: {{ admin_experience.admin_sidebar_hover_text_color }};
+    --studio-admin-sidebar-selected: {{ admin_experience.admin_sidebar_selected_color }};
+    --studio-admin-sidebar-selected-text: {{ admin_experience.admin_sidebar_selected_text_color }};
+    --studio-admin-soft: {{ admin_experience.admin_soft_color }};
+    --w-color-surface-menus: var(--studio-admin-sidebar);
+    --w-color-surface-menu-item-active: var(--studio-admin-sidebar-selected);
+    --w-color-text-label-menus-default: var(--studio-admin-sidebar-text);
+    --w-color-text-label-menus-active: var(--studio-admin-sidebar-selected-text);
+    --w-color-text-button: var(--studio-admin-sidebar-text);
+  }
+
+  .w-header,
+  .w-slim-header,
+  .login {
+    background: var(--studio-admin-surface);
+  }
+
+  .w-breadcrumb,
+  .breadcrumbs,
+  .breadcrumb,
+  .w-header__breadcrumb,
+  .w-slim-header .w-breadcrumb,
+  .w-slim-header .breadcrumbs {
+    background: var(--studio-admin-sidebar) !important;
+    color: var(--studio-admin-sidebar-text) !important;
+  }
+
+  .w-breadcrumb a,
+  .breadcrumbs a,
+  .breadcrumb a,
+  .w-header__breadcrumb a,
+  .w-slim-header .w-breadcrumb a,
+  .w-slim-header .breadcrumbs a,
+  .w-breadcrumb button,
+  .breadcrumbs button,
+  .breadcrumb button {
+    color: var(--studio-admin-sidebar-text) !important;
+    fill: currentColor;
+  }
+
+  .w-breadcrumb a:hover,
+  .breadcrumbs a:hover,
+  .breadcrumb a:hover,
+  .w-header__breadcrumb a:hover,
+  .w-slim-header .w-breadcrumb a:hover,
+  .w-slim-header .breadcrumbs a:hover,
+  .w-breadcrumb a:focus-visible,
+  .breadcrumbs a:focus-visible,
+  .breadcrumb a:focus-visible,
+  .w-breadcrumb button:hover,
+  .breadcrumbs button:hover,
+  .breadcrumb button:hover,
+  .w-breadcrumb button:focus-visible,
+  .breadcrumbs button:focus-visible,
+  .breadcrumb button:focus-visible {
+    background: var(--studio-admin-sidebar-hover) !important;
+    color: var(--studio-admin-sidebar-hover-text) !important;
+    border-radius: 10px;
+  }
+
+  .w-breadcrumb [aria-current="page"],
+  .breadcrumbs [aria-current="page"],
+  .breadcrumb [aria-current="page"],
+  .w-header__breadcrumb [aria-current="page"] {
+    background: var(--studio-admin-sidebar-selected) !important;
+    color: var(--studio-admin-sidebar-selected-text) !important;
+    border-radius: 10px;
+  }
+
+  .sidebar-layout .sidebar,
+  .sidebar-layout .sidebar-panel,
+  .sidebar-layout .sidebar-panel-content,
+  .w-sidebar,
+  [data-controller="w-sidebar"] {
+    background: var(--studio-admin-sidebar) !important;
+    color: var(--studio-admin-sidebar-text) !important;
+  }
+
+  .sidebar-layout .sidebar a,
+  .sidebar-layout .sidebar button,
+  .sidebar-layout .sidebar svg,
+  .sidebar-layout .sidebar [role="menu"],
+  .sidebar-layout .sidebar [role="menu"] a,
+  .sidebar-layout .sidebar [role="menu"] button,
+  .sidebar-layout .sidebar .submenu a,
+  .sidebar-layout .sidebar .submenu button,
+  .w-sidebar a,
+  .w-sidebar button {
+    color: var(--w-color-text-label-menus-default);
+    fill: currentColor;
+  }
+
+  .sidebar-layout .sidebar [role="menu"],
+  .sidebar-layout .sidebar .submenu,
+  .sidebar-layout .sidebar [data-sidebar-menu] {
+    background: var(--studio-admin-sidebar) !important;
+  }
+
+  .sidebar-layout .sidebar a:hover,
+  .sidebar-layout .sidebar button:hover,
+  .sidebar-layout .sidebar a:focus-visible,
+  .sidebar-layout .sidebar button:focus-visible,
+  .sidebar-layout .sidebar .hover\:w-bg-surface-menu-item-active:hover {
+    background: var(--studio-admin-sidebar-hover) !important;
+    color: var(--studio-admin-sidebar-hover-text) !important;
+    border-radius: 10px;
+  }
+
+  .sidebar-layout .sidebar [aria-current="page"],
+  .sidebar-layout .sidebar .w-bg-surface-menu-item-active,
+  .sidebar-layout .sidebar .focus\:w-bg-surface-menu-item-active:focus,
+  .sidebar-layout .sidebar [aria-expanded="true"] {
+    background: var(--w-color-surface-menu-item-active) !important;
+    color: var(--w-color-text-label-menus-active) !important;
+    border-radius: 10px;
+  }
+
+  .sidebar-layout .sidebar [aria-current="page"] svg,
+  .sidebar-layout .sidebar .w-bg-surface-menu-item-active svg,
+  .sidebar-layout .sidebar .focus\:w-bg-surface-menu-item-active:focus svg,
+  .sidebar-layout .sidebar [aria-expanded="true"] svg,
+  .sidebar-layout .sidebar a:hover svg,
+  .sidebar-layout .sidebar button:hover svg,
+  .sidebar-layout .sidebar a:focus-visible svg,
+  .sidebar-layout .sidebar button:focus-visible svg {
+    fill: currentColor;
+  }
+
+  .sidebar-layout .sidebar a,
+  .w-header a,
+  .login a {
+    transition: color 160ms ease;
+  }
+
+  .sidebar-layout .sidebar a:hover,
+  .w-header a:hover,
+  .login a:hover {
+    color: var(--studio-admin-primary);
+  }
+
+  .button,
+  .button-longrunning,
+  .c-sf-add-button,
+  input[type="submit"],
+  .button.button-primary,
+  .button.action-save,
+  [data-controller="w-action"] .button {
+    border-radius: 999px;
+  }
+
+  .button.button-primary,
+  .button.action-save,
+  .button-longrunning,
+  .c-sf-add-button,
+  input[type="submit"] {
+    background: var(--studio-admin-primary);
+    border-color: var(--studio-admin-primary);
+  }
+
+  .button.button-primary:hover,
+  .button.action-save:hover,
+  .button-longrunning:hover,
+  .c-sf-add-button:hover,
+  input[type="submit"]:hover {
+    filter: brightness(0.95);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--studio-admin-soft);
+    outline-offset: 2px;
+  }
+
+  .studio-admin-welcome {
+    background:
+      radial-gradient(circle at top right, var(--studio-admin-soft), transparent 42%),
+      linear-gradient(135deg, #ffffff 0%, #fbf7f8 100%);
+    border: 1px solid rgba(17, 17, 17, 0.08);
+    border-left: 6px solid var(--studio-admin-primary);
+    border-radius: 18px;
+    box-shadow: 0 20px 44px rgba(15, 23, 29, 0.08);
+    margin-bottom: 22px;
+    overflow: hidden;
+    padding: 28px;
+  }
+
+  .studio-admin-welcome__inner {
+    align-items: center;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: auto 1fr;
+  }
+
+  .studio-admin-welcome__mark {
+    align-items: center;
+    background: var(--studio-admin-surface);
+    border-radius: 16px;
+    color: #ffffff;
+    display: flex;
+    height: 88px;
+    justify-content: center;
+    overflow: hidden;
+    width: 88px;
+  }
+
+  .studio-admin-welcome__mark img {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  .studio-admin-welcome__mark--fallback {
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .studio-admin-welcome__eyebrow {
+    color: var(--studio-admin-primary);
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    margin: 0 0 8px;
+    text-transform: uppercase;
+  }
+
+  .studio-admin-welcome__title {
+    color: var(--studio-admin-text);
+    font-size: 3rem;
+    line-height: 1.1;
+    margin: 0 0 10px;
+  }
+
+  .studio-admin-welcome__copy {
+    color: var(--studio-admin-text);
+    font-size: 1.5rem;
+    line-height: 1.75;
+    margin: 0;
+    max-width: 72rem;
+    opacity: 0.82;
+  }
+
+  .studio-admin-welcome__meta {
+    color: var(--studio-admin-text);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .studio-admin-welcome__pill {
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(17, 17, 17, 0.08);
+    border-radius: 999px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 8px 12px;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 767px) {
+    .studio-admin-welcome__inner {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,21 @@
+<section class="studio-admin-welcome">
+    <div class="studio-admin-welcome__inner">
+        <div class="studio-admin-welcome__mark">
+            {% if admin_experience.admin_logo %}
+                <img src="{{ admin_experience.admin_logo.file.url }}" alt="{{ admin_experience.admin_brand_name }}">
+            {% else %}
+                <span class="studio-admin-welcome__mark--fallback">{{ admin_experience.admin_brand_name|slice:":1" }}</span>
+            {% endif %}
+        </div>
+        <div class="studio-admin-welcome__content">
+            <p class="studio-admin-welcome__eyebrow">Studio workspace</p>
+            <h2 class="studio-admin-welcome__title">{{ admin_experience.admin_welcome_title }}</h2>
+            <p class="studio-admin-welcome__copy">{{ admin_experience.admin_welcome_message }}</p>
+            <div class="studio-admin-welcome__meta">
+                <span class="studio-admin-welcome__pill">{{ admin_experience.admin_brand_name }}</span>
+                <span class="studio-admin-welcome__pill">Wagtail admin</span>
+                <span class="studio-admin-welcome__pill">Photographer-ready</span>
+            </div>
+        </div>
+    </div>
+</section>

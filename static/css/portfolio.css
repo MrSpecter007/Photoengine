@@ -1,0 +1,124 @@
+.portfolio-page,
+.portfolio-gallery-page {
+  padding-bottom: 80px;
+}
+
+.portfolio-page__intro,
+.portfolio-gallery-page__hero,
+.portfolio-gallery-page__body,
+.portfolio-gallery-page__related {
+  padding-top: 60px;
+}
+
+.portfolio-page__eyebrow,
+.portfolio-card__eyebrow {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: #da0d2b;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.portfolio-page__title {
+  margin-bottom: 16px;
+  font-size: 5.2rem;
+  line-height: 1.1;
+}
+
+.portfolio-page__copy,
+.portfolio-page__empty,
+.portfolio-card__excerpt,
+.portfolio-gallery-page__caption {
+  color: #605e5f;
+}
+
+.portfolio-album-grid {
+  padding: 10px 30px 0;
+}
+
+.portfolio-album-grid__item {
+  margin-bottom: 30px;
+}
+
+.portfolio-card {
+  display: block;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 25px 50px rgba(9, 33, 43, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 32px 60px rgba(9, 33, 43, 0.14);
+}
+
+.portfolio-card__media {
+  overflow: hidden;
+  background: #dfe7eb;
+}
+
+.portfolio-card__image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.portfolio-card:hover .portfolio-card__image {
+  transform: scale(1.04);
+}
+
+.portfolio-card__body {
+  padding: 24px;
+}
+
+.portfolio-card__title,
+.portfolio-gallery-page__related-title {
+  margin-bottom: 10px;
+  font-size: 2.4rem;
+  line-height: 1.2;
+}
+
+.portfolio-category__header {
+  align-items: center;
+}
+
+.portfolio-category__cover,
+.portfolio-gallery-page__hero-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.portfolio-gallery-page__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.portfolio-gallery-page__tag {
+  padding: 8px 12px;
+  background: #ffffff;
+  color: #1f1d1d;
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.portfolio-gallery-page__grid {
+  padding: 20px 30px 0;
+}
+
+.portfolio-gallery-page__caption {
+  margin-top: 10px;
+  font-size: 1.3rem;
+  line-height: 1.7;
+}
+
+.portfolio-card--compact .portfolio-card__body {
+  padding: 18px 20px;
+}

@@ -1,0 +1,242 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags home_image_tags site_i18n %}
+
+{% block title %}{{ page.title }} - Naji Photo{% endblock title %}
+
+{% block body_class %}{{ page.body_class }}{% endblock body_class %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/portfolio.css' %}">
+<link rel="stylesheet" href="{% static 'css/lightgallery.min.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<article class="portfolio-gallery-page portfolio-gallery-page--{{ page.presentation_style }}">
+    {% if page.presentation_style == page.PRESENTATION_STYLE_ANIMATE_SCROLL_1 %}
+    <main class="animate-scroll-block animate-one">
+        <div class="animate-item-wrap" data-scroll>
+            {% for gallery_image in page.gallery_images.all %}
+            {% safe_rendition gallery_image.image "width-2400" as lightbox_image %}
+            <div
+                class="content__item content__item-imgwrap{% cycle '' ' item-right' %}"
+                data-src="{{ lightbox_image.url }}"
+                title="{{ gallery_image.caption|default:page.title }}"
+            >
+                <div
+                    class="content__item-img bg-img"
+                    style="background: url('{{ lightbox_image.url }}'); background-size: cover; background-position: 50% 50%;"
+                ></div>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+    {% elif page.presentation_style == page.PRESENTATION_STYLE_ANIMATE_SCROLL_3 %}
+    <main class="animate-scroll-block animate-three animate-scroll">
+        <div class="page-layout" data-scroll>
+            <div class="animate-item-wrap">
+                {% for gallery_image in page.gallery_images.all %}
+                {% safe_rendition gallery_image.image "width-2400" as lightbox_image %}
+                <div class="content__item content__item--expand">
+                    <div class="content__item-imgwrap{% cycle '' ' item-right' %}">
+                        <div
+                            class="content__item-img bg-img"
+                            style="background: url('{{ lightbox_image.url }}'); background-size: cover; background-position: 50% 50%;"
+                        ></div>
+                    </div>
+                    <h2 class="content__item-title{% cycle '' ' title-right' %}">
+                        {{ gallery_image.caption|default:page.title }}
+                    </h2>
+                    <p class="content__item-description{% cycle '' ' desc-right' %}">
+                        {{ page.excerpt|default:page.primary_category_name }}
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+    {% elif page.presentation_style == page.PRESENTATION_STYLE_GALLERY_CAROUSEL_1 or page.presentation_style == page.PRESENTATION_STYLE_GALLERY_CAROUSEL_2 %}
+    <div class="carousel-block gallery-carousel-block{% if page.presentation_style == page.PRESENTATION_STYLE_GALLERY_CAROUSEL_2 %} gallery-carousel-two{% endif %}">
+        <div class="column column-25 carousel-title-wrap">
+            <div class="title-wrap">
+                <h1 class="the-title">{% tr "Portfolio Details" "Details du portfolio" %}</h1>
+            </div>
+            <div class="detail-wrap">
+                <div class="detail-item">
+                    <span class="detail-title">{% tr "Category" "Categorie" %}</span>
+                    <span class="detail-item">: {{ page.primary_category_name }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-title">{% tr "Images" "Images" %}</span>
+                    <span class="detail-item">: {{ page.gallery_images.count }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-title">{% tr "Style" "Style" %}</span>
+                    <span class="detail-item">: {{ page.get_presentation_style_display }}</span>
+                </div>
+            </div>
+            <div class="desc-wrap">
+                <h3 class="the-title">{{ page.title }}</h3>
+                {% if page.excerpt %}
+                <p class="the-desc">{{ page.excerpt }}</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="column column-75 carousel-wrap">
+            <div class="swiper-container carousel-album">
+                <div class="swiper-wrapper">
+                    {% for gallery_image in page.gallery_images.all %}
+                    {% safe_rendition gallery_image.image "width-2400" as lightbox_image %}
+                    <div
+                        class="swiper-slide carousel-img"
+                        style="background: url('{{ lightbox_image.url }}'); background-size: cover; background-position: center center;"
+                        data-src="{{ lightbox_image.url }}"
+                        title="{{ gallery_image.caption|default:page.title }}"
+                    >
+                        {% if page.presentation_style == page.PRESENTATION_STYLE_GALLERY_CAROUSEL_2 %}
+                        <img src="{{ lightbox_image.url }}" alt="{{ gallery_image.caption|default:page.title }}" class="hidden-img">
+                        {% endif %}
+                        <div class="carousel-overlay"></div>
+                        <span class="icon-diagonal-arrows launch-gallery-icon"></span>
+                        <div class="album-detail">
+                            <div class="album-title">
+                                <h3 class="the-title">{{ gallery_image.caption|default:page.title }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="swiper-scrollbar"></div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="portfolio-gallery-page__hero container">
+        <div class="row">
+            <div class="column column-2">
+                <span class="portfolio-page__eyebrow">{{ page.primary_category_name }}</span>
+                <h1 class="portfolio-page__title">{{ page.title }}</h1>
+                {% if page.excerpt %}
+                <p class="portfolio-page__copy">{{ page.excerpt }}</p>
+                {% endif %}
+                {% if page.tags.all %}
+                <div class="portfolio-gallery-page__tags">
+                    {% for tag in page.tags.all %}
+                    <span class="portfolio-gallery-page__tag">{{ tag.name }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="column column-2">
+                {% if page.card_image %}
+                    {% safe_rendition page.card_image "fill-1200x900" as hero_image %}
+                    <img src="{{ hero_image.url }}" alt="{{ page.title }}" class="portfolio-gallery-page__hero-image">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% if page.gallery_images.all %}
+        {% if page.presentation_style == page.PRESENTATION_STYLE_DEFAULT %}
+        <div class="gallery-grid-block default-creative-grid portfolio-gallery-page__grid">
+            <div class="gallery-grid-item-wrap std-creative-grid gallery-grid">
+                {% for gallery_image in page.gallery_images.all %}
+                {% safe_rendition gallery_image.image "width-2400" as lightbox_image %}
+                <div class="column column-4 gallery-grid-item clearfix" data-size="1280x857">
+                    <a href="{{ lightbox_image.url }}" class="img-wrap">
+                        {% safe_rendition gallery_image.image "fill-900x900" as tile_image %}
+                        <img src="{{ tile_image.url }}" alt="{{ gallery_image.caption|default:page.title }}" class="gallery-item">
+                        {% if gallery_image.caption %}
+                        <div class="description description-wrap">
+                            <h3>{{ gallery_image.caption }}</h3>
+                            {% if page.excerpt %}
+                            <div class="caption-gallery">
+                                <p>{{ page.excerpt|truncatechars:120 }}</p>
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% elif page.presentation_style == page.PRESENTATION_STYLE_GRID %}
+        <div class="gallery-grid-block standard-grid portfolio-gallery-page__grid">
+            <div class="gallery-grid-item-wrap gallery-grid">
+                {% for gallery_image in page.gallery_images.all %}
+                {% safe_rendition gallery_image.image "width-2400" as lightbox_image %}
+                <div class="column column-3 gallery-grid-item" data-src="{{ lightbox_image.url }}">
+                    {% safe_rendition gallery_image.image "fill-900x900" as tile_image %}
+                    <img src="{{ tile_image.url }}" alt="{{ gallery_image.caption|default:page.title }}" class="gallery-item">
+                    {% if gallery_image.caption %}
+                    <p class="portfolio-gallery-page__caption">{{ gallery_image.caption }}</p>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% elif page.presentation_style == page.PRESENTATION_STYLE_MASONRY %}
+        <div class="gallery-masonry-block portfolio-gallery-page__grid">
+            <div class="gallery-masonry-item-wrap gallery-masonry">
+                {% for gallery_image in page.gallery_images.all %}
+                {% safe_rendition gallery_image.image "width-2400" as lightbox_image %}
+                <div class="column column-4 gallery-masonry-item" data-src="{{ lightbox_image.url }}">
+                    {% safe_rendition gallery_image.image "width-900" as tile_image %}
+                    <img src="{{ tile_image.url }}" alt="{{ gallery_image.caption|default:page.title }}" class="gallery-item">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    {% endif %}
+    {% endif %}
+
+    {% if page.presentation_style != page.PRESENTATION_STYLE_ANIMATE_SCROLL_1 and page.presentation_style != page.PRESENTATION_STYLE_ANIMATE_SCROLL_3 %}
+        {% if page.body %}
+        <div class="portfolio-gallery-page__body container">
+            {% for block in page.body %}
+                {% include_block block %}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if related_galleries %}
+        <div class="portfolio-gallery-page__related container">
+            <div class="row">
+                <div class="column column-1">
+                    <h2 class="portfolio-gallery-page__related-title">{% tr "More From" "Plus de" %} {{ page.primary_category_name }}</h2>
+                </div>
+            </div>
+            <div class="row">
+                {% for gallery in related_galleries|slice:":3" %}
+                <div class="column column-3">
+                    <a href="{{ gallery.url }}" class="portfolio-card portfolio-card--compact">
+                        <div class="portfolio-card__media">
+                            {% if gallery.card_image %}
+                                {% safe_rendition gallery.card_image "fill-700x700" as related_image %}
+                                <img src="{{ related_image.url }}" alt="{{ gallery.title }}" class="gallery-item portfolio-card__image">
+                            {% else %}
+                                <img src="{% static 'img/photo-1448518184296-a22facb4446f-650x650.jpg' %}" alt="{{ gallery.title }}" class="gallery-item portfolio-card__image">
+                            {% endif %}
+                        </div>
+                        <div class="portfolio-card__body">
+                            <span class="portfolio-card__eyebrow">{{ gallery.primary_category_name }}</span>
+                            <h3 class="portfolio-card__title">{{ gallery.title }}</h3>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    {% endif %}
+</article>
+{% endblock content %}
+
+{% block extra_js %}
+    {% if page.presentation_style == page.PRESENTATION_STYLE_ANIMATE_SCROLL_1 %}
+    <script src="{% static 'js/animateScroll-1.js' %}"></script>
+    {% elif page.presentation_style == page.PRESENTATION_STYLE_ANIMATE_SCROLL_3 %}
+    <script src="{% static 'js/animateScroll-3.js' %}"></script>
+    {% endif %}
+{% endblock extra_js %}

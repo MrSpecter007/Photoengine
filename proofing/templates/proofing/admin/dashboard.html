@@ -1,0 +1,91 @@
+{% extends "wagtailadmin/base.html" %}
+{% load i18n %}
+
+{% block title %}Proofing{% endblock %}
+
+{% block content %}
+<div class="nice-padding">
+    <header class="w-mb-8">
+        <h1 class="w-text-3xl w-font-bold w-mb-2">Proofing</h1>
+        <p class="w-text-sm w-text-secondary">Manage client proofing galleries and quick client records from one place.</p>
+    </header>
+
+    <div class="w-grid w-gap-4 md:w-grid-cols-2 lg:w-grid-cols-4 w-mb-8">
+        <div class="w-panel">
+            <div class="w-panel__content">
+                <p class="w-text-xs w-uppercase w-tracking-wide w-text-secondary">Galleries</p>
+                <p class="w-text-3xl w-font-semibold">{{ gallery_count }}</p>
+            </div>
+        </div>
+        <div class="w-panel">
+            <div class="w-panel__content">
+                <p class="w-text-xs w-uppercase w-tracking-wide w-text-secondary">Clients</p>
+                <p class="w-text-3xl w-font-semibold">{{ client_count }}</p>
+            </div>
+        </div>
+        <div class="w-panel">
+            <div class="w-panel__content">
+                <a href="{{ add_gallery_url }}" class="button button-primary">Add Proofing Gallery</a>
+            </div>
+        </div>
+        <div class="w-panel">
+            <div class="w-panel__content">
+                <a href="{{ clients_url }}" class="button button-secondary">Manage Clients</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-panel">
+        <div class="w-panel__header">
+            <h2 class="w-panel__heading">Proofing Galleries</h2>
+        </div>
+        <div class="w-panel__content">
+            {% if galleries %}
+            <table class="listing">
+                <thead>
+                    <tr>
+                        <th>Gallery</th>
+                        <th>Client</th>
+                        <th>Shoot Date</th>
+                        <th>Status</th>
+                        <th>Selections</th>
+                        <th>Client Access</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for gallery in galleries %}
+                    <tr>
+                        <td>
+                            <strong>{{ gallery.title }}</strong>
+                            {% if gallery.location %}
+                            <div class="w-text-xs w-text-secondary">{{ gallery.location }}</div>
+                            {% endif %}
+                        </td>
+                        <td>{{ gallery.client_display_name|default:"-" }}</td>
+                        <td>{{ gallery.shoot_date|date:"M j, Y" }}</td>
+                        <td>{{ gallery.get_session_status_display }}</td>
+                        <td>{{ gallery.selected_count }} / {{ gallery.proof_count }}</td>
+                        <td>
+                            <div class="w-text-xs w-text-secondary">Token</div>
+                            <code>{{ gallery.access_token }}</code>
+                            <div class="w-mt-2">
+                                <a href="{{ gallery.portal_access_path }}" target="_blank" rel="noopener noreferrer">Open portal</a>
+                                <span class="w-text-secondary"> · </span>
+                                <a href="{{ gallery.photographer_preview_url }}" target="_blank" rel="noopener noreferrer">Photographer preview</a>
+                            </div>
+                        </td>
+                        <td>
+                            <a href="{% url 'wagtailadmin_pages:edit' gallery.pk %}">Edit</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>No proofing galleries yet.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

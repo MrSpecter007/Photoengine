@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static site_i18n %}
+
+{% block title %}{% tr "Proofing Portal" "Portail évaluation" %} - Naji Photo{% endblock title %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/proofing.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<section class="client-proofing client-proofing--portal">
+    <div class="client-proofing__portal-entry-shell">
+        <div class="client-proofing__header client-proofing__portal-entry">
+            <div class="client-proofing__header-main">
+                <p class="client-proofing__eyebrow">{% tr "Client access" "Acces client" %}</p>
+                <h1 class="client-proofing__title">{% tr "Proofing Portal" "Portail évaluation" %}</h1>
+                <p class="client-proofing__intro">
+                    {% tr "Enter the private access token from your email invite to open your gallery, review your proofs, and submit your final favorites." "Entrez le jeton d'acces prive recu par courriel pour ouvrir votre galerie, consulter vos epreuves et soumettre vos favoris." %}
+                </p>
+                <div class="client-proofing__meta-row">
+                    <span class="client-proofing__meta-pill">{% tr "Private gallery access" "Acces a la galerie privee" %}</span>
+                    <span class="client-proofing__meta-pill">{% tr "Favorites shortlist" "Liste de favoris" %}</span>
+                    <span class="client-proofing__meta-pill">{% tr "Final delivery workflow" "Processus de livraison finale" %}</span>
+                </div>
+            </div>
+
+            <div class="client-proofing__header-aside">
+                <div class="client-proofing__status-card client-proofing__status-card--active">
+                    <p class="client-proofing__status-label">{% tr "Access guidance" "Guide d'acces" %}</p>
+                    <p class="client-proofing__status-copy">
+                        {% tr "This page is only the secure entry point to your gallery." "Cette page est uniquement le point d'entree securise vers votre galerie." %}
+                    </p>
+                    <div class="client-proofing__status-list">
+                        <p class="client-proofing__status-list-item">{% tr "Paste the secure token from your invitation." "Collez le jeton securise recu dans votre invitation." %}</p>
+                        <p class="client-proofing__status-list-item">{% tr "Review images and heart the ones you want delivered." "Consultez les images et marquez celles que vous souhaitez recevoir." %}</p>
+                        <p class="client-proofing__status-list-item">{% tr "Submit your final selections when you are ready." "Soumettez vos selections finales lorsque vous etes pret." %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="client-proofing__portal-form-wrap">
+            <form method="post" class="client-proofing__portal-form" novalidate>
+                {% csrf_token %}
+                <div class="client-proofing__portal-form-grid">
+                    <div class="client-proofing__portal-field">
+                        <label for="{{ form.access_token.id_for_label }}">{{ form.access_token.label }}</label>
+                        {{ form.access_token }}
+                        {% for error in form.access_token.errors %}
+                        <p class="client-proofing__portal-error">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="client-proofing__portal-actions">
+                    <button type="submit" class="button style-1 client-proofing__button client-proofing__portal-submit">
+                        {% tr "Open gallery" "Ouvrir la galerie" %}
+                    </button>
+                </div>
+            </form>
+
+            <div class="client-proofing__portal-helper">
+                <p class="client-proofing__portal-helper-title">{% tr "Have a gallery link already?" "Vous avez deja un lien de galerie?" %}</p>
+                <p class="client-proofing__portal-helper-copy">
+                    {% tr "If your invitation email included a direct proofing link, you can open that link instead of pasting the token here. Otherwise, copy the access token from the same email and enter it above." "Si votre courriel d'invitation contenait un lien direct vers la galerie, vous pouvez l'ouvrir au lieu de coller le jeton ici. Sinon, copiez le jeton d'acces dans ce meme courriel et saisissez-le ci-dessus." %}
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

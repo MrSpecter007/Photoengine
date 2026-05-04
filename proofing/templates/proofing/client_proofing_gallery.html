@@ -1,64 +1,345 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags wagtailimages_tags %}
+{% load static wagtailcore_tags wagtailimages_tags home_image_tags site_i18n %}
+
+{% block title %}{{ page.title }} - Naji Photo{% endblock title %}
+
+{% block body_class %}{{ page.body_class }}{% endblock body_class %}
 
 {% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/lightgallery.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/portfolio.css' %}">
 <link rel="stylesheet" href="{% static 'css/proofing.css' %}">
 {% endblock extra_css %}
 
 {% block content %}
 <div
-    class="gallery-grid-block jepret-padding-large client-proofing"
+    class="gallery-grid-block jepret-padding-large client-proofing client-proofing--{{ page.presentation_style }}"
     data-proofing-root
     data-toggle-url="{{ toggle_selection_url }}"
+    data-finalize-url="{{ finalize_selection_url }}"
+    data-load-more-url="{{ load_more_url }}"
+    data-gallery-id="{{ page.pk }}"
+    data-selected-count="{{ selected_count }}"
+    data-progressive-enabled="{% if uses_progressive_loading %}true{% else %}false{% endif %}"
+    data-next-page="{% if uses_progressive_loading and proof_page.has_next %}{{ proof_page.next_page_number }}{% endif %}"
+    data-has-next="{% if uses_progressive_loading and proof_page.has_next %}true{% else %}false{% endif %}"
 >
-    <div class="gallery-header text-center jepret-margin-bottom client-proofing__header">
-        <p class="client-proofing__eyebrow">Private proofing gallery</p>
-        <h2>{{ page.client_name }} - Proofs</h2>
-        <p class="client-proofing__meta">Session date: {{ page.shoot_date|date:"F j, Y" }}</p>
+    <div class="client-proofing__portal-bar">
+        <div class="client-proofing__portal-bar-inner">
+            <p class="client-proofing__portal-kicker">
+                {% if is_photographer_view %}{% tr "Photographer view" "Vue photographe" %}{% else %}{% tr "Client portal" "Portail client" %}{% endif %}
+            </p>
+            <div class="client-proofing__portal-summary">
+                <span class="client-proofing__portal-pill">{{ page.client_display_name }}</span>
+                <span class="client-proofing__portal-pill">{% tr "Shoot:" "Seance :" %} {{ page.shoot_date|date:"F j, Y" }}</span>
+                {% if is_photographer_view %}
+                <span class="client-proofing__portal-pill client-proofing__portal-pill--admin">{% tr "Admin preview" "Apercu admin" %}</span>
+                {% endif %}
+                {% if page.is_locked %}
+                <span class="client-proofing__portal-pill client-proofing__portal-pill--success">{% tr "Selections locked" "Selections verrouillees" %}</span>
+                {% elif page.delivery_is_ready %}
+                <span class="client-proofing__portal-pill client-proofing__portal-pill--success">{% tr "Delivery ready" "Livraison prete" %}</span>
+                {% else %}
+                <span class="client-proofing__portal-pill">{% tr "Review mode" "Mode revision" %}</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 
-        {% if page.download_link_high_res %}
-        <a href="{{ page.download_link_high_res }}" target="_blank" rel="noopener noreferrer" class="button style-1">
-            Download Final High-Res Deliverables
-        </a>
-        {% elif page.is_locked %}
-        <p><em>Your selections have been submitted for retouching.</em></p>
-        {% else %}
-        <p><em>Click the heart icon to select your favorites.</em></p>
-        <div id="selection-counter" class="client-proofing__counter">
-            Selected: <span id="count">{{ selected_count }}</span>
+    <div class="client-proofing__header-shell">
+        <div class="gallery-header jepret-margin-bottom client-proofing__header">
+            <div class="client-proofing__header-main">
+                <p class="client-proofing__eyebrow">
+                    {% if is_photographer_view %}{% tr "Photographer gallery overview" "Vue d'ensemble de la galerie photographe" %}{% else %}{% tr "Private proofing gallery" "Galerie d'epreuves privee" %}{% endif %}
+                </p>
+                <h1 class="client-proofing__title">{{ page.client_display_name }} - {% tr "Proofs" "Epreuves" %}</h1>
+                <p class="client-proofing__intro">
+                    {% if is_photographer_view %}
+                    {% tr "This is the staff view of the same gallery instance your client receives. Review live selections, open the client portal, or jump back to admin editing." "Voici la vue equipe de la meme galerie que recoit votre client. Consultez les selections en direct, ouvrez le portail client ou retournez a l'administration." %}
+                    {% else %}
+                    {% tr "Review each image, open it full size when needed, and mark the favorites you would like delivered." "Consultez chaque image, ouvrez-la en grand format au besoin et marquez les favoris que vous souhaitez recevoir." %}
+                    {% endif %}
+                </p>
+
+                <div class="client-proofing__meta-row">
+                    <span class="client-proofing__meta-pill">
+                        {% tr "Session date:" "Date de la seance :" %} {{ page.shoot_date|date:"F j, Y" }}
+                    </span>
+                    {% if page.shoot_type %}
+                    <span class="client-proofing__meta-pill">{{ page.shoot_type }}</span>
+                    {% endif %}
+                    {% if page.location %}
+                    <span class="client-proofing__meta-pill">{{ page.location }}</span>
+                    {% endif %}
+                    <span class="client-proofing__meta-pill">
+                        {{ proof_page.paginator.count }} {% tr "proof" "epreuve" %}{{ proof_page.paginator.count|pluralize }}
+                    </span>
+                    <span class="client-proofing__meta-pill">
+                        {{ page.get_presentation_style_display }}
+                    </span>
+                    {% if page.proof_deadline and not page.is_locked and not page.delivery_is_ready %}
+                    <span class="client-proofing__meta-pill client-proofing__meta-pill--alert">
+                        {% tr "Submit by" "Soumettre avant le" %} {{ page.proof_deadline|date:"F j, Y" }}
+                    </span>
+                    {% endif %}
+                </div>
+
+                {% if page.client_notes %}
+                <p class="client-proofing__note">{{ page.client_notes }}</p>
+                {% endif %}
+            </div>
+
+            <div class="client-proofing__header-aside">
+                {% if is_photographer_view %}
+                <div class="client-proofing__status-card client-proofing__status-card--photographer">
+                    <p class="client-proofing__status-label">{% tr "Photographer controls" "Controles photographe" %}</p>
+                    <div class="client-proofing__counter client-proofing__counter--large">
+                        <span data-selection-count>{{ selected_count }}</span>
+                    </div>
+                    <p class="client-proofing__status-copy">
+                        {% tr "Client selections are visible here in real time. This admin/staff view is read-only for client picks." "Les selections du client sont visibles ici en temps reel. Cette vue admin/equipe est en lecture seule pour les choix du client." %}
+                    </p>
+                    <div class="client-proofing__status-list client-proofing__status-list--dark">
+                        <p class="client-proofing__status-list-item">{% tr "Token:" "Jeton :" %} <code>{{ page.access_token }}</code></p>
+                        <p class="client-proofing__status-list-item">{% tr "Invite:" "Invitation :" %} {{ page.invite_email|default_if_none:''|default:'' }}{% if not page.invite_email %}{% tr "Not set" "Non defini" %}{% endif %}</p>
+                        <p class="client-proofing__status-list-item">{% tr "Status:" "Statut :" %} {{ page.get_session_status_display }}</p>
+                    </div>
+                    <div class="client-proofing__actions client-proofing__actions--stacked">
+                        <a href="{{ client_portal_url }}" target="_blank" rel="noopener noreferrer" class="button style-1 client-proofing__button">
+                            {% tr "Open Client Portal" "Ouvrir le portail client" %}
+                        </a>
+                        <a href="{{ photographer_edit_url }}" class="button style-1 client-proofing__button client-proofing__button--secondary">
+                            {% tr "Edit in Admin" "Modifier dans l'admin" %}
+                        </a>
+                    </div>
+                </div>
+                {% else %}
+                {% if page.delivery_is_ready %}
+                <div class="client-proofing__status-card client-proofing__status-card--delivery">
+                    <p class="client-proofing__status-label">{% tr "Final deliverables ready" "Livrables finaux prets" %}</p>
+                    <p class="client-proofing__status-copy">
+                        {% tr "Your final high-resolution files are delivered externally through" "Vos fichiers finaux haute resolution sont livres a l'externe via" %} {{ page.delivery_provider_display_name }}.
+                    </p>
+                    <a href="{{ page.delivery_download_url }}" target="_blank" rel="noopener noreferrer" class="button style-1 client-proofing__button">
+                        {% tr "Open Final Delivery Link" "Ouvrir le lien de livraison finale" %}
+                    </a>
+                    {% if page.final_delivery_expires_at %}
+                    <p class="client-proofing__status-footnote">
+                        {% tr "Link expires:" "Le lien expire le :" %} {{ page.final_delivery_expires_at|date:"F j, Y" }}
+                    </p>
+                    {% endif %}
+                    {% if page.final_delivery_access_note %}
+                    <p class="client-proofing__status-footnote">{{ page.final_delivery_access_note }}</p>
+                    {% endif %}
+                    {% if page.delivery_note_display %}
+                    <p class="client-proofing__status-footnote">{{ page.delivery_note_display }}</p>
+                    {% endif %}
+                </div>
+                {% elif page.is_locked %}
+                <div class="client-proofing__status-card client-proofing__status-card--locked">
+                    <p class="client-proofing__status-label">{% tr "Selections submitted" "Selections envoyees" %}</p>
+                    <div class="client-proofing__counter client-proofing__counter--large">
+                        <span data-selection-count>{{ selected_count }}</span>
+                    </div>
+                    <p class="client-proofing__status-copy">
+                        {% tr "Your favorites are locked in and ready for retouching." "Vos favoris sont verrouilles et prets pour la retouche." %}
+                    </p>
+                </div>
+                {% else %}
+                <div class="client-proofing__status-card client-proofing__status-card--active">
+                    <p class="client-proofing__status-label">{% tr "Current selections" "Selections en cours" %}</p>
+                    <div class="client-proofing__counter client-proofing__counter--large">
+                        <span data-selection-count>{{ selected_count }}</span>
+                    </div>
+                    <p class="client-proofing__status-copy">
+                        {% tr "Click the heart icon on any image to add or remove it from your final list." "Cliquez sur l'icone coeur d'une image pour l'ajouter ou la retirer de votre liste finale." %}
+                    </p>
+                    <div class="client-proofing__status-list">
+                        <p class="client-proofing__status-list-item">{% tr "Open any image to inspect it full size." "Ouvrez une image pour l'examiner en grand format." %}</p>
+                        <p class="client-proofing__status-list-item">{% tr "Use the heart button to mark your favorites." "Utilisez le bouton coeur pour marquer vos favoris." %}</p>
+                        <p class="client-proofing__status-list-item">{% tr "Submit once you are happy with your picks." "Soumettez lorsque vous etes satisfait de vos choix." %}</p>
+                    </div>
+                    <div class="client-proofing__actions">
+                        <button
+                            class="button style-1 client-proofing__button client-proofing__finalize"
+                            data-finalize-trigger
+                            type="button"
+                            {% if selected_count == 0 %}disabled{% endif %}
+                        >
+                            {% tr "Submit Final Selections" "Soumettre les selections finales" %}
+                        </button>
+                    </div>
+                </div>
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="client-proofing__toolbar-shell">
+        <div class="client-proofing__toolbar">
+            <div class="client-proofing__toolbar-actions" role="tablist" aria-label="{% tr 'Proof filters' 'Filtres des epreuves' %}">
+                <button
+                    class="client-proofing__filter is-active"
+                    data-proofing-filter="all"
+                    type="button"
+                >
+                    {% tr "All proofs" "Toutes les epreuves" %}
+                </button>
+                <button
+                    class="client-proofing__filter"
+                    data-proofing-filter="selected"
+                    type="button"
+                >
+                    {% tr "Selected only" "Selection uniquement" %}
+                </button>
+            </div>
+            <div class="client-proofing__toolbar-copy">
+                <strong><span data-selection-count>{{ selected_count }}</span></strong> {% tr "selected" "selectionnees" %}
+                {% if is_photographer_view %}
+                <span class="client-proofing__toolbar-note">{% tr "Staff preview mode. Client-facing selection controls are hidden here." "Mode apercu equipe. Les controles de selection client sont masques ici." %}</span>
+                {% elif not page.is_locked and not page.delivery_is_ready %}
+                <span class="client-proofing__toolbar-note">{% tr "Preview first, then tap the heart to build your final shortlist." "Previsualisez d'abord, puis touchez le coeur pour creer votre liste finale." %}</span>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="client-proofing__notice" data-proofing-notice hidden aria-live="polite"></div>
+
+        {% if show_client_selection_controls and not page.delivery_is_ready %}
+        <div class="client-proofing__confirm" data-finalize-confirm hidden>
+            <div class="client-proofing__confirm-copy">
+                <p class="client-proofing__confirm-title">{% tr "Ready to submit your selections?" "Pret a soumettre vos selections?" %}</p>
+                <p class="client-proofing__confirm-text">
+                    {% tr "You currently have" "Vous avez actuellement" %} <strong><span data-selection-count>{{ selected_count }}</span></strong> {% tr "image" "image" %}{{ selected_count|pluralize }} {% tr "selected." "selectionnee." %}
+                    {% tr "Once submitted, this proofing gallery will lock." "Une fois soumise, cette galerie sera verrouillee." %}
+                </p>
+            </div>
+            <div class="client-proofing__confirm-actions">
+                <button class="client-proofing__confirm-button client-proofing__confirm-button--ghost" data-finalize-cancel type="button">
+                    {% tr "Keep reviewing" "Continuer la revision" %}
+                </button>
+                <button class="client-proofing__confirm-button" data-finalize-submit type="button">
+                    {% tr "Yes, submit selections" "Oui, soumettre les selections" %}
+                </button>
+            </div>
         </div>
         {% endif %}
     </div>
 
-    <div class="gallery-grid-item-wrap client-proofing__grid">
-        {% for proof in proof_images %}
-        <div class="column column-3 gallery-grid-item proof-container">
-            {% image proof.image fill-800x800 as img %}
-            <div class="client-proofing__image-frame">
-                <img src="{{ img.url }}" alt="{{ proof.image.title|default:'Proof image' }}" class="gallery-item proof-image client-proofing__image">
+    <div class="client-proofing__filtered-empty" data-filter-empty hidden>
+        {% tr "No selected images yet. Use the heart icon on any proof to add it to your shortlist." "Aucune image selectionnee pour l'instant. Utilisez l'icone coeur sur une epreuve pour l'ajouter a votre liste." %}
+    </div>
 
-                {% if not page.is_locked %}
-                <button
-                    class="proof-selector client-proofing__selector {% if proof.selected_by_client %}is-selected{% endif %}"
-                    data-proof-uuid="{{ proof.proof_uuid }}"
-                    aria-label="Select image"
-                    aria-pressed="{% if proof.selected_by_client %}true{% else %}false{% endif %}"
-                    type="button"
-                >
-                    <span class="icon-heart heart-icon" aria-hidden="true"></span>
-                </button>
-                {% endif %}
+    {% if page.presentation_style == page.PRESENTATION_STYLE_ANIMATE_SCROLL_1 %}
+    <main
+        class="animate-scroll-block animate-one client-proofing__gallery-shell"
+        data-proofing-gallery
+        data-proofing-layout="animate-scroll-1"
+    >
+        <div class="animate-item-wrap client-proofing__animate-wrap" data-scroll>
+            {% include "proofing/includes/proof_image_items.html" with proof_images=proof_images page=page show_client_selection_controls=show_client_selection_controls %}
+        </div>
+    </main>
+    {% elif page.presentation_style == page.PRESENTATION_STYLE_ANIMATE_SCROLL_3 %}
+    <main
+        class="animate-scroll-block animate-three animate-scroll client-proofing__gallery-shell"
+        data-proofing-gallery
+        data-proofing-layout="animate-scroll-3"
+    >
+        <div class="page-layout" data-scroll>
+            <div class="animate-item-wrap client-proofing__animate-wrap">
+                {% include "proofing/includes/proof_image_items.html" with proof_images=proof_images page=page show_client_selection_controls=show_client_selection_controls %}
             </div>
         </div>
-        {% empty %}
-        <div class="client-proofing__empty-state">
-            <p>No proof images have been added to this gallery yet.</p>
+    </main>
+    {% elif page.presentation_style == page.PRESENTATION_STYLE_GALLERY_CAROUSEL_1 or page.presentation_style == page.PRESENTATION_STYLE_GALLERY_CAROUSEL_2 %}
+    <div
+        class="carousel-block gallery-carousel-block{% if page.presentation_style == page.PRESENTATION_STYLE_GALLERY_CAROUSEL_2 %} gallery-carousel-two{% endif %} client-proofing__gallery-shell client-proofing__gallery-shell--carousel"
+        data-proofing-gallery
+        data-proofing-layout="carousel"
+    >
+        <div class="client-proofing__carousel-wrap">
+            <div class="swiper-container carousel-album client-proofing__carousel">
+                <div class="swiper-wrapper">
+                    {% include "proofing/includes/proof_image_items.html" with proof_images=proof_images page=page show_client_selection_controls=show_client_selection_controls %}
+                </div>
+                <div class="swiper-scrollbar"></div>
+            </div>
         </div>
-        {% endfor %}
     </div>
+    {% elif page.presentation_style == page.PRESENTATION_STYLE_MASONRY %}
+    <div class="gallery-masonry-block portfolio-gallery-page__grid client-proofing__gallery-shell">
+        <div
+            class="gallery-masonry-item-wrap gallery-masonry client-proofing__grid"
+            data-proofing-gallery
+            data-proofing-layout="masonry"
+        >
+            {% include "proofing/includes/proof_image_items.html" with proof_images=proof_images page=page show_client_selection_controls=show_client_selection_controls %}
+        </div>
+    </div>
+    {% elif page.presentation_style == page.PRESENTATION_STYLE_GRID %}
+    <div class="gallery-grid-block standard-grid portfolio-gallery-page__grid client-proofing__gallery-shell">
+        <div
+            class="gallery-grid-item-wrap gallery-grid client-proofing__grid"
+            data-proofing-gallery
+            data-proofing-layout="grid"
+        >
+            {% include "proofing/includes/proof_image_items.html" with proof_images=proof_images page=page show_client_selection_controls=show_client_selection_controls %}
+        </div>
+    </div>
+    {% else %}
+    <div class="gallery-grid-block default-creative-grid portfolio-gallery-page__grid client-proofing__gallery-shell">
+        <div
+            class="gallery-grid-item-wrap std-creative-grid gallery-grid client-proofing__grid"
+            data-proofing-gallery
+            data-proofing-layout="default"
+        >
+            {% include "proofing/includes/proof_image_items.html" with proof_images=proof_images page=page show_client_selection_controls=show_client_selection_controls %}
+        </div>
+    </div>
+    {% endif %}
+
+    {% if uses_progressive_loading %}
+    <div
+        class="client-proofing__load-state"
+        data-load-state
+        {% if not proof_page.has_next %}hidden{% endif %}
+    >
+        {% tr "Loading more images..." "Chargement d'autres images..." %}
+    </div>
+    <div
+        class="client-proofing__load-trigger"
+        data-load-trigger
+        aria-hidden="true"
+        {% if not proof_page.has_next %}hidden{% endif %}
+    ></div>
+    {% endif %}
+
+    {% if show_client_selection_controls and not page.delivery_is_ready %}
+    <div class="client-proofing__mobile-bar" data-proofing-mobile-bar>
+        <div class="client-proofing__mobile-bar-copy">
+            <span class="client-proofing__mobile-bar-label">{% tr "Selected" "Selectionnees" %}</span>
+            <strong><span data-selection-count>{{ selected_count }}</span></strong>
+        </div>
+        <button
+            class="button style-1 client-proofing__button client-proofing__button--compact"
+            data-finalize-trigger
+            type="button"
+            {% if selected_count == 0 %}disabled{% endif %}
+        >
+            {% tr "Submit selections" "Soumettre les selections" %}
+        </button>
+    </div>
+    {% endif %}
 </div>
 {% endblock content %}
 
 {% block extra_js %}
+{% if page.presentation_style == page.PRESENTATION_STYLE_ANIMATE_SCROLL_1 %}
+<script src="{% static 'js/animateScroll-1.js' %}"></script>
+{% elif page.presentation_style == page.PRESENTATION_STYLE_ANIMATE_SCROLL_3 %}
+<script src="{% static 'js/animateScroll-3.js' %}"></script>
+{% endif %}
 <script src="{% static 'js/client-proofing-gallery.js' %}"></script>
 {% endblock extra_js %}

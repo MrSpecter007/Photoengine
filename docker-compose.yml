@@ -1,33 +1,84 @@
 services:
   db:
     image: postgres:16-alpine
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
+    restart: unless-stopped
     environment:
-      - POSTGRES_DB=wagtail
-      - POSTGRES_USER=wagtail
-      - POSTGRES_PASSWORD=wagtail_secret_pass
+      POSTGRES_DB: ${POSTGRES_DB:-photoengine}
+      POSTGRES_USER: ${POSTGRES_USER:-photoengine}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-photoengine}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U postgres -d postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - redis_data:/data
 
   web:
     build: .
-    user: "0:0"
-    command: >
-      sh -c "mkdir -p /app/media/original_images /app/staticfiles &&
-      chown -R wagtail:wagtail /app/media /app/staticfiles &&
-      su wagtail -s /bin/sh -c 'python manage.py migrate --noinput &&
-      python manage.py runserver 0.0.0.0:8000'"
+    restart: unless-stopped
     volumes:
       - .:/app
       - media_data:/app/media
+      - static_data:/app/staticfiles
     ports:
       - "8000:8000"
     environment:
-      - DATABASE_URL=postgres://wagtail:wagtail_secret_pass@db:5432/wagtail
-      - DEBUG=1
-      - SECRET_KEY=django-insecure-dev-key
+      DJANGO_SETTINGS_MODULE: ${DJANGO_SETTINGS_MODULE:-PhotoEngine.settings.dev}
+      DJANGO_DEBUG: ${DJANGO_DEBUG:-true}
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:-django-insecure-dev-key}
+      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:-localhost,127.0.0.1,0.0.0.0}
+      DATABASE_URL: ${DATABASE_URL:-postgresql://photoengine:photoengine@db:5432/photoengine}
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
+      USE_S3_MEDIA: ${USE_S3_MEDIA:-false}
+      MEDIA_ROOT: ${MEDIA_ROOT:-/app/media}
+      STATIC_ROOT: ${STATIC_ROOT:-/app/staticfiles}
+      RUN_MIGRATIONS: "1"
+      RUN_COLLECTSTATIC: "0"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+
+  celery:
+    build: .
+    restart: unless-stopped
+    volumes:
+      - .:/app
+      - media_data:/app/media
+    environment:
+      DJANGO_SETTINGS_MODULE: ${DJANGO_SETTINGS_MODULE:-PhotoEngine.settings.dev}
+      DJANGO_DEBUG: ${DJANGO_DEBUG:-true}
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:-django-insecure-dev-key}
+      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:-localhost,127.0.0.1,0.0.0.0}
+      DATABASE_URL: ${DATABASE_URL:-postgresql://photoengine:photoengine@db:5432/photoengine}
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
+      USE_S3_MEDIA: ${USE_S3_MEDIA:-false}
+      MEDIA_ROOT: ${MEDIA_ROOT:-/app/media}
+      RUN_MIGRATIONS: "0"
+      RUN_COLLECTSTATIC: "0"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: ["celery", "-A", "PhotoEngine", "worker", "-l", "info"]
 
 volumes:
   postgres_data:
+  redis_data:
   media_data:
+  static_data:

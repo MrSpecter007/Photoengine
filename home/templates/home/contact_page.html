@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% load static wagtailimages_tags site_i18n %}
+
+{% block title %}{{ page.title }}{% endblock title %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/proofing.css' %}">
+<link rel="stylesheet" href="{% static 'css/contact-page.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<div class="contact-block contact-block-2 clearfix contact-page-shell">
+    <div class="column column-3 title-wrap contact-page-shell__intro">
+        <h1 class="the-title">
+            {{ page.contact_heading }}
+        </h1>
+        <p class="contact-page-shell__prompt">
+            {% tr "Fill out the inquiry form below to share your shoot details and preferred dates." "Remplissez le formulaire ci-dessous pour partager les details de votre seance et vos dates preferees." %}
+        </p>
+        <a href="#contact-inquiry-form" class="contact-page-shell__jump-link">{% tr "Go to inquiry form" "Aller au formulaire" %}</a>
+        <span class="divider-separator"></span>
+    </div>
+
+    <div class="column column-40 contact-img-wrap contact-page-shell__visual">
+        <div class="contact-page-shell__media">
+            {% if page.contact_image %}
+                {% image page.contact_image max-960x1200 as contact_img %}
+                <img src="{{ contact_img.url }}" alt="{{ page.contact_image.title|default:page.contact_heading }}" class="contact-img">
+            {% else %}
+                <img src="{% static 'img/image-contact.png' %}" alt="{{ page.contact_heading }}" class="contact-img">
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="column column-3 detail-wrap contact-page-shell__details">
+        <div class="contact-detail">
+            <h3 class="the-title">{{ page.contact_detail_heading }}</h3>
+            <p>
+                {% if page.contact_phone %}{% tr "P:" "T:" %} <a href="tel:{{ page.contact_phone|cut:' ' }}">{{ page.contact_phone }}</a><br>{% endif %}
+                {% if page.contact_email %}E: <a href="mailto:{{ page.contact_email }}">{{ page.contact_email }}</a>{% endif %}
+            </p>
+        </div>
+        <div class="address-detail">
+            <h3 class="the-title">{{ page.address_heading }}</h3>
+            <p>{{ page.address_text|linebreaksbr }}</p>
+        </div>
+    </div>
+</div>
+
+<section class="contact-page-form-section" id="contact-inquiry-form">
+    <div class="client-proofing__header-shell contact-page-form-shell">
+        <div class="client-proofing__header contact-page-form-layout">
+            <div class="client-proofing__header-main contact-page-form-main">
+                <p class="client-proofing__eyebrow">{% tr "Contact inquiry" "Demande de contact" %}</p>
+                <h2 class="client-proofing__title contact-page-form-title">{{ page.form_heading }}</h2>
+                {% if page.form_intro %}
+                    <p class="client-proofing__intro contact-page-form-intro">{{ page.form_intro }}</p>
+                {% endif %}
+
+                {% if form_success %}
+                    <div class="contact-page-alert contact-page-alert--success">
+                        {{ page.success_message }}
+                    </div>
+                {% endif %}
+
+                {% if form.non_field_errors %}
+                    <div class="contact-page-alert contact-page-alert--error">
+                        {% for error in form.non_field_errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <form method="post" class="contact-page-form" novalidate>
+                    {% csrf_token %}
+
+                    <div class="contact-page-form__grid">
+                        <div class="contact-page-field">
+                            <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+                            {{ form.name }}
+                            {% for error in form.name.errors %}<p class="contact-page-field__error">{{ error }}</p>{% endfor %}
+                        </div>
+
+                        <div class="contact-page-field">
+                            <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                            {{ form.email }}
+                            {% for error in form.email.errors %}<p class="contact-page-field__error">{{ error }}</p>{% endfor %}
+                        </div>
+
+                        <div class="contact-page-field">
+                            <label for="{{ form.phone_number.id_for_label }}">{{ form.phone_number.label }}</label>
+                            {{ form.phone_number }}
+                            {% for error in form.phone_number.errors %}<p class="contact-page-field__error">{{ error }}</p>{% endfor %}
+                        </div>
+
+                        <div class="contact-page-field">
+                            <label for="{{ form.photography_type.id_for_label }}">{{ form.photography_type.label }}</label>
+                            {{ form.photography_type }}
+                            {% for error in form.photography_type.errors %}<p class="contact-page-field__error">{{ error }}</p>{% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="contact-page-form__grid contact-page-form__grid--dates">
+                        <div class="contact-page-field">
+                            <label for="{{ form.desired_start_date.id_for_label }}">{{ form.desired_start_date.label }}</label>
+                            {{ form.desired_start_date }}
+                            {% for error in form.desired_start_date.errors %}<p class="contact-page-field__error">{{ error }}</p>{% endfor %}
+                        </div>
+
+                        <div class="contact-page-field">
+                            <label for="{{ form.desired_end_date.id_for_label }}">{{ form.desired_end_date.label }}</label>
+                            {{ form.desired_end_date }}
+                            {% for error in form.desired_end_date.errors %}<p class="contact-page-field__error">{{ error }}</p>{% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="contact-page-field">
+                        <label for="{{ form.message.id_for_label }}">{{ form.message.label }}</label>
+                        {{ form.message }}
+                        {% for error in form.message.errors %}<p class="contact-page-field__error">{{ error }}</p>{% endfor %}
+                    </div>
+
+                    <div class="contact-page-privacy-note" aria-label="{% tr 'Privacy notice' 'Avis de confidentialite' %}">
+                        <p class="contact-page-privacy-note__text">
+                            {% tr "By submitting this form, you consent to Naji Photo using the information you provide to respond to your inquiry, discuss availability, and plan requested photography services. See the full" "En soumettant ce formulaire, vous consentez a ce que Naji Photo utilise les renseignements fournis pour repondre a votre demande, discuter des disponibilites et planifier les services photographiques demandes. Consultez la" %}
+                            <a href="{% url 'privacy_policy' %}">{% tr "Privacy Policy" "Politique de confidentialite" %}</a>.
+                        </p>
+                    </div>
+
+                    <div class="contact-page-form__actions">
+                        <button type="submit" class="button style-3">{% tr "Send Inquiry" "Envoyer la demande" %}</button>
+                    </div>
+                </form>
+            </div>
+
+            <aside class="client-proofing__header-aside contact-page-form-aside">
+                <div class="client-proofing__status-card client-proofing__status-card--active contact-page-status-card">
+                    <p class="client-proofing__status-label">{% tr "Next steps" "Prochaines etapes" %}</p>
+                    <div class="client-proofing__counter client-proofing__counter--large contact-page-status-counter">
+                        24h
+                    </div>
+                    <p class="client-proofing__status-copy">
+                        {% tr "Most inquiries receive a reply within one business day with availability, pricing, and recommended coverage." "La plupart des demandes recoivent une reponse dans un delai d'un jour ouvrable avec les disponibilites, les tarifs et la couverture recommandee." %}
+                    </p>
+                    <div class="client-proofing__actions contact-page-status-list">
+                        <p class="contact-page-status-item">{% tr "Share the type of shoot you need." "Indiquez le type de seance souhaite." %}</p>
+                        <p class="contact-page-status-item">{% tr "Add your ideal date range." "Ajoutez votre plage de dates ideale." %}</p>
+                        <p class="contact-page-status-item">{% tr "Include any location or creative notes." "Ajoutez le lieu et toute note creative utile." %}</p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+{% endblock content %}

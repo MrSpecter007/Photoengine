@@ -234,28 +234,31 @@ $(document).ready(function () {
     })
 
     //gallery-grid & gallery masonry
-    var wrapper = $('.gallery-grid-item-wrap')
+    var wrapper = $('.gallery-grid-item-wrap').not('[data-proofing-gallery]')
     var horizontalOrder = true
+    var GalleryGridWrap = null
 
     if (wrapper.hasClass('std-creative-grid')) {
         horizontalOrder = false
     }
 
-    var GalleryGridWrap = $('.gallery-grid-item-wrap').imagesLoaded(function () {
-        GalleryGridWrap.masonry({
-            itemSelector: '.gallery-grid-item',
-            columnWidth: '.gallery-grid-item',
-            transitionDuration: '0.65s',
-            initLayout: true,
-            originTop: true,
-            horizontalOrder: horizontalOrder,
+    if (wrapper.length) {
+        GalleryGridWrap = wrapper.imagesLoaded(function () {
+            wrapper.masonry({
+                itemSelector: '.gallery-grid-item',
+                columnWidth: '.gallery-grid-item',
+                transitionDuration: '0.65s',
+                initLayout: true,
+                originTop: true,
+                horizontalOrder: horizontalOrder,
+            })
         })
-    })
-    $(window).on('resize', function () {
-        GalleryGridWrap.masonry('bindResize')
-    })
+        $(window).on('resize', function () {
+            GalleryGridWrap.masonry('bindResize')
+        })
+    }
 
-    var GalleryMasonryWrap = $('.gallery-masonry-item-wrap').imagesLoaded(function () {
+    var GalleryMasonryWrap = $('.gallery-masonry-item-wrap').not('[data-proofing-gallery]').imagesLoaded(function () {
         GalleryMasonryWrap.masonry({
             itemSelector: '.gallery-masonry-item',
             columnWidth: '.gallery-masonry-item',
@@ -266,35 +269,39 @@ $(document).ready(function () {
         })
     })
     $(window).on('resize', function () {
-        GalleryGridWrap.masonry('bindResize')
+        if (GalleryGridWrap) {
+            GalleryGridWrap.masonry('bindResize')
+        }
     })
 
-    if (!wrapper.hasClass('std-creative-grid')) {
-        $('.gallery-item').on('mouseover', function () {
+    if (wrapper.length && !wrapper.hasClass('std-creative-grid')) {
+        wrapper.find('.gallery-item').on('mouseover', function () {
             $(this).toggleClass('on-hover-item')
-            $('.gallery-item:not(.on-hover-item)').css({ 'opacity': '0.5' })
+            wrapper.find('.gallery-item:not(.on-hover-item)').css({ 'opacity': '0.5' })
         })
-        $('.gallery-item').on('mouseleave', function () {
+        wrapper.find('.gallery-item').on('mouseleave', function () {
             $(this).removeClass('on-hover-item')
-            $('.gallery-item').css({ 'opacity': '1' })
+            wrapper.find('.gallery-item').css({ 'opacity': '1' })
         })
     }
 
     var galleryItem = ''
 
-    if ($('.gallery-masonry-item-wrap.gallery-masonry').length > 0) {
-        galleryItem = '.gallery-masonry-item-wrap.gallery-masonry'
+    if ($('.gallery-masonry-item-wrap.gallery-masonry').not('[data-proofing-gallery]').length > 0) {
+        galleryItem = '.gallery-masonry-item-wrap.gallery-masonry:not([data-proofing-gallery])'
     } else {
-        galleryItem = '.gallery-grid-item-wrap.gallery-grid'
+        galleryItem = '.gallery-grid-item-wrap.gallery-grid:not([data-proofing-gallery])'
     }
 
-    $(`${galleryItem}`).lightGallery({
-        thumbnail: false
-    })
+    if (galleryItem !== '') {
+        $(`${galleryItem}`).lightGallery({
+            thumbnail: false
+        })
+    }
 
     //carousel album
 
-    var carouselWrap = $('.carousel-block')
+    var carouselWrap = $('.carousel-block').not('[data-proofing-gallery]')
     var space = 25;
     var perView = 2
     var loop = !carouselWrap.hasClass('gallery-carousel-two') ? false : true
@@ -302,31 +309,33 @@ $(document).ready(function () {
     !carouselWrap.hasClass('gallery-carousel-block') ? space : space = 5
     !carouselWrap.hasClass('gallery-carousel-two') ? perView : perView = "auto"
 
-    var swiper = new Swiper(".carousel-album", {
-        spaceBetween: space,
-        mousewheel: true,
-        loop: loop,
-        navigation: {
-            nextEl: ".next-prev-btn",
-            prevEl: ".slide-prev-btn",
-        },
-        scrollbar: {
-            el: ".swiper-scrollbar"
-        },
-        allowTouchMove: true,
-        calculateHeight: true,
-        breakpoints: {
-            640: {
-                slidesPerView: 2
+    if (carouselWrap.length) {
+        var swiper = new Swiper(".carousel-album:not(.client-proofing__carousel)", {
+            spaceBetween: space,
+            mousewheel: true,
+            loop: loop,
+            navigation: {
+                nextEl: ".next-prev-btn",
+                prevEl: ".slide-prev-btn",
             },
-            1024: {
-                slidesPerView: 2
+            scrollbar: {
+                el: ".swiper-scrollbar"
             },
-            1200: {
-                slidesPerView: perView
+            allowTouchMove: true,
+            calculateHeight: true,
+            breakpoints: {
+                640: {
+                    slidesPerView: 2
+                },
+                1024: {
+                    slidesPerView: 2
+                },
+                1200: {
+                    slidesPerView: perView
+                }
             }
-        }
-    });
+        });
+    }
 
     if (carouselWrap.hasClass('gallery-carousel-block')) {
         $('.launch-gallery-icon').on('click', function () {
@@ -337,10 +346,10 @@ $(document).ready(function () {
     }
 
     //gallery animate
-    var animatePage = $('.animate-scroll-block')
+    var animatePage = $('.animate-scroll-block').not('[data-proofing-gallery]')
 
     if (animatePage.hasClass('animate-one')) {
-        $('.animate-item-wrap').lightGallery({
+        $('.animate-item-wrap').not('.client-proofing__animate-wrap').lightGallery({
             thumbnail: false
         })
     }
@@ -361,6 +370,8 @@ $(document).ready(function () {
         })
     })
     $(window).on('resize', function () {
-        GalleryGridWrap.masonry('bindResize')
+        if (GalleryGridWrap) {
+            GalleryGridWrap.masonry('bindResize')
+        }
     })
 })

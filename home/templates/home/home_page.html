@@ -1,11 +1,12 @@
 {% extends "base.html" %}
-{% load static wagtailimages_tags %}
+{% load static wagtailimages_tags site_navigation site_i18n %}
 
-{% block title %}Jepret - Modern Photographer{% endblock title %}
+{% block title %}{% tr "Naji Photo - Modern Photographer" "Naji Photo - Photographe moderne" %}{% endblock title %}
 
 {% block top_bar %}{% endblock top_bar %}
 
 {% block content %}
+    {% get_site_navigation as site_nav %}
     <!-- About block -->
     <div class="about-block">
         <div class="container">
@@ -42,7 +43,7 @@
     </div>
     <!-- end About block -->
 
-    <!-- Projects block -->
+    <!-- Portfolio block -->
     <div class="projects-block" id="mousehover">
         <div class="container" id="opacity">
             <div class="row clearfix">
@@ -55,7 +56,7 @@
                         <p>{{ page.projects_paragraph_two }}</p>
                     </div>
                     <div class="projects-button">
-                        <a href="{{ page.projects_button_link|default:'#' }}" class="button style-3">{{ page.projects_button_text }}</a>
+                        <a href="{% if page.projects_button_link and page.projects_button_link != '#' %}{{ page.projects_button_link }}{% elif site_nav.portfolio %}{{ site_nav.portfolio.url }}{% else %}#{% endif %}" class="button style-3">{{ page.projects_button_text }}</a>
                     </div>
                 </div>
                 <div class="column column-2 project-img-wrap" id="scroll-move3">
@@ -97,7 +98,7 @@
             </div>
         </div>
     </div>
-    <!-- end Project block -->
+    <!-- end Portfolio block -->
 
     <!-- Testimonial block -->
     <div class="testimonial-block">
@@ -216,7 +217,7 @@
                 <div class="column column-1" data-aos="fade-up">
                     <h5 class="sub-title">{{ page.contact_eyebrow }}</h5>
                     <h2 class="the-title">
-                        <a href="{{ page.contact_link|default:'#' }}">
+                        <a href="{% if page.contact_link and page.contact_link != '#' %}{{ page.contact_link }}{% elif site_nav.contact %}{{ site_nav.contact.url }}{% else %}#{% endif %}">
                             {{ page.contact_heading }} <span>{{ page.contact_heading_emphasis }}</span>
                         </a>
                     </h2>

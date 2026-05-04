@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static home_image_tags site_i18n %}
+
+{% block title %}{{ page.title }} - Naji Photo{% endblock title %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/portfolio.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<div class="portfolio-page">
+    <div class="portfolio-page__intro container">
+        <div class="row portfolio-category__header">
+            <div class="column column-2">
+                <span class="portfolio-page__eyebrow">{% tr "Category" "Categorie" %}</span>
+                <h1 class="portfolio-page__title">{{ page.title }}</h1>
+                {% if page.intro %}
+                <p class="portfolio-page__copy">{{ page.intro }}</p>
+                {% endif %}
+            </div>
+            <div class="column column-2">
+                {% if page.cover_image %}
+                    {% safe_rendition page.cover_image "fill-960x720" as cover_image %}
+                    <img src="{{ cover_image.url }}" alt="{{ page.title }}" class="portfolio-category__cover">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="gallery-grid-block portfolio-album-grid">
+        <div class="gallery-grid-item-wrap">
+            {% for gallery in galleries %}
+            <div class="column column-3 gallery-grid-item portfolio-album-grid__item">
+                <a href="{{ gallery.url }}" class="portfolio-card">
+                    <div class="portfolio-card__media">
+                        {% if gallery.card_image %}
+                            {% safe_rendition gallery.card_image "fill-900x900" as card_image %}
+                            <img src="{{ card_image.url }}" alt="{{ gallery.title }}" class="gallery-item portfolio-card__image">
+                        {% else %}
+                            <img src="{% static 'img/tr-006-650x650.jpg' %}" alt="{{ gallery.title }}" class="gallery-item portfolio-card__image">
+                        {% endif %}
+                    </div>
+                    <div class="portfolio-card__body">
+                        <span class="portfolio-card__eyebrow">{{ gallery.primary_category_name }}</span>
+                        <h2 class="portfolio-card__title">{{ gallery.title }}</h2>
+                        {% if gallery.excerpt %}
+                        <p class="portfolio-card__excerpt">{{ gallery.excerpt|truncatechars:110 }}</p>
+                        {% endif %}
+                    </div>
+                </a>
+            </div>
+            {% empty %}
+            <div class="column column-1">
+                <p class="portfolio-page__empty">{% tr "This category is ready for galleries." "Cette categorie est prete pour des galeries." %}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

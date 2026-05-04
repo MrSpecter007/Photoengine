@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load static site_i18n %}
+
+{% block title %}{% tr "Proofing Portal Legal Information" "Informations legales du portail client" %} - Naji Photo{% endblock title %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/proofing.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<section class="client-proofing client-proofing--legal">
+    <div class="client-proofing__portal-entry-shell">
+        <div class="client-proofing__header client-proofing__portal-entry client-proofing__header--legal">
+            <div class="client-proofing__header-main">
+                <p class="client-proofing__eyebrow">{% tr "Legal notice" "Informations legales" %}</p>
+                <h1 class="client-proofing__title">{% tr "Proofing Portal Legal Information" "Informations legales du portail client" %}</h1>
+                <p class="client-proofing__intro">
+                    {% tr "This page explains the rules, privacy practices, and permitted use that apply when you access a private client gallery through the proofing portal." "Cette page explique les regles, les pratiques de confidentialite et les usages autorises lorsque vous accedez a une galerie client privee par le portail." %}
+                </p>
+                <div class="client-proofing__meta-row">
+                    <span class="client-proofing__meta-pill">{% tr "Private access" "Acces prive" %}</span>
+                    <span class="client-proofing__meta-pill">{% tr "Privacy" "Confidentialite" %}</span>
+                    <span class="client-proofing__meta-pill">{% tr "Copyright" "Droits d'auteur" %}</span>
+                </div>
+            </div>
+
+            <div class="client-proofing__header-aside">
+                <div class="client-proofing__status-card client-proofing__status-card--active">
+                    <p class="client-proofing__status-label">{% tr "Quick summary" "Resume rapide" %}</p>
+                    <p class="client-proofing__status-copy">
+                        {% tr "Use this portal only if you received a gallery invitation or have been authorized by the invited client." "Utilisez ce portail uniquement si vous avez recu une invitation a la galerie ou si vous avez ete autorise par le client invite." %}
+                    </p>
+                    <div class="client-proofing__status-list">
+                        <p class="client-proofing__status-list-item">{% tr "Do not share your token publicly." "Ne partagez pas votre jeton publiquement." %}</p>
+                        <p class="client-proofing__status-list-item">{% tr "Images remain protected by copyright." "Les images demeurent protegees par le droit d'auteur." %}</p>
+                        <p class="client-proofing__status-list-item">{% tr "Selections may be stored to complete your order." "Les selections peuvent etre conservees pour finaliser votre commande." %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="client-proofing__legal-layout">
+            <article class="client-proofing__legal-card">
+                <h2>{% tr "1. Authorized access" "1. Acces autorise" %}</h2>
+                <p>{% tr "This portal is intended only for the client, family members, or collaborators who were invited by Naji Photo or by the client receiving the gallery. You are responsible for keeping your access token confidential." "Ce portail est reserve au client, aux membres de sa famille ou aux collaborateurs invites par Naji Photo ou par le client destinataire de la galerie. Vous etes responsable de la confidentialite de votre jeton d'acces." %}</p>
+                <p>{% tr "If you believe your token was shared without permission, contact Naji Photo so access can be reviewed or replaced." "Si vous pensez que votre jeton a ete partage sans autorisation, communiquez avec Naji Photo afin que l'acces puisse etre verifie ou remplace." %}</p>
+            </article>
+
+            <article class="client-proofing__legal-card">
+                <h2>{% tr "2. Gallery content and copyright" "2. Contenu de la galerie et droits d'auteur" %}</h2>
+                <p>{% tr "All photographs, previews, edits, and gallery materials remain the intellectual property of Naji Photo unless a separate written agreement states otherwise. Access to a gallery does not transfer copyright ownership." "Toutes les photographies, apercus, retouches et autres elements de galerie demeurent la propriete intellectuelle de Naji Photo, sauf disposition contraire prevue par une entente ecrite distincte. L'acces a une galerie ne transfere aucun droit d'auteur." %}</p>
+                <p>{% tr "You may review and select images for your order or delivery workflow. Copying, redistributing, screen-capturing for commercial use, or publishing gallery images without permission is not authorized." "Vous pouvez consulter et selectionner les images pour votre commande ou votre processus de livraison. La copie, la redistribution, les captures d'ecran a usage commercial ou la publication des images de la galerie sans autorisation ne sont pas permises." %}</p>
+            </article>
+
+            <article class="client-proofing__legal-card">
+                <h2>{% tr "3. Personal data and privacy" "3. Donnees personnelles et confidentialite" %}</h2>
+                <p>{% tr "Naji Photo may process information such as your name, email address, gallery token, image selections, and technical access data in order to provide secure gallery access, maintain the proofing workflow, and complete final delivery." "Naji Photo peut traiter des renseignements tels que votre nom, votre adresse courriel, votre jeton de galerie, vos selections d'images et certaines donnees techniques d'acces afin de fournir un acces securise a la galerie, de maintenir le processus d'evaluation et de completer la livraison finale." %}</p>
+                <p>{% tr "This information is used only for operating the client gallery experience, communicating about the gallery, and fulfilling the related photography service. It is not intended to be sold to third parties." "Ces renseignements sont utilises uniquement pour exploiter l'experience de galerie client, communiquer au sujet de la galerie et executer le service photographique connexe. Ils ne sont pas destines a etre vendus a des tiers." %}</p>
+            </article>
+
+            <article class="client-proofing__legal-card">
+                <h2>{% tr "4. Retention and security" "4. Conservation et securite" %}</h2>
+                <p>{% tr "Private galleries, access tokens, and selection records may remain available for a limited period determined by Naji Photo's workflow, contractual obligations, or backup practices. Availability is not guaranteed indefinitely." "Les galeries privees, les jetons d'acces et les enregistrements de selections peuvent demeurer disponibles pendant une periode limitee determinee par le flux de travail de Naji Photo, ses obligations contractuelles ou ses pratiques de sauvegarde. La disponibilite n'est pas garantie de facon indefinie." %}</p>
+                <p>{% tr "Reasonable steps may be used to protect the portal, but no online service can guarantee absolute security or uninterrupted availability." "Des mesures raisonnables peuvent etre prises pour proteger le portail, mais aucun service en ligne ne peut garantir une securite absolue ou une disponibilite ininterrompue." %}</p>
+            </article>
+
+            <article class="client-proofing__legal-card">
+                <h2>{% tr "5. Accuracy and client responsibility" "5. Exactitude et responsabilite du client" %}</h2>
+                <p>{% tr "Please review your selections carefully before final submission. Once a gallery is finalized, changes may be limited or may require direct approval from Naji Photo." "Veuillez verifier attentivement vos selections avant l'envoi final. Une fois la galerie finalisee, les modifications peuvent etre limitees ou exiger l'approbation directe de Naji Photo." %}</p>
+                <p>{% tr "If a gallery includes sensitive personal content, you agree to access it respectfully and only for the purpose for which it was shared with you." "Si une galerie contient du contenu personnel sensible, vous acceptez d'y acceder avec respect et uniquement aux fins pour lesquelles elle vous a ete partagee." %}</p>
+            </article>
+
+            <article class="client-proofing__legal-card">
+                <h2>{% tr "6. Contact" "6. Contact" %}</h2>
+                <p>{% tr "Questions about privacy, access, or permitted use of gallery images should be directed to Naji Photo through the website contact page or the email address used for your gallery invitation." "Les questions concernant la confidentialite, l'acces ou l'utilisation permise des images de la galerie doivent etre adressees a Naji Photo par la page de contact du site ou par l'adresse courriel utilisee pour votre invitation de galerie." %}</p>
+                <p class="client-proofing__legal-actions">
+                    <a class="button style-1 client-proofing__button client-proofing__button--compact" href="{% url 'proofing:portal' %}">
+                        {% tr "Back to portal" "Retour au portail" %}
+                    </a>
+                </p>
+            </article>
+        </div>
+    </div>
+</section>
+{% endblock content %}

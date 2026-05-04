@@ -1,0 +1,40 @@
+<script>
+  (() => {
+    const brandName = "{{ admin_experience.admin_brand_name|escapejs }}";
+    const welcomeTitle = "{{ admin_experience.admin_welcome_title|escapejs }}";
+    const updateBranding = () => {
+      const selectors = [
+        ".w-header__title",
+        ".sidebar__title",
+        ".sidebar-branding__title",
+        ".login-logo",
+        ".login h1",
+      ];
+
+      selectors.forEach((selector) => {
+        document.querySelectorAll(selector).forEach((element) => {
+          if (!element.dataset.studioBrandApplied) {
+            element.textContent = brandName;
+            element.dataset.studioBrandApplied = "true";
+          }
+        });
+      });
+
+      if (document.title && !document.title.startsWith(brandName)) {
+        document.title = `${brandName} Admin`;
+      }
+
+      const homeHeading = document.querySelector(".w-homepage__title, .home__header h1");
+      if (homeHeading && !homeHeading.dataset.studioWelcomeApplied) {
+        homeHeading.textContent = welcomeTitle;
+        homeHeading.dataset.studioWelcomeApplied = "true";
+      }
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", updateBranding);
+    } else {
+      updateBranding();
+    }
+  })();
+</script>
