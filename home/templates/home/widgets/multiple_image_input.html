@@ -1,0 +1,25 @@
+<div class="bulk-upload-widget" data-bulk-upload-widget>
+    <input type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>
+    <label
+        class="bulk-upload-widget__dropzone"
+        for="{{ widget.attrs.id }}"
+        data-bulk-upload-dropzone
+        role="button"
+        tabindex="0"
+    >
+        <span class="bulk-upload-widget__title">{{ widget.bulk_upload.dropzone_title }}</span>
+        <span class="bulk-upload-widget__hint">{{ widget.bulk_upload.dropzone_hint }}</span>
+    </label>
+    <div class="bulk-upload-widget__meta">
+        <p class="bulk-upload-widget__summary" data-bulk-upload-summary>
+            No files selected yet.
+        </p>
+        <p class="bulk-upload-widget__limits">
+            Up to {{ widget.bulk_upload.max_files }} images per batch.
+            {{ widget.bulk_upload.max_total_label }} total.
+            {{ widget.bulk_upload.max_file_label }} max per image.
+        </p>
+    </div>
+    <ul class="bulk-upload-widget__files" data-bulk-upload-files hidden></ul>
+    <p class="bulk-upload-widget__error" data-bulk-upload-error hidden></p>
+</div>
