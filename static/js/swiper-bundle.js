@@ -9569,4 +9569,3 @@
   return Swiper;
 
 })));
-//# sourceMappingURL=swiper-bundle.js.map
