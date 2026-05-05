@@ -107,12 +107,14 @@
     var files = Array.from(input.files || []);
     var limits = readLimits(input);
     var validation = validateFiles(files, limits);
+    var emptyCopy = summary.dataset.emptyCopy || "No files selected yet.";
 
     if (!files.length) {
-      summary.textContent = "No files selected yet.";
+      summary.textContent = emptyCopy;
       error.hidden = true;
       error.textContent = "";
       widget.classList.remove("has-error");
+      widget.classList.remove("has-files");
       renderFileList(fileList, files);
       return true;
     }
@@ -120,11 +122,12 @@
     summary.textContent =
       files.length +
       (files.length === 1 ? " image selected" : " images selected") +
-      " • " +
+      " | " +
       formatBytes(validation.totalBytes) +
       " total";
 
     renderFileList(fileList, files);
+    widget.classList.add("has-files");
 
     if (validation.errors.length) {
       error.textContent = validation.errors.join(" ");

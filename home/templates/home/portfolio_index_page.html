@@ -28,7 +28,7 @@
                     <div class="portfolio-card__media">
                         {% if gallery.card_image %}
                             {% safe_rendition gallery.card_image "fill-900x900" as card_image %}
-                            <img src="{{ card_image.url }}" alt="{{ gallery.title }}" class="gallery-item portfolio-card__image">
+                            <img src="{{ card_image.url }}" alt="{{ gallery.title }}" class="gallery-item portfolio-card__image" loading="lazy" decoding="async">
                         {% else %}
                             <img src="{% static 'img/Pyramidenet-nat-650x650.jpg' %}" alt="{{ gallery.title }}" class="gallery-item portfolio-card__image">
                         {% endif %}

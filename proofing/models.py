@@ -17,26 +17,8 @@ from wagtail.images import get_image_model
 from wagtail.models import Orderable, Page
 from wagtail.snippets.models import register_snippet
 
+from PhotoEngine.bulk_uploads import MultipleImageFileField, build_bulk_upload_help_text
 from PhotoEngine.translation_images import TranslationImageSyncMixin
-
-
-class MultipleImageInput(forms.ClearableFileInput):
-    allow_multiple_selected = True
-
-
-class MultipleImageFileField(forms.FileField):
-    widget = MultipleImageInput
-
-    def clean(self, data, initial=None):
-        single_file_clean = super().clean
-
-        if not data:
-            return []
-
-        if not isinstance(data, (list, tuple)):
-            data = [data]
-
-        return [single_file_clean(item, initial) for item in data]
 
 
 @register_snippet
@@ -86,10 +68,12 @@ class Client(models.Model):
 class ClientProofingGalleryAdminForm(WagtailAdminPageForm):
     bulk_upload_proof_images = MultipleImageFileField(
         required=False,
-        help_text=(
+        help_text=build_bulk_upload_help_text(
             "Upload optimized proof previews only. Keep final high-resolution "
             "deliverables in an external delivery service such as WeTransfer."
         ),
+        dropzone_title="Drag and drop proof previews here",
+        dropzone_hint="or click to browse a batch of proof images",
     )
 
     def save(self, commit=True):

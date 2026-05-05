@@ -1,7 +1,7 @@
 {% load wagtailimages_tags home_image_tags site_i18n %}
 {% for proof in proof_images %}
     {% image proof.image fill-900x900 as tile_image %}
-    {% safe_rendition proof.image "width-2400" as lightbox_image %}
+    {% safe_rendition proof.image "width-1800" as lightbox_image %}
     {% if page.presentation_style == page.PRESENTATION_STYLE_ANIMATE_SCROLL_1 %}
     <article class="content__item content__item-imgwrap{% cycle '' ' item-right' %} proof-container client-proofing__item client-proofing__item--animate {% if proof.selected_by_client %}is-selected{% endif %}" data-proof-item data-selected="{% if proof.selected_by_client %}true{% else %}false{% endif %}">
         <a
