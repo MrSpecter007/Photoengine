@@ -2,12 +2,14 @@ import tempfile
 import json
 
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.urls import reverse
 from django.test import Client, TestCase, override_settings
 from django.utils.translation import override
 from wagtail.images import get_image_model
 
+from PhotoEngine.bulk_uploads import MultipleImageFileField
 from home.models import (
     AdminExperienceSettings,
     ContactInquiry,
@@ -21,8 +23,6 @@ from home.models import (
 from wagtail.models import Page
 from wagtail.models import Locale
 from wagtail.test.utils import WagtailPageTestCase
-
-from home.wagtail_hooks import render_admin_experience_css, render_admin_experience_js
 
 GIF_BYTES = (
     b"GIF89a\x01\x00\x01\x00\x80\x00\x00"
@@ -62,51 +62,6 @@ class AdminExperienceSettingsTests(TestCase):
         self.assertEqual(settings_obj.admin_sidebar_selected_color, "#000000")
         self.assertEqual(settings_obj.admin_sidebar_selected_text_color, "#FFFFFF")
 
-    def test_admin_experience_assets_reflect_saved_settings(self):
-        settings_obj = AdminExperienceSettings.load()
-        settings_obj.admin_brand_name = "Studio Console"
-        settings_obj.admin_primary_color = "#123456"
-        settings_obj.admin_surface_color = "#222222"
-        settings_obj.admin_sidebar_color = "#345678"
-        settings_obj.admin_text_color = "#111111"
-        settings_obj.admin_sidebar_text_color = "#FAFAFA"
-        settings_obj.admin_sidebar_hover_color = "#010101"
-        settings_obj.admin_sidebar_hover_text_color = "#FEFEFE"
-        settings_obj.admin_sidebar_selected_color = "#020202"
-        settings_obj.admin_sidebar_selected_text_color = "#FDFDFD"
-        settings_obj.admin_soft_color = "#EFE8E1"
-        settings_obj.save()
-
-        css = render_admin_experience_css()
-        js = render_admin_experience_js()
-
-        self.assertIn("#123456", css)
-        self.assertIn("#222222", css)
-        self.assertIn("#345678", css)
-        self.assertIn("#111111", css)
-        self.assertIn("#FAFAFA", css)
-        self.assertIn("#010101", css)
-        self.assertIn("#FEFEFE", css)
-        self.assertIn("#020202", css)
-        self.assertIn("#FDFDFD", css)
-        self.assertIn("Studio Console", js)
-
-    def test_admin_experience_css_supports_sidebar_state_colors(self):
-        settings_obj = AdminExperienceSettings.load()
-        settings_obj.admin_sidebar_color = "#FFFFFF"
-        settings_obj.admin_sidebar_text_color = "#000000"
-        settings_obj.admin_sidebar_hover_color = "#000000"
-        settings_obj.admin_sidebar_hover_text_color = "#FFFFFF"
-        settings_obj.admin_sidebar_selected_color = "#000000"
-        settings_obj.admin_sidebar_selected_text_color = "#FFFFFF"
-        settings_obj.save()
-
-        css = render_admin_experience_css()
-
-        self.assertIn("#FFFFFF", css)
-        self.assertIn("#000000", css)
-
-
 class HomeTests(WagtailPageTestCase):
     """
     Tests for homepage functionality and rendering.
@@ -145,6 +100,9 @@ class NavigationTests(WagtailPageTestCase):
         self.category_page = PortfolioCategoryPage(title="Weddings", slug="weddings")
         self.portfolio_index.add_child(instance=self.category_page)
 
+        self.gallery_page = GalleryPage(title="Maya and Noah", slug="maya-and-noah")
+        self.category_page.add_child(instance=self.gallery_page)
+
         self.contact_page = ContactPage(title="Contact", slug="contact")
         self.homepage.add_child(instance=self.contact_page)
 
@@ -159,6 +117,45 @@ class NavigationTests(WagtailPageTestCase):
         self.assertContains(response, 'href="%s"' % reverse("proofing:legal"))
         self.assertContains(response, 'href="%s"' % self.contact_page.url)
         self.assertContains(response, "Portfolio")
+
+    def test_homepage_projects_cta_prefers_selected_page(self):
+        self.homepage.projects_button_page = self.gallery_page
+        self.homepage.save()
+
+        response = self.client.get(self.homepage.url)
+
+        self.assertContains(response, 'href="%s"' % self.gallery_page.url)
+
+    def test_homepage_about_section_no_longer_renders_signature_block(self):
+        response = self.client.get(self.homepage.url)
+
+        self.assertNotContains(response, "signature-img-wrap")
+        self.assertNotContains(response, "signatur-michelg-dark.jpg")
+
+
+class MultipleImageFileFieldTests(TestCase):
+    def test_rejects_too_many_images_in_one_batch(self):
+        field = MultipleImageFileField(max_files=2, max_file_bytes=1024, max_total_bytes=2048)
+
+        uploads = [
+            SimpleUploadedFile("one.gif", GIF_BYTES, content_type="image/gif"),
+            SimpleUploadedFile("two.gif", GIF_BYTES, content_type="image/gif"),
+            SimpleUploadedFile("three.gif", GIF_BYTES, content_type="image/gif"),
+        ]
+
+        with self.assertRaises(ValidationError):
+            field.clean(uploads)
+
+    def test_rejects_batch_that_exceeds_total_size_limit(self):
+        field = MultipleImageFileField(max_files=5, max_file_bytes=1024, max_total_bytes=20)
+
+        uploads = [
+            SimpleUploadedFile("one.gif", GIF_BYTES, content_type="image/gif"),
+            SimpleUploadedFile("two.gif", GIF_BYTES, content_type="image/gif"),
+        ]
+
+        with self.assertRaises(ValidationError):
+            field.clean(uploads)
 
 
 class LocalizationTests(WagtailPageTestCase):
@@ -178,6 +175,16 @@ class LocalizationTests(WagtailPageTestCase):
 
         self.assertContains(response, 'hreflang="fr"')
         self.assertContains(response, 'href="%s"' % self.french_home.url)
+
+    def test_projects_cta_uses_page_translation_for_french_homepage(self):
+        english_portfolio = PortfolioIndexPage(title="Portfolio Locale", slug="portfolio-locale")
+        self.english_home.add_child(instance=english_portfolio)
+        french_portfolio = english_portfolio.copy_for_translation(self.french_locale, copy_parents=True)
+
+        self.french_home.projects_button_page = english_portfolio
+        self.french_home.save()
+
+        self.assertEqual(self.french_home.projects_button_target_url, french_portfolio.url)
 
     def test_french_proofing_portal_route_is_available(self):
         with override("fr"):

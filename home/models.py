@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from django import forms
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.core.validators import RegexValidator
 from django.shortcuts import render
@@ -12,6 +13,7 @@ from wagtail.admin.panels import (
     FieldPanel,
     InlinePanel,
     MultiFieldPanel,
+    PageChooserPanel,
 )
 from wagtail.admin.forms import WagtailAdminPageForm
 from wagtail.fields import StreamField
@@ -23,6 +25,7 @@ from modelcluster.fields import ParentalKey
 from modelcluster.tags import ClusterTaggableManager
 from taggit.models import Tag, TaggedItemBase
 
+from PhotoEngine.bulk_uploads import MultipleImageFileField, build_bulk_upload_help_text
 from PhotoEngine.translation_images import TranslationImageSyncMixin
 
 
@@ -32,29 +35,14 @@ hex_color_validator = RegexValidator(
 )
 
 
-class MultipleImageInput(forms.ClearableFileInput):
-    allow_multiple_selected = True
-
-
-class MultipleImageFileField(forms.FileField):
-    widget = MultipleImageInput
-
-    def clean(self, data, initial=None):
-        single_file_clean = super().clean
-
-        if not data:
-            return []
-
-        if not isinstance(data, (list, tuple)):
-            data = [data]
-
-        return [single_file_clean(item, initial) for item in data]
-
-
 class GalleryPageAdminForm(WagtailAdminPageForm):
     bulk_upload_images = MultipleImageFileField(
         required=False,
-        help_text="Upload multiple images and attach them directly to this gallery.",
+        help_text=build_bulk_upload_help_text(
+            "Upload multiple images and attach them directly to this gallery."
+        ),
+        dropzone_title="Drag and drop gallery images here",
+        dropzone_hint="or click to browse a batch of optimized images",
     )
 
     def save(self, commit=True):
@@ -187,7 +175,6 @@ class AdminExperienceSettings(BaseGenericSetting):
 class HomePage(TranslationImageSyncMixin, Page):
     translatable_image_fields = (
         "about_image",
-        "signature_image",
         "project_image_one",
         "project_image_two",
         "project_image_three",
@@ -222,14 +209,6 @@ class HomePage(TranslationImageSyncMixin, Page):
         on_delete=models.SET_NULL,
         related_name="+",
     )
-    signature_image = models.ForeignKey(
-        "wagtailimages.Image",
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name="+",
-    )
-
     projects_eyebrow = models.CharField(max_length=80, default="Portfolio")
     projects_heading = models.TextField(default="A Good Ending Is The Most Important")
     projects_paragraph_one = models.TextField(
@@ -245,7 +224,14 @@ class HomePage(TranslationImageSyncMixin, Page):
         )
     )
     projects_button_text = models.CharField(max_length=80, default="view portfolio")
-    projects_button_link = models.CharField(max_length=255, blank=True, default="#")
+    projects_button_page = models.ForeignKey(
+        "wagtailcore.Page",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        help_text="Select an existing portfolio page or gallery to open from the homepage button.",
+    )
     project_image_one = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
@@ -356,7 +342,6 @@ class HomePage(TranslationImageSyncMixin, Page):
                 FieldPanel("about_paragraph_one"),
                 FieldPanel("about_paragraph_two"),
                 FieldPanel("about_image"),
-                FieldPanel("signature_image"),
             ],
             heading="About Section",
         ),
@@ -367,7 +352,10 @@ class HomePage(TranslationImageSyncMixin, Page):
                 FieldPanel("projects_paragraph_one"),
                 FieldPanel("projects_paragraph_two"),
                 FieldPanel("projects_button_text"),
-                FieldPanel("projects_button_link"),
+                PageChooserPanel(
+                    "projects_button_page",
+                    page_type=["home.PortfolioIndexPage", "home.GalleryPage"],
+                ),
                 FieldPanel("project_image_one"),
                 FieldPanel("project_image_two"),
                 FieldPanel("project_image_three"),
@@ -423,6 +411,21 @@ class HomePage(TranslationImageSyncMixin, Page):
             return result
         self.sync_translated_images(previous_state)
         return result
+
+    @property
+    def projects_button_target_url(self):
+        if self.projects_button_page_id:
+            selected_page = self.projects_button_page.specific
+            if selected_page.locale_id != self.locale_id:
+                try:
+                    selected_page = selected_page.get_translation(self.locale).specific
+                except ObjectDoesNotExist:
+                    pass
+            selected_url = selected_page.url if selected_page.live else None
+            if selected_url:
+                return selected_url
+
+        return ""
 
 
 class StandardPage(TranslationImageSyncMixin, Page):

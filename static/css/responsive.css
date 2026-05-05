@@ -1210,9 +1210,6 @@
     padding-right: 15px;
   }
 
-  .signature-img-wrap {
-    margin-top: 0;
-  }
 }
 
 @media (max-width: 767px) {
@@ -1519,10 +1516,6 @@
 
   .about-img-wrap {
     padding: 35px 15px 38px;
-  }
-
-  .signature-img-wrap {
-    width: 60%;
   }
 
   .partner-style-2 .partner-list-wrap .column-2 {
