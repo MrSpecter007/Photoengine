@@ -38,7 +38,7 @@ services:
       DJANGO_CSRF_TRUSTED_ORIGINS: ${DJANGO_CSRF_TRUSTED_ORIGINS:-}
       DATABASE_URL: ${DATABASE_URL:-postgresql://photoengine:photoengine@db:5432/photoengine}
       REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
-      USE_S3_MEDIA: ${USE_S3_MEDIA:-true}
+      USE_S3_MEDIA: ${USE_S3_MEDIA:-false}
       MEDIA_ROOT: ${MEDIA_ROOT:-/app/media}
       STATIC_ROOT: ${STATIC_ROOT:-/app/staticfiles}
       RUN_MIGRATIONS: "1"
@@ -63,7 +63,7 @@ services:
       DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS}
       DATABASE_URL: ${DATABASE_URL:-postgresql://photoengine:photoengine@db:5432/photoengine}
       REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
-      USE_S3_MEDIA: ${USE_S3_MEDIA:-true}
+      USE_S3_MEDIA: ${USE_S3_MEDIA:-false}
       MEDIA_ROOT: ${MEDIA_ROOT:-/app/media}
       RUN_MIGRATIONS: "0"
       RUN_COLLECTSTATIC: "0"
