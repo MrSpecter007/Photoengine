@@ -17,7 +17,7 @@ RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-r
     libwebp-dev \
  && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --no-cache-dir "gunicorn==20.0.4"
+RUN pip install --no-cache-dir "setuptools>=70" "gunicorn==20.0.4"
 
 COPY requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache-dir -r /tmp/requirements.txt

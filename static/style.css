@@ -557,7 +557,7 @@ h5.the-title {
   font-weight: 500;
   line-height: 3em;
   letter-spacing: 6px;
-  text-transform: uppercase;
+  text-transform: none;
   margin-bottom: 10px;
 }
 
@@ -918,7 +918,7 @@ h5.sub-title {
   color: #000000;
   font-size: 1.4rem;
   font-weight: 500;
-  text-transform: uppercase;
+  text-transform: none;
   line-height: 2.3em;
   letter-spacing: 6px;
   margin-bottom: 23px;

@@ -7,16 +7,27 @@
         role="button"
         tabindex="0"
     >
+        <span class="bulk-upload-widget__badge">Bulk upload</span>
+        <span class="bulk-upload-widget__button">
+            <span class="bulk-upload-widget__button-icon" aria-hidden="true">+</span>
+            <span>Select files</span>
+        </span>
+        <span class="bulk-upload-widget__divider">or</span>
         <span class="bulk-upload-widget__title">{{ widget.bulk_upload.dropzone_title }}</span>
         <span class="bulk-upload-widget__hint">{{ widget.bulk_upload.dropzone_hint }}</span>
     </label>
     <div class="bulk-upload-widget__meta">
-        <p class="bulk-upload-widget__summary" data-bulk-upload-summary>
+        <p
+            class="bulk-upload-widget__summary"
+            data-bulk-upload-summary
+            data-empty-copy="No files selected yet."
+        >
             No files selected yet.
         </p>
         <p class="bulk-upload-widget__limits">
-            Up to {{ widget.bulk_upload.max_files }} images per batch.
-            {{ widget.bulk_upload.max_total_label }} total.
+            <strong>Batch limits:</strong>
+            Up to {{ widget.bulk_upload.max_files }} images,
+            {{ widget.bulk_upload.max_total_label }} total,
             {{ widget.bulk_upload.max_file_label }} max per image.
         </p>
     </div>

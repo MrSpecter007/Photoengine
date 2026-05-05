@@ -4,6 +4,7 @@ import tempfile
 from datetime import timedelta
 from uuid import uuid4
 
+from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.http import Http404
 from django.test import RequestFactory, TestCase, override_settings
@@ -12,6 +13,7 @@ from django.contrib.auth import get_user_model
 from django.utils import timezone
 from django.utils.translation import override
 
+from PhotoEngine.bulk_uploads import MultipleImageFileField
 from home.models import HomePage
 from proofing.models import Client, ClientProofingGallery, ProofImage
 from wagtail.models import Locale, Page
@@ -23,6 +25,18 @@ GIF_BYTES = (
     b"\x01\x00\x00\x00\x00,\x00\x00\x00"
     b"\x00\x01\x00\x01\x00\x00\x02\x02D\x01\x00;"
 )
+
+
+class ProofingMultipleImageFileFieldTests(TestCase):
+    def test_rejects_single_image_that_exceeds_per_file_limit(self):
+        field = MultipleImageFileField(max_files=5, max_file_bytes=20, max_total_bytes=1024)
+
+        oversized_upload = [
+            SimpleUploadedFile("oversized.gif", GIF_BYTES, content_type="image/gif")
+        ]
+
+        with self.assertRaises(ValidationError):
+            field.clean(oversized_upload)
 
 
 class ClientProofingGalleryAccessTests(TestCase):

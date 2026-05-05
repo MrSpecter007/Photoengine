@@ -7,7 +7,7 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:-photoengine}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-photoengine}
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U postgres -d postgres"]
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U ${POSTGRES_USER:-photoengine} -d ${POSTGRES_DB:-photoengine}"]
       interval: 10s
       timeout: 5s
       retries: 5

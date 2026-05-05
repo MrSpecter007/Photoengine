@@ -21,7 +21,7 @@
             <div class="column column-2">
                 {% if page.cover_image %}
                     {% safe_rendition page.cover_image "fill-960x720" as cover_image %}
-                    <img src="{{ cover_image.url }}" alt="{{ page.title }}" class="portfolio-category__cover">
+                    <img src="{{ cover_image.url }}" alt="{{ page.title }}" class="portfolio-category__cover" decoding="async">
                 {% endif %}
             </div>
         </div>
@@ -35,7 +35,7 @@
                     <div class="portfolio-card__media">
                         {% if gallery.card_image %}
                             {% safe_rendition gallery.card_image "fill-900x900" as card_image %}
-                            <img src="{{ card_image.url }}" alt="{{ gallery.title }}" class="gallery-item portfolio-card__image">
+                            <img src="{{ card_image.url }}" alt="{{ gallery.title }}" class="gallery-item portfolio-card__image" loading="lazy" decoding="async">
                         {% else %}
                             <img src="{% static 'img/tr-006-650x650.jpg' %}" alt="{{ gallery.title }}" class="gallery-item portfolio-card__image">
                         {% endif %}
