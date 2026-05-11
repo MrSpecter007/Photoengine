@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static wagtailimages_tags %}
+
+{% block title %}{{ page.intro_title|default:"Artifacts" }} — Specter Vision{% endblock %}
+
+{% block content %}
+
+<section class="sv-page-header">
+    <div class="sv-container">
+        <span class="sv-page-header__eyebrow">Specter Vision</span>
+        <h1 class="sv-page-header__title sv-fade-up">{{ page.intro_title|default:"Artifacts" }}</h1>
+        {% if page.intro_text %}
+        <p class="sv-page-header__subtitle sv-fade-up">{{ page.intro_text }}</p>
+        {% else %}
+        <p class="sv-page-header__subtitle sv-fade-up">
+            The image archive — portraits, objects, vehicles, materials, spaces, and fragments
+            from the Mr. Specter world.
+        </p>
+        {% endif %}
+    </div>
+</section>
+
+{% if artifacts %}
+<section class="sv-section sv-section--black">
+    <div class="sv-artifact-grid sv-fade-up">
+        {% for artifact in artifacts %}
+        <a href="{{ artifact.url }}" class="sv-artifact-card">
+            {% if artifact.hero_image %}
+                {% image artifact.hero_image fill-600x600 as art_img %}
+                <img class="sv-artifact-card__img"
+                     src="{{ art_img.url }}"
+                     alt="{{ artifact.hero_image.title|default:artifact.title }}"
+                     loading="lazy"
+                     decoding="async">
+            {% else %}
+                <div class="sv-artifact-card__img" style="background:var(--sv-surface-mid); width:100%; height:100%;"></div>
+            {% endif %}
+            <div class="sv-artifact-card__overlay">
+                <span class="sv-artifact-card__label">{{ artifact.artifact_type_label }}</span>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+{% else %}
+<section class="sv-section sv-section--black">
+    <div class="sv-container" style="text-align:center; padding:var(--sv-sp-2xl) 0;">
+        <p style="color:var(--sv-muted); font-size:var(--sv-base);">
+            The archive is being populated. Check back soon.
+        </p>
+    </div>
+</section>
+{% endif %}
+
+{% endblock content %}

@@ -1,221 +1,216 @@
 {% extends "base.html" %}
-{% load static wagtailimages_tags site_navigation site_i18n %}
+{% load static wagtailimages_tags %}
 
-{% block title %}{% tr "Naji Photo - Modern Photographer" "Naji Photo - Photographe moderne" %}{% endblock title %}
+{% block title %}Specter Vision — Visual Studies{% endblock %}
+{% block meta_description %}{{ page.sv_manifesto_text|default:"Specter Vision is the visual studies archive of the Mr. Specter world." }}{% endblock %}
 
 {% block top_bar %}{% endblock top_bar %}
 
 {% block content %}
-    {% get_site_navigation as site_nav %}
-    <!-- About block -->
-    <div class="about-block">
-        <div class="container">
-            <div class="row clearfix">
-                <div class="column column-2 about-img-wrap" data-aos="fade-right">
-                    {% if page.about_image %}
-                        {% image page.about_image max-960x1200 as about_img %}
-                        <img src="{{ about_img.url }}" alt="{{ page.about_image.title|default:'About image' }}" id="scroll-move" decoding="async" fetchpriority="high">
-                    {% else %}
-                        <img src="{% static 'img/about-image2.jpg' %}" alt="about-img" id="scroll-move">
+
+<!-- ── HERO ──────────────────────────────────────────────────── -->
+<section class="sv-hero">
+    <div class="sv-hero__media">
+        {% if page.sv_hero_image %}
+            {% image page.sv_hero_image original as hero_img %}
+            <img src="{{ hero_img.url }}"
+                 alt="{{ page.sv_hero_image.title|default:'Specter Vision' }}"
+                 fetchpriority="high"
+                 decoding="async">
+        {% endif %}
+        {% if page.sv_hero_video_url %}
+        <video autoplay muted loop playsinline poster="{% if page.sv_hero_image %}{{ hero_img.url }}{% endif %}">
+            <source src="{{ page.sv_hero_video_url }}">
+        </video>
+        {% endif %}
+    </div>
+    <div class="sv-hero__overlay"></div>
+
+    <div class="sv-hero__content">
+        <span class="sv-hero__eyebrow">Mr. Specter World</span>
+        <h1 class="sv-hero__title">{{ page.sv_hero_title|default:"Specter Vision" }}</h1>
+        <p class="sv-hero__subtitle">{{ page.sv_hero_subtitle|default:"Visual studies for a material world." }}</p>
+        {% if page.sv_cta_url %}
+        <a href="{{ page.sv_cta_url }}" class="sv-btn sv-btn--light">
+            {{ page.sv_cta_label|default:"Explore the Studies" }}
+        </a>
+        {% endif %}
+    </div>
+    <div class="sv-hero__scroll" aria-hidden="true">Scroll</div>
+</section>
+
+<!-- ── MANIFESTO ─────────────────────────────────────────────── -->
+{% if page.sv_manifesto_text %}
+<section class="sv-manifesto">
+    <div class="sv-container">
+        <p class="sv-manifesto__text sv-fade-up">{{ page.sv_manifesto_text }}</p>
+    </div>
+</section>
+{% endif %}
+
+<!-- ── FEATURED STUDIES ──────────────────────────────────────── -->
+{% if featured_studies %}
+<section class="sv-section sv-section--black">
+    <div class="sv-container">
+        <div class="sv-section__header sv-fade-up">
+            <span class="sv-section__eyebrow">Studies</span>
+            <h2 class="sv-section__title">Visual Research</h2>
+            <p class="sv-section__lead">Deep investigations into objects, vehicles, spaces, and culture.</p>
+        </div>
+    </div>
+    <div class="sv-study-grid sv-fade-up">
+        {% for study in featured_studies %}
+        <a href="{{ study.url }}" class="sv-study-card{% if forloop.first %} sv-study-card--featured{% endif %}">
+            {% if study.hero_image %}
+                {% image study.hero_image fill-1200x800 as study_img %}
+                <img class="sv-study-card__img"
+                     src="{{ study_img.url }}"
+                     alt="{{ study.hero_image.title|default:study.title }}"
+                     loading="lazy"
+                     decoding="async">
+            {% else %}
+                <div class="sv-study-card__img" style="background:var(--sv-surface-mid);"></div>
+            {% endif %}
+            <div class="sv-study-card__overlay"></div>
+            <div class="sv-study-card__body">
+                <span class="sv-study-card__type">{{ study.study_type_label }}</span>
+                <h3 class="sv-study-card__title">{{ study.title }}</h3>
+                {% if study.thesis %}
+                <p class="sv-study-card__excerpt">{{ study.thesis|truncatewords:18 }}</p>
+                {% endif %}
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    <div class="sv-container sv-section__cta">
+        {% load site_navigation %}
+        {% get_site_navigation as site_nav %}
+        {% if site_nav.studies %}
+        <a href="{{ site_nav.studies.url }}" class="sv-btn sv-btn--accent">All Studies</a>
+        {% endif %}
+    </div>
+</section>
+{% endif %}
+
+<!-- ── FEATURED ARTIFACTS ────────────────────────────────────── -->
+{% if featured_artifacts %}
+<section class="sv-section sv-section--dark">
+    <div class="sv-container">
+        <div class="sv-section__header sv-fade-up">
+            <span class="sv-section__eyebrow">Artifacts</span>
+            <h2 class="sv-section__title">The Archive</h2>
+            <p class="sv-section__lead">Portraits, objects, places, materials, vehicles — the image archive.</p>
+        </div>
+    </div>
+    <div class="sv-artifact-grid sv-fade-up" style="margin-top:var(--sv-sp-md);">
+        {% for artifact in featured_artifacts %}
+        <a href="{{ artifact.url }}" class="sv-artifact-card">
+            {% if artifact.hero_image %}
+                {% image artifact.hero_image fill-600x600 as art_img %}
+                <img class="sv-artifact-card__img"
+                     src="{{ art_img.url }}"
+                     alt="{{ artifact.hero_image.title|default:artifact.title }}"
+                     loading="lazy"
+                     decoding="async">
+            {% else %}
+                <div class="sv-artifact-card__img" style="background:var(--sv-surface-mid); width:100%; height:100%;"></div>
+            {% endif %}
+            <div class="sv-artifact-card__overlay">
+                <span class="sv-artifact-card__label">{{ artifact.artifact_type_label }}</span>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    <div class="sv-container" style="margin-top:var(--sv-sp-lg); text-align:right;">
+        {% if site_nav.artifacts %}
+        <a href="{{ site_nav.artifacts.url }}" class="sv-btn sv-btn--accent">All Artifacts</a>
+        {% endif %}
+    </div>
+</section>
+{% endif %}
+
+<!-- ── FEATURED FIELD NOTES ──────────────────────────────────── -->
+{% if featured_field_notes %}
+<section class="sv-section sv-section--black">
+    <div class="sv-container">
+        <div class="sv-section__header sv-fade-up">
+            <span class="sv-section__eyebrow">Field Notes</span>
+            <h2 class="sv-section__title">Research & Writing</h2>
+        </div>
+        <div class="sv-notes-list sv-fade-up">
+            {% for note in featured_field_notes %}
+            <a href="{{ note.url }}" class="sv-note-row">
+                <span class="sv-note-row__category">{{ note.category_label }}</span>
+                <div>
+                    <h3 class="sv-note-row__title">{{ note.title }}</h3>
+                    {% if note.subtitle %}
+                    <p class="sv-note-row__subtitle">{{ note.subtitle }}</p>
                     {% endif %}
                 </div>
-                <div class="column column-2 about-text-wrap" data-aos="fade-left">
-                    <div class="title-wrap">
-                        <h5 class="the-title">{{ page.about_eyebrow }}</h5>
-                        <h3 class="sub-title">{{ page.about_heading|linebreaksbr }}</h3>
-                        <span class="divider-separator"></span>
-                    </div>
-                    <div class="desc-wrap">
-                        <p>{{ page.about_paragraph_one }}</p>
-                        <p>{{ page.about_paragraph_two }}</p>
-                    </div>
-                </div>
-            </div>
+                {% if note.first_published_at %}
+                <span class="sv-note-row__date">{{ note.first_published_at|date:"Y" }}</span>
+                {% endif %}
+            </a>
+            {% endfor %}
+        </div>
+        <div style="margin-top:var(--sv-sp-lg); text-align:right;">
+            {% if site_nav.field_notes %}
+            <a href="{{ site_nav.field_notes.url }}" class="sv-btn sv-btn--accent">All Field Notes</a>
+            {% endif %}
         </div>
     </div>
-    <!-- end About block -->
+</section>
+{% endif %}
 
-    <!-- Portfolio block -->
-    <div class="projects-block" id="mousehover">
-        <div class="container" id="opacity">
-            <div class="row clearfix">
-                <div class="column column-2 project-text-wrap" id="scroll-move2">
-                    <h5 class="the-title">{{ page.projects_eyebrow }}</h5>
-                    <h3 class="sub-title">{{ page.projects_heading|linebreaksbr }}</h3>
-                    <span class="divider-separator"></span>
-                    <div class="desc-wrap">
-                        <p>{{ page.projects_paragraph_one }}</p>
-                        <p>{{ page.projects_paragraph_two }}</p>
-                    </div>
-                    <div class="projects-button">
-                        <a href="{% if page.projects_button_target_url %}{{ page.projects_button_target_url }}{% elif site_nav.portfolio %}{{ site_nav.portfolio.url }}{% else %}#{% endif %}" class="button style-3">{{ page.projects_button_text }}</a>
-                    </div>
-                </div>
-                <div class="column column-2 project-img-wrap" id="scroll-move3">
-                    <div class="smart-img-wrap">
-                        <div class="smart-img img-1" id="project-item1">
-                            {% if page.project_image_one %}
-                                {% image page.project_image_one max-1200x1200 as project_img_one %}
-                                <img src="{{ project_img_one.url }}" alt="{{ page.project_image_one.title|default:'Project image 1' }}" loading="lazy" decoding="async">
-                            {% else %}
-                                <img src="{% static 'img/smart-img-1.jpg' %}" alt="smart-img-1">
-                            {% endif %}
-                        </div>
-                        <div class="smart-img img-2" id="project-item2">
-                            {% if page.project_image_two %}
-                                {% image page.project_image_two max-1200x1200 as project_img_two %}
-                                <img src="{{ project_img_two.url }}" alt="{{ page.project_image_two.title|default:'Project image 2' }}" loading="lazy" decoding="async">
-                            {% else %}
-                                <img src="{% static 'img/smart-img-2.jpg' %}" alt="smart-img-2">
-                            {% endif %}
-                        </div>
-                        <div class="smart-img img-3" id="project-item3">
-                            {% if page.project_image_three %}
-                                {% image page.project_image_three max-1200x1200 as project_img_three %}
-                                <img src="{{ project_img_three.url }}" alt="{{ page.project_image_three.title|default:'Project image 3' }}" loading="lazy" decoding="async" data-aos="fade-up">
-                            {% else %}
-                                <img src="{% static 'img/smart-img-3.jpg' %}" alt="smart-img-3" data-aos="fade-up">
-                            {% endif %}
-                        </div>
-                        <div class="smart-img img-4" id="project-item4">
-                            {% if page.project_image_four %}
-                                {% image page.project_image_four max-1200x1200 as project_img_four %}
-                                <img src="{{ project_img_four.url }}" alt="{{ page.project_image_four.title|default:'Project image 4' }}" loading="lazy" decoding="async" data-aos="fade-up">
-                            {% else %}
-                                <img src="{% static 'img/tr-006-1024x683.jpg' %}" alt="smart-img-4" data-aos="fade-up">
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- ── WORLD DOORWAYS ────────────────────────────────────────── -->
+<section class="sv-section sv-section--surface">
+    <div class="sv-container">
+        <div class="sv-section__header sv-fade-up">
+            <span class="sv-section__eyebrow">Mr. Specter World</span>
+            <h2 class="sv-section__title">Three Platforms. One World.</h2>
         </div>
     </div>
-    <!-- end Portfolio block -->
+    <div class="sv-world-doors sv-fade-up">
+        {% if page.sv_chez_specter_url %}
+        <a href="{{ page.sv_chez_specter_url }}" class="sv-world-door" target="_blank" rel="noopener">
+            <span class="sv-world-door__label">The Shop</span>
+            <span class="sv-world-door__name">Chez Specter</span>
+            <p class="sv-world-door__desc">Functional objects for lived-in spaces. Pegboards, mounting systems, photography, and future accessories.</p>
+            <span class="sv-world-door__arrow">→</span>
+        </a>
+        {% endif %}
+        {% if page.sv_specter_parts_url %}
+        <a href="{{ page.sv_specter_parts_url }}" class="sv-world-door" target="_blank" rel="noopener">
+            <span class="sv-world-door__label">The System</span>
+            <span class="sv-world-door__name">Specter Parts</span>
+            <p class="sv-world-door__desc">Confidence-first sourcing. Verified fitment, VIN lookup, fleet logic, and part certification.</p>
+            <span class="sv-world-door__arrow">→</span>
+        </a>
+        {% endif %}
+        <a href="{% if page.sv_instagram_url %}{{ page.sv_instagram_url }}{% else %}https://www.instagram.com/mr.specter007{% endif %}"
+           class="sv-world-door" target="_blank" rel="noopener noreferrer">
+            <span class="sv-world-door__label">The Stream</span>
+            <span class="sv-world-door__name">@mr.specter007</span>
+            <p class="sv-world-door__desc">The live feed. Portraits, street culture, nightlife, Montreal, travel, movement, fragments, atmosphere.</p>
+            <span class="sv-world-door__arrow">→</span>
+        </a>
+    </div>
+</section>
 
-    <!-- Testimonial block -->
-    <div class="testimonial-block">
-        <div class="container">
-            <div class="row clearfix">
-                <div class="column column-1 testimonial-inner-wrap" id="scroll-move4" data-aos="fade-up">
-                    <h1 class="testimonial-text">{{ page.testimonial_quote }}</h1>
-                    <div class="client-wrap">
-                        {% if page.testimonial_client_image %}
-                            {% image page.testimonial_client_image fill-150x150 as client_img %}
-                            <img class="client-img" src="{{ client_img.url }}" alt="{{ page.testimonial_client_name }}" loading="lazy" decoding="async">
-                        {% else %}
-                            <img class="client-img" src="{% static 'img/bobby-rodriguezz-631332-unsp5lash-150x150.jpg' %}" alt="client-img">
-                        {% endif %}
-                        <div class="client-desc-wrap">
-                            <h5 class="client-name">{{ page.testimonial_client_name }}</h5>
-                            <span class="client-job">{{ page.testimonial_client_job }}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- ── COLLABORATE CTA ───────────────────────────────────────── -->
+<section class="sv-section sv-section--dark" style="padding:var(--sv-sp-2xl) 0; text-align:center;">
+    <div class="sv-container sv-container--narrow sv-fade-up">
+        <span class="sv-section__eyebrow" style="text-align:center; display:block;">Collaborate</span>
+        <h2 class="sv-section__title" style="text-align:center; margin-bottom:var(--sv-sp-sm);">Propose a Study</h2>
+        <p style="font-size:var(--sv-base); color:var(--sv-muted-light); line-height:1.7; margin-bottom:var(--sv-sp-md);">
+            Specter Vision is open to meaningful creative and strategic work —
+            product documentation, automotive studies, editorial projects, and brand collaborations
+            that belong in this world.
+        </p>
+        {% if site_nav.collaborate %}
+        <a href="{{ site_nav.collaborate.url }}" class="sv-btn sv-btn--fill">Enter the Lab</a>
+        {% endif %}
     </div>
-    <!-- end Testimonial block -->
+</section>
 
-    <!-- Partner block -->
-    <div class="partner-block">
-        <div class="container">
-            <div class="row partner-title-wrap clearfix">
-                <div class="column column-2" data-aos="fade-up">
-                    <h2 class="the-title">
-                        {{ page.partners_heading }}
-                    </h2>
-                    <span class="divider-separator"></span>
-                </div>
-                <div class="column column-2" data-aos="fade-up">
-                    <p>
-                        {{ page.partners_intro }}
-                    </p>
-                </div>
-            </div>
-            <div class="row partner-list-wrap clearfix">
-                <div class="column column-4" data-aos="fade-up">
-                    <div class="partner-logo-wrap">
-                        {% if page.partner_one_image %}
-                            {% image page.partner_one_image max-480x320 as partner_one_img %}
-                            <img src="{{ partner_one_img.url }}" alt="{{ page.partner_one_name }}" class="partner-logo" loading="lazy" decoding="async">
-                        {% else %}
-                            <img src="{% static 'img/3.jpg' %}" alt="partner-logo" class="partner-logo">
-                        {% endif %}
-                        <div class="partner-desc-wrap">
-                            <div class="partner-desc">
-                                <h3 class="partner-name">{{ page.partner_one_name }}</h3>
-                                <p>{{ page.partner_one_description }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="column column-4" data-aos="fade-up">
-                    <div class="partner-logo-wrap">
-                        {% if page.partner_two_image %}
-                            {% image page.partner_two_image max-480x320 as partner_two_img %}
-                            <img src="{{ partner_two_img.url }}" alt="{{ page.partner_two_name }}" class="partner-logo" loading="lazy" decoding="async">
-                        {% else %}
-                            <img src="{% static 'img/4.jpg' %}" alt="partner-logo" class="partner-logo">
-                        {% endif %}
-                        <div class="partner-desc-wrap">
-                            <div class="partner-desc">
-                                <h3 class="partner-name">{{ page.partner_two_name }}</h3>
-                                <p>{{ page.partner_two_description }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="column column-4" data-aos="fade-up">
-                    <div class="partner-logo-wrap">
-                        {% if page.partner_three_image %}
-                            {% image page.partner_three_image max-480x320 as partner_three_img %}
-                            <img src="{{ partner_three_img.url }}" alt="{{ page.partner_three_name }}" class="partner-logo" loading="lazy" decoding="async">
-                        {% else %}
-                            <img src="{% static 'img/2.jpg' %}" alt="partner-logo" class="partner-logo">
-                        {% endif %}
-                        <div class="partner-desc-wrap">
-                            <div class="partner-desc">
-                                <h3 class="partner-name">{{ page.partner_three_name }}</h3>
-                                <p>{{ page.partner_three_description }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="column column-4" data-aos="fade-up">
-                    <div class="partner-logo-wrap">
-                        {% if page.partner_four_image %}
-                            {% image page.partner_four_image max-480x320 as partner_four_img %}
-                            <img src="{{ partner_four_img.url }}" alt="{{ page.partner_four_name }}" class="partner-logo" loading="lazy" decoding="async">
-                        {% else %}
-                            <img src="{% static 'img/5.jpg' %}" alt="partner-logo" class="partner-logo">
-                        {% endif %}
-                        <div class="partner-desc-wrap">
-                            <div class="partner-desc">
-                                <h3 class="partner-name">{{ page.partner_four_name }}</h3>
-                                <p>{{ page.partner_four_description }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end Partner block -->
-
-    <!-- Contact  Block -->
-    <div class="contact-block">
-        <div class="container">
-            <div class="row">
-                <div class="column column-1" data-aos="fade-up">
-                    <h5 class="sub-title">{{ page.contact_eyebrow }}</h5>
-                    <h2 class="the-title">
-                        <a href="{% if page.contact_link and page.contact_link != '#' %}{{ page.contact_link }}{% elif site_nav.contact %}{{ site_nav.contact.url }}{% else %}#{% endif %}">
-                            {{ page.contact_heading }} <span>{{ page.contact_heading_emphasis }}</span>
-                        </a>
-                    </h2>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end Contact block -->
 {% endblock content %}

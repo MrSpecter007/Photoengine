@@ -1,0 +1,19 @@
+<div class="sv-block-platform sv-container">
+    <div>
+        <p class="sv-block-platform__label">
+            {% if value.platform == "chez_specter" %}Chez Specter
+            {% elif value.platform == "specter_parts" %}Specter Parts
+            {% elif value.platform == "specter_builds" %}Specter Builds
+            {% else %}{{ value.platform }}{% endif %}
+        </p>
+        {% if value.heading %}
+        <h3 class="sv-block-platform__heading">{{ value.heading }}</h3>
+        {% endif %}
+        {% if value.description %}
+        <p class="sv-block-platform__desc">{{ value.description }}</p>
+        {% endif %}
+    </div>
+    <a href="{{ value.url }}" class="sv-btn sv-btn--accent" target="_blank" rel="noopener">
+        {{ value.cta_label|default:"Explore" }} →
+    </a>
+</div>

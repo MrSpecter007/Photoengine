@@ -26,7 +26,7 @@ WORKDIR /app
 COPY . /app
 COPY deploy/entrypoint.sh /entrypoint.sh
 
-RUN chmod +x /entrypoint.sh && chown -R wagtail:wagtail /app
+RUN sed -i 's/\r//' /entrypoint.sh && chmod +x /entrypoint.sh && chown -R wagtail:wagtail /app
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

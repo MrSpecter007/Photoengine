@@ -1,0 +1,19 @@
+{% load wagtailimages_tags %}
+<section class="sv-block-sequence">
+    <div class="sv-block-sequence__track">
+        {% for image in value.images %}
+        {% image image fill-800x533 as seq_img %}
+        <div class="sv-block-sequence__item">
+            <img src="{{ seq_img.url }}"
+                 alt="{{ image.title }}"
+                 loading="lazy"
+                 decoding="async">
+        </div>
+        {% endfor %}
+    </div>
+    {% if value.caption %}
+    <div class="sv-container" style="margin-top:var(--sv-sp-sm);">
+        <p style="font-size:var(--sv-xs); color:var(--sv-muted); letter-spacing:0.1em;">{{ value.caption }}</p>
+    </div>
+    {% endif %}
+</section>

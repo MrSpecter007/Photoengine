@@ -1,0 +1,17 @@
+{% load wagtailimages_tags wagtailcore_tags %}
+<section class="sv-block-two-col{% if value.image_position == 'left' %} sv-block-two-col--image-left{% endif %}">
+    <div class="sv-block-two-col__text">
+        {{ value.text|richtext }}
+    </div>
+    <div class="sv-block-two-col__image">
+        {% image value.image original as col_img %}
+        <img src="{{ col_img.url }}"
+             alt="{{ value.image.title }}"
+             loading="lazy"
+             decoding="async"
+             style="width:100%; height:auto; display:block;">
+        {% if value.caption %}
+        <p class="sv-block-two-col__caption">{{ value.caption }}</p>
+        {% endif %}
+    </div>
+</section>

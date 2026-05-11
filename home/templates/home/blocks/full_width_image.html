@@ -1,0 +1,18 @@
+{% load wagtailimages_tags %}
+<figure class="sv-block-full-image">
+    {% image value.image original as img %}
+    <img src="{{ img.url }}"
+         alt="{{ value.image.title }}"
+         loading="lazy"
+         decoding="async">
+    {% if value.overlay_text %}
+    <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(10,10,10,0.45);">
+        <p style="font-size:clamp(2rem,4vw,5.6rem); font-weight:700; color:var(--sv-warm-white); text-align:center; letter-spacing:-0.01em; padding:0 var(--sv-sp-md);">
+            {{ value.overlay_text }}
+        </p>
+    </div>
+    {% endif %}
+    {% if value.caption %}
+    <figcaption>{{ value.caption }}</figcaption>
+    {% endif %}
+</figure>

@@ -1,0 +1,36 @@
+{% load wagtailimages_tags %}
+<figure class="sv-block-full-video">
+    <div class="sv-block-full-video__wrapper">
+        {% if "youtube.com" in value.video_url or "youtu.be" in value.video_url %}
+            {% with video_id=value.video_url|slice:"-11:" %}
+            <iframe src="https://www.youtube.com/embed/{{ video_id }}?autoplay=0&rel=0"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                    loading="lazy"
+                    title="{{ value.caption|default:'Video' }}"></iframe>
+            {% endwith %}
+        {% elif "vimeo.com" in value.video_url %}
+            {% with video_id=value.video_url|slice:"-9:" %}
+            <iframe src="https://player.vimeo.com/video/{{ video_id }}?title=0&byline=0&portrait=0"
+                    frameborder="0"
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowfullscreen
+                    loading="lazy"
+                    title="{{ value.caption|default:'Video' }}"></iframe>
+            {% endwith %}
+        {% else %}
+            {% if value.poster_image %}{% image value.poster_image original as poster %}{% endif %}
+            <video controls
+                   loading="lazy"
+                   {% if value.poster_image %}poster="{{ poster.url }}"{% endif %}>
+                <source src="{{ value.video_url }}">
+            </video>
+        {% endif %}
+    </div>
+    {% if value.caption %}
+    <figcaption style="padding:var(--sv-sp-sm) var(--sv-sp-md); font-size:var(--sv-xs); color:var(--sv-muted); letter-spacing:0.1em;">
+        {{ value.caption }}
+    </figcaption>
+    {% endif %}
+</figure>

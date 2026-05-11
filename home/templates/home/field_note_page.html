@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load static wagtailimages_tags wagtailcore_tags %}
+
+{% block title %}{{ page.title }} — Specter Vision Field Notes{% endblock %}
+{% block meta_description %}{{ page.intro|default:page.subtitle }}{% endblock %}
+
+{% block content %}
+
+<!-- Header -->
+<section class="sv-page-header" style="padding-bottom:0;">
+    <div class="sv-container">
+        <div class="sv-breadcrumb">
+            <a href="{{ page.get_parent.url }}">Field Notes</a>
+            <span class="sv-breadcrumb__sep">/</span>
+            <span>{{ page.category_label }}</span>
+        </div>
+        <span class="sv-page-header__eyebrow">{{ page.category_label }}</span>
+        <h1 class="sv-page-header__title sv-fade-up">{{ page.title }}</h1>
+        {% if page.subtitle %}
+        <p class="sv-page-header__subtitle sv-fade-up">{{ page.subtitle }}</p>
+        {% endif %}
+        {% if page.first_published_at %}
+        <p style="font-size:var(--sv-xs); color:var(--sv-muted); letter-spacing:0.1em; margin-top:var(--sv-sp-sm);">
+            {{ page.first_published_at|date:"F j, Y" }}
+        </p>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Hero image -->
+{% if page.hero_image %}
+<section style="background:var(--sv-dark); margin-top:var(--sv-sp-md);">
+    {% image page.hero_image original as hero_img %}
+    <img src="{{ hero_img.url }}"
+         alt="{{ page.hero_image.title|default:page.title }}"
+         fetchpriority="high"
+         decoding="async"
+         style="width:100%; max-height:75vh; object-fit:cover; display:block;">
+</section>
+{% endif %}
+
+<!-- Intro -->
+{% if page.intro %}
+<section class="sv-study-thesis">
+    <div class="sv-container">
+        <p class="sv-study-thesis__text sv-fade-up">{{ page.intro }}</p>
+    </div>
+</section>
+{% endif %}
+
+<!-- Body StreamField -->
+{% if page.body %}
+<section class="sv-study-body">
+    {% for block in page.body %}
+        {% include_block block %}
+    {% endfor %}
+</section>
+{% endif %}
+
+<!-- Related content -->
+{% with related_studies=page.related_studies.all related_artifacts=page.related_artifacts.all %}
+{% if related_studies or related_artifacts %}
+<section class="sv-related">
+    <div class="sv-container">
+        {% if related_studies %}
+        <h3 class="sv-related__heading">Related Studies</h3>
+        <div class="sv-related-grid">
+            {% for rel in related_studies %}{% if rel.study %}
+            <a href="{{ rel.study.url }}" class="sv-related-item">
+                {% if rel.study.hero_image %}
+                <div class="sv-related-item__img">
+                    {% image rel.study.hero_image fill-560x315 as rs_img %}
+                    <img src="{{ rs_img.url }}" alt="{{ rel.study.title }}" loading="lazy">
+                </div>
+                {% endif %}
+                <span class="sv-related-item__type">{{ rel.study.study_type_label }}</span>
+                <span class="sv-related-item__title">{{ rel.study.title }}</span>
+            </a>
+            {% endif %}{% endfor %}
+        </div>
+        {% endif %}
+        {% if related_artifacts %}
+        <h3 class="sv-related__heading" style="margin-top:var(--sv-sp-xl);">Related Artifacts</h3>
+        <div class="sv-related-grid">
+            {% for rel in related_artifacts %}{% if rel.artifact %}
+            <a href="{{ rel.artifact.url }}" class="sv-related-item">
+                {% if rel.artifact.hero_image %}
+                <div class="sv-related-item__img">
+                    {% image rel.artifact.hero_image fill-560x315 as ra_img %}
+                    <img src="{{ ra_img.url }}" alt="{{ rel.artifact.title }}" loading="lazy">
+                </div>
+                {% endif %}
+                <span class="sv-related-item__type">{{ rel.artifact.artifact_type_label }}</span>
+                <span class="sv-related-item__title">{{ rel.artifact.title }}</span>
+            </a>
+            {% endif %}{% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endif %}
+{% endwith %}
+
+{% endblock content %}

@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% load static wagtailimages_tags %}
+
+{% block title %}{{ page.title }} — Specter Vision Artifacts{% endblock %}
+{% block meta_description %}{{ page.short_caption|default:page.title }}{% endblock %}
+
+{% block content %}
+
+<!-- Artifact header -->
+<section class="sv-artifact-header">
+    <div class="sv-container">
+        <div class="sv-breadcrumb">
+            <a href="{{ page.get_parent.url }}">Artifacts</a>
+            <span class="sv-breadcrumb__sep">/</span>
+            <span>{{ page.artifact_type_label }}</span>
+        </div>
+        <span class="sv-artifact-type-badge">{{ page.artifact_type_label }}</span>
+        <h1 class="sv-page-header__title sv-fade-up" style="padding-top:0;">{{ page.title }}</h1>
+        {% if page.short_caption %}
+        <p class="sv-page-header__subtitle sv-fade-up">{{ page.short_caption }}</p>
+        {% endif %}
+        <div class="sv-study-header__meta" style="margin-top:var(--sv-sp-md);">
+            {% if page.date %}
+            <span class="sv-study-header__meta-item"><strong>Date</strong> — {{ page.date|date:"Y" }}</span>
+            {% endif %}
+            {% if page.location %}
+            <span class="sv-study-header__meta-item"><strong>Location</strong> — {{ page.location }}</span>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- Hero image -->
+{% if page.hero_image %}
+<section class="sv-block-full-image" style="margin:0;">
+    {% image page.hero_image original as hero_img %}
+    <img src="{{ hero_img.url }}"
+         alt="{{ page.hero_image.title|default:page.title }}"
+         fetchpriority="high"
+         decoding="async"
+         style="width:100%; max-height:90vh; object-fit:cover;">
+</section>
+{% endif %}
+
+<!-- Gallery images -->
+{% with images=page.gallery_images.all %}
+{% if images %}
+<section class="sv-section sv-section--black">
+    <div class="sv-container">
+        <div class="sv-artifact-gallery sv-artifact-gallery--{% if images|length == 1 %}1{% elif images|length == 2 %}2{% else %}3{% endif %} sv-fade-up">
+            {% for gallery_img in images %}
+            {% image gallery_img.image fill-800x600 as gal_img %}
+            <figure>
+                <img class="sv-artifact-gallery__img"
+                     src="{{ gal_img.url }}"
+                     alt="{{ gallery_img.caption|default:page.title }}"
+                     loading="lazy"
+                     decoding="async">
+                {% if gallery_img.caption %}
+                <figcaption style="font-size:var(--sv-xs); color:var(--sv-muted); padding:var(--sv-sp-xs) 0;">{{ gallery_img.caption }}</figcaption>
+                {% endif %}
+            </figure>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endwith %}
+
+<!-- Long description -->
+{% if page.long_description %}
+<section class="sv-block-essay sv-block-essay--narrow">
+    <div class="sv-block-essay__inner">
+        <div class="sv-block-essay__body sv-fade-up">
+            {{ page.long_description|linebreaks }}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Links & relations -->
+{% if page.instagram_url or page.related_product_reference or page.related_platform_reference or page.related_study or page.related_field_note %}
+<section class="sv-section sv-section--surface">
+    <div class="sv-container">
+        <div style="display:flex; flex-direction:column; gap:var(--sv-sp-sm);">
+            {% if page.instagram_url %}
+            <a href="{{ page.instagram_url }}" class="sv-btn sv-btn--accent" target="_blank" rel="noopener noreferrer"
+               style="align-self:flex-start;">
+                View on Instagram →
+            </a>
+            {% endif %}
+            {% if page.related_product_reference %}
+            <a href="{{ page.related_product_reference }}" class="sv-btn sv-btn--light" target="_blank" rel="noopener"
+               style="align-self:flex-start;">
+                View on Chez Specter →
+            </a>
+            {% endif %}
+            {% if page.related_platform_reference %}
+            <a href="{{ page.related_platform_reference }}" class="sv-btn sv-btn--light" target="_blank" rel="noopener"
+               style="align-self:flex-start;">
+                Explore on Specter Parts →
+            </a>
+            {% endif %}
+        </div>
+        {% if page.related_study or page.related_field_note %}
+        <div style="margin-top:var(--sv-sp-xl);">
+            <h3 class="sv-related__heading">Related Content</h3>
+            <div class="sv-related-grid">
+                {% if page.related_study %}
+                <a href="{{ page.related_study.url }}" class="sv-related-item">
+                    {% if page.related_study.hero_image %}
+                    <div class="sv-related-item__img">
+                        {% image page.related_study.hero_image fill-560x315 as rs_img %}
+                        <img src="{{ rs_img.url }}" alt="{{ page.related_study.title }}" loading="lazy">
+                    </div>
+                    {% endif %}
+                    <span class="sv-related-item__type">{{ page.related_study.study_type_label }}</span>
+                    <span class="sv-related-item__title">{{ page.related_study.title }}</span>
+                </a>
+                {% endif %}
+                {% if page.related_field_note %}
+                <a href="{{ page.related_field_note.url }}" class="sv-related-item">
+                    {% if page.related_field_note.hero_image %}
+                    <div class="sv-related-item__img">
+                        {% image page.related_field_note.hero_image fill-560x315 as rfn_img %}
+                        <img src="{{ rfn_img.url }}" alt="{{ page.related_field_note.title }}" loading="lazy">
+                    </div>
+                    {% endif %}
+                    <span class="sv-related-item__type">{{ page.related_field_note.category_label }}</span>
+                    <span class="sv-related-item__title">{{ page.related_field_note.title }}</span>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endif %}
+
+{% endblock content %}

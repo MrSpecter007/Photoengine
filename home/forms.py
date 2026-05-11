@@ -111,3 +111,27 @@ class ContactInquiryForm(forms.Form):
             )
 
         return cleaned_data
+
+
+class CollaborateForm(forms.Form):
+    INQUIRY_TYPE_CHOICES = [
+        ("product_study", "Product Study"),
+        ("automotive_study", "Automotive Study"),
+        ("editorial", "Editorial / Publication"),
+        ("exhibition", "Exhibition / Event"),
+        ("brand_collab", "Brand Collaboration"),
+        ("object_documentation", "Object Documentation"),
+        ("visual_direction", "Visual Direction"),
+        ("other", "Other"),
+    ]
+
+    name = forms.CharField(max_length=120, label="Name")
+    email = forms.EmailField(label="Email")
+    inquiry_type = forms.ChoiceField(
+        choices=INQUIRY_TYPE_CHOICES,
+        label="Type of Collaboration",
+    )
+    description = forms.CharField(
+        widget=forms.Textarea(attrs={"rows": 6}),
+        label="Describe the study or collaboration",
+    )
