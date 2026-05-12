@@ -26,6 +26,45 @@ $(document).ready(function () {
         $(this).attr('aria-expanded', Menu.hasClass('active') ? 'true' : 'false')
     })
 
+    $('.nav-tier-menu').each(function () {
+        var menu = $(this)
+        var panel = menu.find('.nav-tier-menu__panel')
+        var parents = menu.find('[data-nav-parent]')
+        var rows = menu.find('[data-nav-panel]')
+        var defaultParent = parents.filter('.is-active').first()
+        var defaultKey = defaultParent.data('nav-parent') || parents.first().data('nav-parent')
+
+        if (!parents.length || !rows.length || !defaultKey) {
+            return
+        }
+
+        var activateTier = function (key) {
+            parents.each(function () {
+                var parent = $(this)
+                var isActive = parent.data('nav-parent') === key
+                parent.toggleClass('is-active', isActive)
+                if (parent.is('[aria-controls]')) {
+                    parent.attr('aria-expanded', isActive ? 'true' : 'false')
+                }
+            })
+
+            rows.each(function () {
+                var row = $(this)
+                row.toggleClass('is-active', row.data('nav-panel') === key)
+            })
+        }
+
+        parents.on('mouseenter focus', function () {
+            activateTier($(this).data('nav-parent'))
+        })
+
+        panel.on('mouseleave', function () {
+            activateTier(defaultKey)
+        })
+
+        activateTier(defaultKey)
+    })
+
     // personal-photographer page js
     var target1 = document.getElementById('scroll-move'),
         target2 = document.getElementById('scroll-move2'),

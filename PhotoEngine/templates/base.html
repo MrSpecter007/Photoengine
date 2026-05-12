@@ -47,26 +47,49 @@
                             <li class="menu-item menu-item--portfolio{% if site_nav.portfolio_menu %} has-submenu{% endif %}">
                                 <a href="{% if site_nav.portfolio %}{{ site_nav.portfolio.url }}{% else %}#{% endif %}">{{ site_nav.labels.portfolio }}</a>
                                 {% if site_nav.portfolio_menu %}
-                                <ul class="sub-menu nav-mega-menu">
-                                    {% if site_nav.portfolio %}
-                                    <li class="menu-item-sub nav-mega-menu__overview">
-                                        <a href="{{ site_nav.portfolio.url }}">{{ site_nav.labels.all_portfolio }}</a>
-                                    </li>
-                                    {% endif %}
-                                    {% for category in site_nav.portfolio_menu %}
-                                    <li class="menu-item-sub nav-mega-menu__category">
-                                        <a href="{{ category.page.url }}" class="nav-mega-menu__category-link">{{ category.page.title }}</a>
-                                        {% if category.galleries %}
-                                        <ul class="nav-mega-menu__galleries">
-                                            {% for gallery in category.galleries %}
-                                            <li class="nav-mega-menu__gallery-item">
-                                                <a href="{{ gallery.url }}">{{ gallery.title }}</a>
-                                            </li>
+                                <ul class="sub-menu nav-tier-menu" aria-label="{% tr 'Portfolio categories' 'Categories du portfolio' %}">
+                                    <li class="nav-tier-menu__panel">
+                                        <div class="nav-tier-menu__parents" role="list">
+                                            {% if site_nav.portfolio %}
+                                            <a
+                                                href="{{ site_nav.portfolio.url }}"
+                                                class="nav-tier-menu__parent nav-tier-menu__parent--overview{% if not site_nav.active_portfolio_key %} is-active{% endif %}"
+                                            >
+                                                {{ site_nav.labels.all_portfolio }}
+                                            </a>
+                                            {% endif %}
+                                            {% for category in site_nav.portfolio_menu %}
+                                            <a
+                                                href="{{ category.page.url }}"
+                                                class="nav-tier-menu__parent{% if category.galleries %} has-children{% endif %}{% if category.is_active %} is-active{% endif %}"
+                                                data-nav-parent="{{ category.key }}"
+                                                {% if category.galleries %}
+                                                aria-controls="nav-tier-panel-{{ category.key }}"
+                                                aria-expanded="{% if category.is_active %}true{% else %}false{% endif %}"
+                                                {% endif %}
+                                            >
+                                                {{ category.page.title }}
+                                            </a>
                                             {% endfor %}
-                                        </ul>
+                                        </div>
+                                        {% if site_nav.has_portfolio_children %}
+                                        <div class="nav-tier-menu__children">
+                                            {% for category in site_nav.portfolio_menu %}
+                                            {% if category.galleries %}
+                                            <div
+                                                id="nav-tier-panel-{{ category.key }}"
+                                                class="nav-tier-menu__child-row{% if category.is_active %} is-active{% endif %}"
+                                                data-nav-panel="{{ category.key }}"
+                                            >
+                                                {% for gallery in category.galleries %}
+                                                <a class="nav-tier-menu__child-link" href="{{ gallery.url }}">{{ gallery.title }}</a>
+                                                {% endfor %}
+                                            </div>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </div>
                                         {% endif %}
                                     </li>
-                                    {% endfor %}
                                 </ul>
                                 {% endif %}
                             </li>
