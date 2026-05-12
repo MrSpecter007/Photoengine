@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
     <link rel="stylesheet" href="{% static 'css/plugin.css' %}">
     <link rel="stylesheet" href="{% static 'css/font.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navigation-refresh.css' %}">
     {% block extra_css %}{% endblock extra_css %}
 
     <!-- document title -->
@@ -27,36 +28,44 @@
         <header id="header">
             <div class="header-style1-wrap">
                 <div class="header-content-left">
-                    <!-- LOGO START
-                        ============================================= -->
-                    <div class="logo">
+                    <div class="logo header-branding">
                         <h2 class="logo-title">
                             <a href="{% if site_nav.home %}{{ site_nav.home.url }}{% else %}/{% endif %}">NAJI PHOTO</a>
                         </h2>
                     </div>
-                    <!-- LOGO END -->
                 </div>
                 <div class="header-content-right">
-                    <!-- NAVIGATION START
-                        ============================================= -->
-                    <nav class="main-nav col-span-9  sm:col-span-12">
-                        <!-- Mobile menu toggle button -->
-                        <button class="jepret-menu-mobile">
-                            <i class="icon icon-reorder"></i>
+                    <nav class="main-nav" aria-label="{% tr 'Main navigation' 'Navigation principale' %}">
+                        <button class="jepret-menu-mobile" type="button" aria-controls="main-menu" aria-expanded="false">
+                            <i class="icon icon-reorder" aria-hidden="true"></i>
+                            <span class="screen-reader-text">{% tr "Open menu" "Ouvrir le menu" %}</span>
                         </button>
                         <ul id="main-menu" class="sm sm-clean mobile-menu">
                             <li class="menu-item">
                                 <a href="{% if site_nav.home %}{{ site_nav.home.url }}{% else %}/{% endif %}">{{ site_nav.labels.home }}</a>
                             </li>
-                            <li class="menu-item{% if site_nav.portfolio_categories %} has-submenu{% endif %}">
+                            <li class="menu-item menu-item--portfolio{% if site_nav.portfolio_menu %} has-submenu{% endif %}">
                                 <a href="{% if site_nav.portfolio %}{{ site_nav.portfolio.url }}{% else %}#{% endif %}">{{ site_nav.labels.portfolio }}</a>
-                                {% if site_nav.portfolio_categories %}
-                                <ul class="sub-menu">
+                                {% if site_nav.portfolio_menu %}
+                                <ul class="sub-menu nav-mega-menu">
                                     {% if site_nav.portfolio %}
-                                    <li class="menu-item-sub"><a href="{{ site_nav.portfolio.url }}">{{ site_nav.labels.all_portfolio }}</a></li>
+                                    <li class="menu-item-sub nav-mega-menu__overview">
+                                        <a href="{{ site_nav.portfolio.url }}">{{ site_nav.labels.all_portfolio }}</a>
+                                    </li>
                                     {% endif %}
-                                    {% for category in site_nav.portfolio_categories %}
-                                    <li class="menu-item-sub"><a href="{{ category.url }}">{{ category.title }}</a></li>
+                                    {% for category in site_nav.portfolio_menu %}
+                                    <li class="menu-item-sub nav-mega-menu__category">
+                                        <a href="{{ category.page.url }}" class="nav-mega-menu__category-link">{{ category.page.title }}</a>
+                                        {% if category.galleries %}
+                                        <ul class="nav-mega-menu__galleries">
+                                            {% for gallery in category.galleries %}
+                                            <li class="nav-mega-menu__gallery-item">
+                                                <a href="{{ gallery.url }}">{{ gallery.title }}</a>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                        {% endif %}
+                                    </li>
                                     {% endfor %}
                                 </ul>
                                 {% endif %}
@@ -88,7 +97,6 @@
                             </li>
                         </ul>
                     </nav>
-                    <!-- NAVIGATION END -->
                 </div>
             </div>
         </header>
