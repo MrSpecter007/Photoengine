@@ -1,109 +1,106 @@
 {% extends "base.html" %}
 {% load static site_i18n %}
 
-{% block title %}{% tr "Privacy Policy" "Politique de confidentialite" %} — Specter Vision{% endblock title %}
+{% block title %}{% tr "Privacy Policy" "Politique de confidentialite" %} - Naji Photo{% endblock title %}
 
-{% block body_class %}sv-page--legal{% endblock body_class %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/proofing.css' %}">
+<link rel="stylesheet" href="{% static 'css/contact-page.css' %}">
+{% endblock extra_css %}
 
 {% block content %}
-<div class="sv-legal">
+<section class="client-proofing client-proofing--legal">
+    <div class="client-proofing__portal-entry-shell">
+        <div class="client-proofing__header client-proofing__portal-entry client-proofing__header--legal">
+            <div class="client-proofing__header-main">
+                <p class="client-proofing__eyebrow">{% tr "Site-wide privacy" "Confidentialite du site" %}</p>
+                <h1 class="client-proofing__title">{% tr "Privacy Policy" "Politique de confidentialite" %}</h1>
+                <p class="client-proofing__intro">
+                    {% tr "This policy explains how Naji Photo collects, uses, stores, and protects personal information shared through this website, including the contact form and public browsing features." "Cette politique explique comment Naji Photo recueille, utilise, conserve et protege les renseignements personnels transmis par ce site Web, y compris le formulaire de contact et les fonctions de navigation publique." %}
+                </p>
+                <div class="client-proofing__meta-row">
+                    <span class="client-proofing__meta-pill">{% tr "Contact form" "Formulaire de contact" %}</span>
+                    <span class="client-proofing__meta-pill">{% tr "Website usage" "Utilisation du site" %}</span>
+                    <span class="client-proofing__meta-pill">{% tr "Your rights" "Vos droits" %}</span>
+                </div>
+            </div>
 
-    <!-- ── Hero ──────────────────────────────────────────────────── -->
-    <div class="sv-legal__hero">
-        <div class="sv-container">
-            <div class="sv-legal__hero-inner">
-                <div class="sv-legal__hero-main">
-                    <span class="sv-section__eyebrow">{% tr "Site-wide privacy" "Confidentialite du site" %}</span>
-                    <h1 class="sv-legal__title">{% tr "Privacy Policy" "Politique de confidentialite" %}</h1>
-                    <p class="sv-legal__intro">
-                        {% tr "This policy explains how Mr. Specter collects, uses, stores, and protects personal information shared through this website, including the contact form and public browsing features." "Cette politique explique comment Mr. Specter recueille, utilise, conserve et protege les renseignements personnels transmis par ce site, y compris le formulaire de contact et les fonctions de navigation publique." %}
+            <div class="client-proofing__header-aside">
+                <div class="client-proofing__status-card client-proofing__status-card--active">
+                    <p class="client-proofing__status-label">{% tr "Quick summary" "Resume rapide" %}</p>
+                    <p class="client-proofing__status-copy">
+                        {% tr "Naji Photo collects only the details needed to respond to inquiries, plan photography services, maintain client communications, and operate the website securely." "Naji Photo recueille uniquement les renseignements necessaires pour repondre aux demandes, planifier les services photographiques, assurer les communications avec les clients et exploiter le site de facon securisee." %}
                     </p>
-                    <div class="sv-legal__pills">
-                        <span class="sv-legal__pill">{% tr "Contact form" "Formulaire de contact" %}</span>
-                        <span class="sv-legal__pill">{% tr "Website usage" "Utilisation du site" %}</span>
-                        <span class="sv-legal__pill">{% tr "Your rights" "Vos droits" %}</span>
+                    <div class="client-proofing__status-list">
+                        <p class="client-proofing__status-list-item">{% tr "We use inquiry details to reply and plan requested services." "Nous utilisons les renseignements des demandes pour repondre et organiser les services demandes." %}</p>
+                        <p class="client-proofing__status-list-item">{% tr "We do not publish your personal information." "Nous ne publions pas vos renseignements personnels." %}</p>
+                        <p class="client-proofing__status-list-item">{% tr "You can contact us to request access or correction." "Vous pouvez nous joindre pour demander l'acces ou la rectification." %}</p>
                     </div>
                 </div>
-                <aside class="sv-legal__summary">
-                    <p class="sv-legal__summary-label">{% tr "Quick summary" "Resume rapide" %}</p>
-                    <p class="sv-legal__summary-copy">
-                        {% tr "Mr. Specter collects only the details needed to respond to inquiries, plan photography services, maintain client communications, and operate the website securely." "Mr. Specter recueille uniquement les renseignements necessaires pour repondre aux demandes, planifier les services photographiques, assurer les communications avec les clients et exploiter le site de facon securisee." %}
-                    </p>
-                    <ul class="sv-legal__summary-list">
-                        <li>{% tr "We use inquiry details to reply and plan requested services." "Nous utilisons les renseignements des demandes pour repondre et organiser les services demandes." %}</li>
-                        <li>{% tr "We do not publish your personal information." "Nous ne publions pas vos renseignements personnels." %}</li>
-                        <li>{% tr "You can contact us to request access or correction." "Vous pouvez nous joindre pour demander l'acces ou la rectification." %}</li>
-                    </ul>
-                </aside>
             </div>
         </div>
-    </div>
 
-    <!-- ── Legal sections ────────────────────────────────────────── -->
-    <div class="sv-container">
-        <div class="sv-legal__grid">
-
-            <article class="sv-legal__card">
+        <div class="client-proofing__legal-layout">
+            <article class="client-proofing__legal-card">
                 <h2>{% tr "1. Who this policy applies to" "1. Portee de la politique" %}</h2>
                 <p>{% tr "This policy applies to information collected through the public website, including browsing activity handled by the website platform, direct email contact initiated from the site, and any information submitted through the contact form." "Cette politique s'applique aux renseignements recueillis par le site public, y compris l'activite de navigation geree par la plateforme du site, les communications directes par courriel initiees depuis le site et tout renseignement transmis par le formulaire de contact." %}</p>
             </article>
 
-            <article class="sv-legal__card">
+            <article class="client-proofing__legal-card">
                 <h2>{% tr "2. Information we collect" "2. Renseignements recueillis" %}</h2>
                 <p>{% tr "When you use the contact form, we may collect your name, email address, phone number, photography inquiry type, preferred dates, and the message details you submit." "Lorsque vous utilisez le formulaire de contact, nous pouvons recueillir votre nom, votre adresse courriel, votre numero de telephone, le type de demande photographique, les dates souhaitees et le contenu du message que vous soumettez." %}</p>
                 <p>{% tr "The website may also generate limited technical information such as server logs, device or browser details, and security-related request data needed to operate and protect the site." "Le site peut egalement generer des renseignements techniques limites, comme des journaux serveur, des details sur l'appareil ou le navigateur et des donnees de requete liees a la securite necessaires au fonctionnement et a la protection du site." %}</p>
             </article>
 
-            <article class="sv-legal__card">
+            <article class="client-proofing__legal-card">
                 <h2>{% tr "3. Why we collect it" "3. Finalites de la collecte" %}</h2>
                 <p>{% tr "We use this information to answer your inquiry, discuss availability, prepare estimates or service recommendations, plan photography sessions, maintain client communications, and keep a record of legitimate business requests." "Nous utilisons ces renseignements pour repondre a votre demande, discuter des disponibilites, preparer des estimations ou des recommandations de service, planifier les seances photo, assurer les communications avec les clients et conserver une trace des demandes legitimes." %}</p>
             </article>
 
-            <article class="sv-legal__card">
+            <article class="client-proofing__legal-card">
                 <h2>{% tr "4. Consent and limited collection" "4. Consentement et limitation" %}</h2>
                 <p>{% tr "By submitting a form on this website, you consent to the collection and use of the personal information you provide for the purposes described in this policy. Please do not include unnecessary sensitive information in your message." "En soumettant un formulaire sur ce site Web, vous consentez a la collecte et a l'utilisation des renseignements personnels fournis pour les finalites decrites dans cette politique. Veuillez ne pas inclure de renseignements sensibles inutiles dans votre message." %}</p>
             </article>
 
-            <article class="sv-legal__card">
+            <article class="client-proofing__legal-card">
                 <h2>{% tr "5. Sharing and service providers" "5. Communication et fournisseurs de services" %}</h2>
                 <p>{% tr "Your information may be accessible to trusted service providers who host, secure, maintain, or support the website and business communications, but only to the extent reasonably necessary for those services." "Vos renseignements peuvent etre accessibles a des fournisseurs de services de confiance qui hebergent, securisent, maintiennent ou soutiennent le site et les communications d'affaires, mais uniquement dans la mesure raisonnablement necessaire a ces services." %}</p>
                 <p>{% tr "We do not sell personal information submitted through this website." "Nous ne vendons pas les renseignements personnels transmis par ce site Web." %}</p>
             </article>
 
-            <article class="sv-legal__card">
+            <article class="client-proofing__legal-card">
                 <h2>{% tr "6. Retention and protection" "6. Conservation et protection" %}</h2>
                 <p>{% tr "Inquiry records are retained only for as long as reasonably necessary to respond to your request, manage related services, maintain business records, and meet legal or operational obligations." "Les demandes sont conservees uniquement pendant la duree raisonnablement necessaire pour repondre a votre requete, gerer les services connexes, tenir les dossiers d'affaires et respecter les obligations legales ou operationnelles." %}</p>
                 <p>{% tr "We use reasonable administrative and technical safeguards appropriate to the nature of the information handled by the site." "Nous appliquons des mesures administratives et techniques raisonnables adaptees a la nature des renseignements traites par le site." %}</p>
             </article>
 
-            <article class="sv-legal__card">
+            <article class="client-proofing__legal-card">
                 <h2>{% tr "7. Your rights" "7. Vos droits" %}</h2>
                 <p>{% tr "You may request access to personal information we hold about you, ask for corrections if it is inaccurate, or contact us with privacy-related concerns about information submitted through the website." "Vous pouvez demander l'acces aux renseignements personnels que nous detenons a votre sujet, demander leur rectification s'ils sont inexacts ou nous contacter pour toute question relative a la confidentialite des renseignements transmis par le site." %}</p>
             </article>
 
-            <article class="sv-legal__card">
+            <article class="client-proofing__legal-card">
                 <h2>{% tr "8. Privacy contact" "8. Responsable de la confidentialite" %}</h2>
-                <p>{% tr "Mr. Specter is responsible for personal information handled through this website. Privacy-related requests may be directed through the website contact page or the published contact email below." "Mr. Specter est responsable des renseignements personnels traites par ce site Web. Les demandes relatives a la confidentialite peuvent etre transmises par la page de contact du site ou a l'adresse courriel publiee ci-dessous." %}</p>
+                <p>{% tr "Naji Photo is responsible for personal information handled through this website. Privacy-related requests may be directed through the website contact page or the published contact email below." "Naji Photo est responsable des renseignements personnels traites par ce site Web. Les demandes relatives a la confidentialite peuvent etre transmises par la page de contact du site ou a l'adresse courriel publiee ci-dessous." %}</p>
                 {% if contact_page %}
-                <p class="sv-legal__contact">
-                    {% if contact_page.contact_email %}<a href="mailto:{{ contact_page.contact_email }}">{{ contact_page.contact_email }}</a><br>{% endif %}
-                    {% if contact_page.contact_phone %}<a href="tel:{{ contact_page.contact_phone|cut:' ' }}">{{ contact_page.contact_phone }}</a><br>{% endif %}
-                    <a href="{{ contact_page.url }}" class="sv-legal__inline-link">{% tr "Open the contact page" "Ouvrir la page contact" %} →</a>
+                <p class="contact-page-privacy-note__contact">
+                    {% if contact_page.contact_email %}E: <a href="mailto:{{ contact_page.contact_email }}">{{ contact_page.contact_email }}</a><br>{% endif %}
+                    {% if contact_page.contact_phone %}{% tr "P:" "T:" %} <a href="tel:{{ contact_page.contact_phone|cut:' ' }}">{{ contact_page.contact_phone }}</a><br>{% endif %}
+                    <a href="{{ contact_page.url }}">{% tr "Open the contact page" "Ouvrir la page contact" %}</a>
                 </p>
                 {% endif %}
             </article>
 
-            <article class="sv-legal__card sv-legal__card--full">
+            <article class="client-proofing__legal-card">
                 <h2>{% tr "9. Related policy for client galleries" "9. Politique connexe pour les galeries client" %}</h2>
                 <p>{% tr "Private proofing galleries involve a separate token-based workflow and have additional legal information specific to gallery access, image review, and proof selections." "Les galeries clients privees utilisent un flux distinct base sur un jeton et comprennent des informations juridiques supplementaires propres a l'acces a la galerie, a la consultation des images et aux selections d'epreuves." %}</p>
-                <div class="sv-legal__actions">
-                    <a class="sv-btn sv-btn--accent" href="{% url 'proofing:legal' %}">
+                <p class="client-proofing__legal-actions">
+                    <a class="button style-1 client-proofing__button client-proofing__button--compact" href="{% url 'proofing:legal' %}">
                         {% tr "View proofing legal information" "Voir les mentions du portail client" %}
                     </a>
-                </div>
+                </p>
             </article>
-
         </div>
     </div>
-</div>
+</section>
 {% endblock content %}

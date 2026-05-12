@@ -6,135 +6,133 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Specter Vision core -->
-    <link rel="stylesheet" href="{% static 'css/spectervision.css' %}">
-    <!-- Jepret base (retained for proofing portal & gallery pages) -->
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
     <link rel="stylesheet" href="{% static 'css/plugin.css' %}">
     <link rel="stylesheet" href="{% static 'css/font.css' %}">
     {% block extra_css %}{% endblock extra_css %}
 
-    <title>{% block title %}Specter Vision — Visual Studies{% endblock %}</title>
-    <meta name="description" content="{% block meta_description %}Specter Vision is the visual studies archive of the Mr. Specter world.{% endblock %}">
-    <link rel="icon" type="image/png" href="{% static 'img/mr-specter-seal.png' %}">
-    <link rel="apple-touch-icon" href="{% static 'img/mr-specter-seal.png' %}">
+    <!-- document title -->
+    <title>{% block title %}Naji Photo - Modern Photography{% endblock %}</title>
 </head>
 
-<body class="sv-page {% block body_class %}{% endblock body_class %}">
+<body class="{% block body_class %}{% endblock body_class %}">
     {% get_site_navigation as site_nav %}
     {% get_language_switcher as language_switcher %}
-
-    <!-- ── SPECTER VISION HEADER ─────────────────────────────── -->
-    <header class="sv-header" id="sv-header">
-        <a href="{% if site_nav.home %}{{ site_nav.home.url }}{% else %}/{% endif %}" class="sv-header__logo" aria-label="Specter Vision — Home">
-            <span class="sv-header__logo-text">Specter Vision</span>
-        </a>
-
-        <!-- Desktop nav -->
-        <nav aria-label="Main navigation">
-            <ul class="sv-header__nav" id="sv-nav">
-                <li>
-                    <a href="{% if site_nav.studies %}{{ site_nav.studies.url }}{% else %}#{% endif %}"
-                       {% if request.path and site_nav.studies and request.path|slice:":"|add:site_nav.studies.url %}class="is-active"{% endif %}>
-                        {{ site_nav.labels.studies }}
-                    </a>
-                </li>
-                <li>
-                    <a href="{% if site_nav.artifacts %}{{ site_nav.artifacts.url }}{% else %}#{% endif %}">
-                        {{ site_nav.labels.artifacts }}
-                    </a>
-                </li>
-                <li>
-                    <a href="{% if site_nav.field_notes %}{{ site_nav.field_notes.url }}{% else %}#{% endif %}">
-                        {{ site_nav.labels.field_notes }}
-                    </a>
-                </li>
-                <li>
-                    <a href="{% if site_nav.lab %}{{ site_nav.lab.url }}{% else %}#{% endif %}">
-                        {{ site_nav.labels.lab }}
-                    </a>
-                </li>
-                <li>
-                    <a href="{% if site_nav.world %}{{ site_nav.world.url }}{% else %}#{% endif %}">
-                        {{ site_nav.labels.world }}
-                    </a>
-                </li>
-                <li class="sv-nav-cta">
-                    <a href="{% if site_nav.collaborate %}{{ site_nav.collaborate.url }}{% else %}#{% endif %}">
-                        {{ site_nav.labels.collaborate }}
-                    </a>
-                </li>
-                <!-- Language switcher -->
-                {% if language_switcher.links|length > 1 %}
-                <li>
-                    <a href="#" aria-label="{% tr 'Language' 'Langue' %}" style="color: var(--sv-muted);">
-                        {{ language_switcher.current_language|upper }}
-                    </a>
-                    <!-- Dropdown handled via JS if needed -->
-                </li>
-                {% endif %}
-            </ul>
-        </nav>
-
-        <!-- Mobile toggle -->
-        <button class="sv-header__toggle" id="sv-menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
-            <span class="sv-header__bar"></span>
-            <span class="sv-header__bar"></span>
-            <span class="sv-header__bar"></span>
-        </button>
-    </header>
-    <!-- ── END HEADER ─────────────────────────────────────────── -->
-
-    <!-- Main content -->
-    <main>
-        {% block top_bar %}{% endblock top_bar %}
-        {% block content %}{% endblock content %}
-    </main>
-
-    <!-- ── SPECTER VISION FOOTER ─────────────────────────────── -->
-    <footer class="sv-footer">
-
-        <!-- Statement bar -->
-        <div class="sv-footer__statement">
-            <span>Visual studies for a material world</span>
-        </div>
-
-        <!-- Brand anchor -->
-        <div class="sv-footer__brand">
-            <a href="{% if site_nav.home %}{{ site_nav.home.url }}{% else %}/{% endif %}" class="sv-footer__brand-link" aria-label="Specter Vision — Home">
-                <img src="{% static 'img/mr-specter-seal.png' %}" alt="Mr. Specter" class="sv-footer__seal">
-                <span class="sv-footer__wordmark">Specter Vision</span>
-            </a>
-        </div>
-
-        <!-- Divider -->
-        <div class="sv-footer__rule"></div>
-
-        <!-- Centered nav -->
-        <nav aria-label="Footer navigation" class="sv-footer__nav-wrap">
-            <ul class="sv-footer__nav">
-                <li><a href="{% if site_nav.studies %}{{ site_nav.studies.url }}{% else %}#{% endif %}">{{ site_nav.labels.studies }}</a></li>
-                <li><a href="{% if site_nav.artifacts %}{{ site_nav.artifacts.url }}{% else %}#{% endif %}">{{ site_nav.labels.artifacts }}</a></li>
-                <li><a href="{% if site_nav.field_notes %}{{ site_nav.field_notes.url }}{% else %}#{% endif %}">{{ site_nav.labels.field_notes }}</a></li>
-                <li><a href="{% if site_nav.world %}{{ site_nav.world.url }}{% else %}#{% endif %}">{{ site_nav.labels.world }}</a></li>
-                <li><a href="{% if site_nav.collaborate %}{{ site_nav.collaborate.url }}{% else %}#{% endif %}">{{ site_nav.labels.collaborate }}</a></li>
-            </ul>
-        </nav>
-
-        <!-- Bottom bar -->
-        <div class="sv-footer__bottom">
-            <span class="sv-footer__copy">&copy; {% now "Y" %} Mr. Specter. All rights reserved.</span>
-            <div class="sv-footer__legal">
-                <a href="{% url 'privacy_policy' %}">{% tr "Privacy Policy" "Politique de confidentialite" %}</a>
-                <a href="{% url 'proofing:legal' %}">{% tr "Proofing Legal" "Mentions portail client" %}</a>
+    <!-- MAIN WRAPPER START
+            ============================================= -->
+    <div class="main-wrapper clearfix">
+        <!-- HEADER START
+                ============================================= -->
+        <header id="header">
+            <div class="header-style1-wrap">
+                <div class="header-content-left">
+                    <!-- LOGO START
+                        ============================================= -->
+                    <div class="logo">
+                        <h2 class="logo-title">
+                            <a href="{% if site_nav.home %}{{ site_nav.home.url }}{% else %}/{% endif %}">NAJI PHOTO</a>
+                        </h2>
+                    </div>
+                    <!-- LOGO END -->
+                </div>
+                <div class="header-content-right">
+                    <!-- NAVIGATION START
+                        ============================================= -->
+                    <nav class="main-nav col-span-9  sm:col-span-12">
+                        <!-- Mobile menu toggle button -->
+                        <button class="jepret-menu-mobile">
+                            <i class="icon icon-reorder"></i>
+                        </button>
+                        <ul id="main-menu" class="sm sm-clean mobile-menu">
+                            <li class="menu-item">
+                                <a href="{% if site_nav.home %}{{ site_nav.home.url }}{% else %}/{% endif %}">{{ site_nav.labels.home }}</a>
+                            </li>
+                            <li class="menu-item{% if site_nav.portfolio_categories %} has-submenu{% endif %}">
+                                <a href="{% if site_nav.portfolio %}{{ site_nav.portfolio.url }}{% else %}#{% endif %}">{{ site_nav.labels.portfolio }}</a>
+                                {% if site_nav.portfolio_categories %}
+                                <ul class="sub-menu">
+                                    {% if site_nav.portfolio %}
+                                    <li class="menu-item-sub"><a href="{{ site_nav.portfolio.url }}">{{ site_nav.labels.all_portfolio }}</a></li>
+                                    {% endif %}
+                                    {% for category in site_nav.portfolio_categories %}
+                                    <li class="menu-item-sub"><a href="{{ category.url }}">{{ category.title }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                                {% endif %}
+                            </li>
+                            <li class="menu-item">
+                                <a href="{% url 'proofing:portal' %}">{{ site_nav.labels.proofing_portal }}</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="{% if site_nav.contact %}{{ site_nav.contact.url }}{% else %}#{% endif %}">{{ site_nav.labels.contact }}</a>
+                            </li>
+                            <li class="menu-item menu-item--language-switcher has-submenu">
+                                <a href="#" aria-label="{% tr 'Language switcher' 'Selecteur de langue' %}">
+                                    {{ language_switcher.current_language|upper }}
+                                </a>
+                                <ul class="sub-menu site-language-switcher">
+                                    {% for language in language_switcher.links %}
+                                    <li class="menu-item-sub">
+                                        <a
+                                            href="{{ language.url }}"
+                                            class="site-language-switcher__link{% if language.is_active %} is-active{% endif %}"
+                                            lang="{{ language.code }}"
+                                            hreflang="{{ language.code }}"
+                                        >
+                                            {{ language.label }}
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- NAVIGATION END -->
+                </div>
             </div>
-        </div>
-    </footer>
-    <!-- ── END FOOTER ─────────────────────────────────────────── -->
+        </header>
+        <!-- HEADER END -->
+        
+        <!-- Content -->
+        <section class="content">
+            {% block top_bar %}
+            <div class="top-bar"></div>
+            {% endblock top_bar %}
+            {% block side_bars %}
+            <div class="left-bar"></div>
+            <div class="right-bar"></div>
+            {% endblock side_bars %}
+            
+            <!-- Dynamic Wagtail Content Block -->
+            {% block content %}
+            {% endblock content %}
+            
+        </section>
+        <!-- End Content -->
+        
+        <!-- Footer -->
+        <footer id="footer">
+            <div class="copyright">
+                <p class="copyright-text">NAJI PHOTO</p>
+                <div class="footer-links">
+                    <a href="{% url 'privacy_policy' %}" class="footer-link">
+                        {% tr "Privacy Policy" "Politique de confidentialite" %}
+                    </a>
+                    <a href="{% url 'proofing:legal' %}" class="footer-link">
+                        {% tr "Proofing Legal" "Mentions portail client" %}
+                    </a>
+                </div>
+            </div>
+        </footer>
+        <!-- end Footer -->
+    </div>
+    <!-- MAIN WRAPPER END -->
 
-    <!-- Scripts -->
+    <!-- Footer Scripts
+            ============================================= -->
+    <!-- JavaScripts
+        ============================================= -->
     <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
     <script src="{% static 'js/jquery.smartmenus.min.js' %}"></script>
     <script src="{% static 'js/aos.js' %}"></script>
@@ -144,126 +142,7 @@
     <script src="{% static 'js/isotope.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
     {% block extra_js %}{% endblock extra_js %}
-
-    <!-- Specter Vision interactive behaviours -->
-    <script>
-    (function () {
-      var EASE = 'cubic-bezier(0.16, 1, 0.3, 1)';
-
-      /* ── Sticky header ─────────────────────────────────────── */
-      var header = document.getElementById('sv-header');
-      if (header) {
-        window.addEventListener('scroll', function () {
-          header.classList.toggle('sv-header--scrolled', window.scrollY > 40);
-        }, { passive: true });
-      }
-
-      /* ── Mobile menu ───────────────────────────────────────── */
-      var toggle = document.getElementById('sv-menu-toggle');
-      var nav    = document.getElementById('sv-nav');
-      function closeMenu() {
-        nav.classList.remove('is-open');
-        toggle.classList.remove('is-active');
-        toggle.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-      }
-      if (toggle && nav) {
-        toggle.addEventListener('click', function () {
-          var open = nav.classList.toggle('is-open');
-          toggle.classList.toggle('is-active', open);
-          toggle.setAttribute('aria-expanded', String(open));
-          document.body.style.overflow = open ? 'hidden' : '';
-        });
-        nav.querySelectorAll('a').forEach(function (link) {
-          link.addEventListener('click', closeMenu);
-        });
-        document.addEventListener('keydown', function (e) {
-          if (e.key === 'Escape') closeMenu();
-        });
-      }
-
-      /* ── Scroll reveal — all observable classes ────────────── */
-      var revealClasses = '.sv-fade-up, .sv-fade-in, .sv-reveal-left, .sv-divider, .sv-stagger';
-      var revealObserver = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            revealObserver.unobserve(entry.target); // fire once
-          }
-        });
-      }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
-
-      document.querySelectorAll(revealClasses).forEach(function (el) {
-        revealObserver.observe(el);
-      });
-
-      /* ── Hero parallax ─────────────────────────────────────── */
-      var heroMedia = document.querySelector('.sv-hero__media');
-      if (heroMedia) {
-        var heroSection = heroMedia.closest('.sv-hero');
-        function onHeroScroll() {
-          if (!heroSection) return;
-          var scrolled = window.scrollY;
-          var heroH    = heroSection.offsetHeight;
-          if (scrolled < heroH) {
-            // image drifts at 30% scroll speed for depth
-            heroMedia.style.setProperty('--sv-parallax', (scrolled * 0.28) + 'px');
-          }
-        }
-        window.addEventListener('scroll', onHeroScroll, { passive: true });
-      }
-
-      /* ── Card 3-D tilt on hover ────────────────────────────── */
-      var TILT_AMOUNT = 5; // degrees
-      document.querySelectorAll('.sv-study-card, .sv-artifact-card').forEach(function (card) {
-        var inner = card.querySelector('a') || card;
-
-        card.addEventListener('mouseenter', function () {
-          inner.style.transition = 'transform 0.12s linear, box-shadow 0.9s ' + EASE;
-        });
-
-        card.addEventListener('mousemove', function (e) {
-          var r  = card.getBoundingClientRect();
-          var x  = ((e.clientX - r.left) / r.width  - 0.5) * 2;  // -1 → 1
-          var y  = ((e.clientY - r.top)  / r.height - 0.5) * 2;
-          inner.style.transform =
-            'perspective(900px) rotateY(' + (x * TILT_AMOUNT) + 'deg) ' +
-            'rotateX(' + (-y * TILT_AMOUNT) + 'deg) translateZ(6px)';
-        });
-
-        card.addEventListener('mouseleave', function () {
-          inner.style.transition = 'transform 0.9s ' + EASE + ', box-shadow 0.9s ' + EASE;
-          inner.style.transform  = 'perspective(900px) rotateY(0) rotateX(0) translateZ(0)';
-        });
-      });
-
-      /* ── Magnetic buttons ──────────────────────────────────── */
-      document.querySelectorAll('.sv-btn').forEach(function (btn) {
-        btn.addEventListener('mousemove', function (e) {
-          var r  = btn.getBoundingClientRect();
-          var dx = (e.clientX - (r.left + r.width  / 2)) * 0.25;
-          var dy = (e.clientY - (r.top  + r.height / 2)) * 0.25;
-          btn.style.transform = 'translate(' + dx + 'px, ' + (dy - 2) + 'px)';
-        });
-        btn.addEventListener('mouseleave', function () {
-          btn.style.transform = '';
-        });
-      });
-
-      /* ── Smooth anchor links ───────────────────────────────── */
-      document.querySelectorAll('a[href^="#"]').forEach(function (a) {
-        a.addEventListener('click', function (e) {
-          var target = document.querySelector(a.getAttribute('href'));
-          if (target) {
-            e.preventDefault();
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        });
-      });
-
-    })();
-    </script>
-
+    
     {% wagtailuserbar %}
 </body>
 
