@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static wagtailimages_tags site_i18n %}
+
+{% block title %}{{ page.title }}{% endblock title %}
+{% block body_class %}about-page home-page--hero-only{% endblock body_class %}
+
+{% block top_bar %}{% endblock top_bar %}
+
+{% block content %}
+    <div class="about-block">
+        <div class="container">
+            <div class="row clearfix">
+                <div class="column column-2 about-img-wrap" data-aos="fade-right">
+                    {% if page.about_image %}
+                        {% image page.about_image max-960x1200 as about_img %}
+                        <img src="{{ about_img.url }}" alt="{{ page.about_image.title|default:page.title }}" id="scroll-move" decoding="async" fetchpriority="high">
+                    {% else %}
+                        <img src="{% static 'img/about-image2.jpg' %}" alt="{{ page.title }}" id="scroll-move">
+                    {% endif %}
+                </div>
+                <div class="column column-2 about-text-wrap" data-aos="fade-left">
+                    <div class="title-wrap">
+                        <h5 class="the-title">{{ page.about_eyebrow }}</h5>
+                        <h3 class="sub-title">{{ page.about_heading|linebreaksbr }}</h3>
+                        <span class="divider-separator"></span>
+                    </div>
+                    <div class="desc-wrap">
+                        <p>{{ page.about_paragraph_one }}</p>
+                        <p>{{ page.about_paragraph_two }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

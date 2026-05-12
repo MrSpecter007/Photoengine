@@ -11,6 +11,7 @@ from wagtail.images import get_image_model
 
 from PhotoEngine.bulk_uploads import MultipleImageFileField
 from home.models import (
+    AboutPage,
     AdminExperienceSettings,
     ContactInquiry,
     ContactPage,
@@ -103,6 +104,9 @@ class NavigationTests(WagtailPageTestCase):
         self.gallery_page = GalleryPage(title="Maya and Noah", slug="maya-and-noah")
         self.category_page.add_child(instance=self.gallery_page)
 
+        self.about_page = AboutPage(title="About", slug="about")
+        self.homepage.add_child(instance=self.about_page)
+
         self.contact_page = ContactPage(title="Contact", slug="contact")
         self.homepage.add_child(instance=self.contact_page)
 
@@ -112,11 +116,13 @@ class NavigationTests(WagtailPageTestCase):
         self.assertContains(response, "NAJI PHOTO")
         self.assertContains(response, 'href="%s"' % self.portfolio_index.url)
         self.assertContains(response, 'href="%s"' % self.category_page.url)
+        self.assertContains(response, 'href="%s"' % self.about_page.url)
         self.assertContains(response, 'href="%s"' % reverse("privacy_policy"))
         self.assertContains(response, 'href="%s"' % reverse("proofing:portal"))
         self.assertContains(response, 'href="%s"' % reverse("proofing:legal"))
         self.assertContains(response, 'href="%s"' % self.contact_page.url)
         self.assertContains(response, "Portfolio")
+        self.assertNotContains(response, "All Portfolio")
 
     def test_homepage_projects_cta_prefers_selected_page(self):
         self.homepage.projects_button_page = self.gallery_page
@@ -389,6 +395,31 @@ class ContactPageTests(WagtailPageTestCase):
             ).exists()
         )
         self.assertContains(response, self.contact_page.success_message)
+
+
+class AboutPageTests(WagtailPageTestCase):
+    def setUp(self):
+        self.root_page = Page.objects.get(pk=1)
+        self.homepage = HomePage.objects.first()
+        if self.homepage is None:
+            self.homepage = HomePage(title="Home", slug="home")
+            self.root_page.add_child(instance=self.homepage)
+
+        self.about_page = AboutPage(title="About", slug="about")
+        self.homepage.add_child(instance=self.about_page)
+
+    def test_about_page_template_used(self):
+        response = self.client.get(self.about_page.url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "home/about_page.html")
+
+    def test_about_page_renders_homepage_structure(self):
+        response = self.client.get(self.about_page.url)
+
+        self.assertContains(response, "about-block")
+        self.assertContains(response, self.about_page.about_eyebrow)
+        self.assertContains(response, self.about_page.about_paragraph_one)
 
 
 class PrivacyPolicyTests(WagtailPageTestCase):

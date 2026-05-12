@@ -428,6 +428,61 @@ class HomePage(TranslationImageSyncMixin, Page):
         return ""
 
 
+class AboutPage(TranslationImageSyncMixin, Page):
+    template = "home/about_page.html"
+    translatable_image_fields = ("about_image",)
+
+    about_eyebrow = models.CharField(max_length=80, default="about")
+    about_heading = models.TextField(
+        default="I'm Michel Groch,\nA Professional Photographer\nLiving In Indonesia."
+    )
+    about_paragraph_one = models.TextField(
+        default=(
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod "
+            "tempor incididunt ut labore et dolore magna aliqua."
+        )
+    )
+    about_paragraph_two = models.TextField(
+        default=(
+            "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut "
+            "aliquip ex ea commodo consequat duis."
+        )
+    )
+    about_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+
+    parent_page_types = ["home.HomePage"]
+    subpage_types = []
+
+    content_panels = Page.content_panels + [
+        MultiFieldPanel(
+            [
+                FieldPanel("about_eyebrow"),
+                FieldPanel("about_heading"),
+                FieldPanel("about_paragraph_one"),
+                FieldPanel("about_paragraph_two"),
+                FieldPanel("about_image"),
+            ],
+            heading="About Content",
+        ),
+    ]
+
+    def save(self, *args, **kwargs):
+        previous_state = self.capture_translation_image_sync_state()
+        skip_sync = getattr(self, "_skip_translation_image_sync", False)
+        result = super().save(*args, **kwargs)
+        if skip_sync:
+            self._skip_translation_image_sync = False
+            return result
+        self.sync_translated_images(previous_state)
+        return result
+
+
 class StandardPage(TranslationImageSyncMixin, Page):
     """A flexible content page for general site content."""
 

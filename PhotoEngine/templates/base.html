@@ -44,20 +44,15 @@
                             <li class="menu-item">
                                 <a href="{% if site_nav.home %}{{ site_nav.home.url }}{% else %}/{% endif %}">{{ site_nav.labels.home }}</a>
                             </li>
+                            <li class="menu-item">
+                                <a href="{% if site_nav.about %}{{ site_nav.about.url }}{% else %}#{% endif %}">{{ site_nav.labels.about }}</a>
+                            </li>
                             <li class="menu-item menu-item--portfolio{% if site_nav.portfolio_menu %} has-submenu{% endif %}">
                                 <a href="{% if site_nav.portfolio %}{{ site_nav.portfolio.url }}{% else %}#{% endif %}">{{ site_nav.labels.portfolio }}</a>
                                 {% if site_nav.portfolio_menu %}
                                 <ul class="sub-menu nav-tier-menu" aria-label="{% tr 'Portfolio categories' 'Categories du portfolio' %}">
                                     <li class="nav-tier-menu__panel">
                                         <div class="nav-tier-menu__parents" role="list">
-                                            {% if site_nav.portfolio %}
-                                            <a
-                                                href="{{ site_nav.portfolio.url }}"
-                                                class="nav-tier-menu__parent nav-tier-menu__parent--overview{% if not site_nav.active_portfolio_key %} is-active{% endif %}"
-                                            >
-                                                {{ site_nav.labels.all_portfolio }}
-                                            </a>
-                                            {% endif %}
                                             {% for category in site_nav.portfolio_menu %}
                                             <a
                                                 href="{{ category.page.url }}"

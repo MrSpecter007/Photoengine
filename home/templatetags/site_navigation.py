@@ -2,6 +2,7 @@ from django import template
 from django.utils.translation import get_language
 
 from home.models import (
+    AboutPage,
     ContactPage,
     GalleryPage,
     HomePage,
@@ -48,11 +49,13 @@ def get_site_navigation(context):
             )
 
     if homepage:
+        about_page = AboutPage.objects.descendant_of(homepage).live().public().first()
         portfolio_page = (
             PortfolioIndexPage.objects.descendant_of(homepage).live().public().first()
         )
         contact_page = ContactPage.objects.descendant_of(homepage).live().public().first()
     else:
+        about_page = AboutPage.objects.live().public().first()
         portfolio_page = PortfolioIndexPage.objects.live().public().first()
         contact_page = ContactPage.objects.live().public().first()
 
@@ -98,6 +101,7 @@ def get_site_navigation(context):
 
     return {
         "home": homepage,
+        "about": about_page,
         "portfolio": portfolio_page,
         "portfolio_categories": portfolio_categories,
         "portfolio_menu": portfolio_menu,
@@ -111,9 +115,9 @@ def get_site_navigation(context):
                 fr="Portfolio",
                 language_code=current_language,
             ),
-            "all_portfolio": choose_translation(
-                en="All Portfolio",
-                fr="Tout le portfolio",
+            "about": choose_translation(
+                en="About",
+                fr="A propos",
                 language_code=current_language,
             ),
             "proofing_portal": choose_translation(

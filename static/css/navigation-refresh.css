@@ -89,7 +89,8 @@ h2.logo-title a {
 }
 
 #header .sm-clean.mobile-menu > li > a .sub-arrow {
-  margin-left: 6px;
+  margin-left: 12px;
+  padding-left: 2px;
 }
 
 #header .menu-item--portfolio {
