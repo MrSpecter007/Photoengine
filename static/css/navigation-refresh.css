@@ -196,10 +196,12 @@ h2.logo-title a {
 
 .home-page--carousel .home-hero-carousel .container {
   width: 100%;
+  max-width: none;
+  padding: 0;
 }
 
 .home-hero-carousel__viewport {
-  width: min(100%, 1180px);
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -217,10 +219,10 @@ h2.logo-title a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: min(100%, 1080px);
+  width: 100%;
   height: min(72vh, 860px);
-  padding: 24px;
-  background: rgba(255, 255, 255, 0.82);
+  padding: 0;
+  background: transparent;
 }
 
 .home-hero-carousel__image {
@@ -391,7 +393,6 @@ h2.logo-title a {
 
   .home-hero-carousel__frame {
     height: min(70vh, 680px);
-    padding: 18px;
   }
 
   .home-hero-carousel__controls {
