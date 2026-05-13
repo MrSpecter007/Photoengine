@@ -13,7 +13,6 @@ from wagtail.admin.panels import (
     FieldPanel,
     InlinePanel,
     MultiFieldPanel,
-    PageChooserPanel,
 )
 from wagtail.admin.forms import WagtailAdminPageForm
 from wagtail.fields import StreamField
@@ -337,68 +336,14 @@ class HomePage(TranslationImageSyncMixin, Page):
     content_panels = Page.content_panels + [
         MultiFieldPanel(
             [
-                FieldPanel("about_eyebrow"),
-                FieldPanel("about_heading"),
-                FieldPanel("about_paragraph_one"),
-                FieldPanel("about_paragraph_two"),
                 FieldPanel("about_image"),
-            ],
-            heading="About Section",
-        ),
-        MultiFieldPanel(
-            [
-                FieldPanel("projects_eyebrow"),
-                FieldPanel("projects_heading"),
-                FieldPanel("projects_paragraph_one"),
-                FieldPanel("projects_paragraph_two"),
-                FieldPanel("projects_button_text"),
-                PageChooserPanel(
-                    "projects_button_page",
-                    page_type=["home.PortfolioIndexPage", "home.GalleryPage"],
-                ),
                 FieldPanel("project_image_one"),
                 FieldPanel("project_image_two"),
                 FieldPanel("project_image_three"),
                 FieldPanel("project_image_four"),
             ],
-            heading="Portfolio Section",
-        ),
-        MultiFieldPanel(
-            [
-                FieldPanel("testimonial_quote"),
-                FieldPanel("testimonial_client_image"),
-                FieldPanel("testimonial_client_name"),
-                FieldPanel("testimonial_client_job"),
-            ],
-            heading="Testimonial Section",
-        ),
-        MultiFieldPanel(
-            [
-                FieldPanel("partners_heading"),
-                FieldPanel("partners_intro"),
-                FieldPanel("partner_one_image"),
-                FieldPanel("partner_one_name"),
-                FieldPanel("partner_one_description"),
-                FieldPanel("partner_two_image"),
-                FieldPanel("partner_two_name"),
-                FieldPanel("partner_two_description"),
-                FieldPanel("partner_three_image"),
-                FieldPanel("partner_three_name"),
-                FieldPanel("partner_three_description"),
-                FieldPanel("partner_four_image"),
-                FieldPanel("partner_four_name"),
-                FieldPanel("partner_four_description"),
-            ],
-            heading="Partners Section",
-        ),
-        MultiFieldPanel(
-            [
-                FieldPanel("contact_eyebrow"),
-                FieldPanel("contact_heading"),
-                FieldPanel("contact_heading_emphasis"),
-                FieldPanel("contact_link"),
-            ],
-            heading="Contact Call To Action",
+            heading="Homepage Carousel Images",
+            help_text="These images feed the homepage carousel in display order.",
         ),
     ]
 
@@ -622,8 +567,6 @@ class ContactPage(TranslationImageSyncMixin, Page):
                 FieldPanel("contact_detail_heading"),
                 FieldPanel("contact_phone"),
                 FieldPanel("contact_email"),
-                FieldPanel("address_heading"),
-                FieldPanel("address_text"),
             ],
             heading="Contact Details",
         ),
