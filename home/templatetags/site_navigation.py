@@ -108,10 +108,6 @@ def get_site_navigation(context):
         default_item["is_active"] = True
 
     has_portfolio_children = any(item["galleries"] for item in portfolio_menu)
-    active_portfolio_item = next(
-        (item for item in portfolio_menu if item["key"] == active_portfolio_key),
-        portfolio_menu[0] if portfolio_menu else None,
-    )
     home_is_active = bool(homepage and current_page_id == homepage.id)
     about_is_active = bool(about_page and current_page_path and current_page_path.startswith(about_page.path))
     portfolio_is_active = bool(
@@ -134,7 +130,6 @@ def get_site_navigation(context):
         "portfolio_categories": portfolio_categories,
         "portfolio_menu": portfolio_menu,
         "active_portfolio_key": active_portfolio_key,
-        "active_portfolio_item": active_portfolio_item,
         "has_portfolio_children": has_portfolio_children,
         "contact": contact_page,
         "contact_is_active": contact_is_active,
