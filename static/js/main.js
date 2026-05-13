@@ -65,6 +65,30 @@ $(document).ready(function () {
         activateTier(defaultKey)
     })
 
+    if ($('.home-hero-carousel__slider').length) {
+        var heroSlides = $('.home-hero-carousel__slider .swiper-slide').length
+        var heroCarousel = new Swiper('.home-hero-carousel__slider', {
+            slidesPerView: 1,
+            centeredSlides: true,
+            loop: heroSlides > 1,
+            speed: 700,
+            spaceBetween: 24,
+            autoHeight: false,
+            navigation: {
+                nextEl: '.home-hero-carousel__button--next',
+                prevEl: '.home-hero-carousel__button--prev',
+            },
+            pagination: {
+                el: '.home-hero-carousel__pagination',
+                clickable: true,
+            },
+            autoplay: heroSlides > 1 ? {
+                delay: 4800,
+                disableOnInteraction: false,
+            } : false,
+        })
+    }
+
     // personal-photographer page js
     var target1 = document.getElementById('scroll-move'),
         target2 = document.getElementById('scroll-move2'),

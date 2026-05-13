@@ -2,31 +2,51 @@
 {% load static wagtailimages_tags site_i18n %}
 
 {% block title %}{% tr "Naji Photo - Modern Photographer" "Naji Photo - Photographe moderne" %}{% endblock title %}
-{% block body_class %}home-page home-page--hero-only{% endblock body_class %}
+{% block body_class %}home-page home-page--carousel{% endblock body_class %}
 
 {% block top_bar %}{% endblock top_bar %}
 
 {% block content %}
-    <div class="about-block">
+    <div class="home-hero-carousel">
         <div class="container">
-            <div class="row clearfix">
-                <div class="column column-2 about-img-wrap" data-aos="fade-right">
-                    {% if page.about_image %}
-                        {% image page.about_image max-960x1200 as about_img %}
-                        <img src="{{ about_img.url }}" alt="{{ page.about_image.title|default:'About image' }}" id="scroll-move" decoding="async" fetchpriority="high">
-                    {% else %}
-                        <img src="{% static 'img/about-image2.jpg' %}" alt="about-img" id="scroll-move">
-                    {% endif %}
-                </div>
-                <div class="column column-2 about-text-wrap" data-aos="fade-left">
-                    <div class="title-wrap">
-                        <h5 class="the-title">{{ page.about_eyebrow }}</h5>
-                        <h3 class="sub-title">{{ page.about_heading|linebreaksbr }}</h3>
-                        <span class="divider-separator"></span>
+            <div class="home-hero-carousel__viewport" data-aos="fade-up">
+                <div class="swiper home-hero-carousel__slider">
+                    <div class="swiper-wrapper">
+                        {% for image in page.hero_carousel_images %}
+                        <div class="swiper-slide home-hero-carousel__slide">
+                            <div class="home-hero-carousel__frame">
+                                {% image image max-1600x1800 as hero_image %}
+                                <img
+                                    src="{{ hero_image.url }}"
+                                    alt="{{ image.title|default:page.title }}"
+                                    class="home-hero-carousel__image"
+                                    {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}
+                                    decoding="async"
+                                >
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="swiper-slide home-hero-carousel__slide">
+                            <div class="home-hero-carousel__frame">
+                                <img
+                                    src="{% static 'img/about-image2.jpg' %}"
+                                    alt="{{ page.title }}"
+                                    class="home-hero-carousel__image"
+                                    fetchpriority="high"
+                                    decoding="async"
+                                >
+                            </div>
+                        </div>
+                        {% endfor %}
                     </div>
-                    <div class="desc-wrap">
-                        <p>{{ page.about_paragraph_one }}</p>
-                        <p>{{ page.about_paragraph_two }}</p>
+                    <div class="home-hero-carousel__controls">
+                        <button class="home-hero-carousel__button home-hero-carousel__button--prev" type="button" aria-label="{% tr 'Previous image' 'Image precedente' %}">
+                            <span aria-hidden="true">&larr;</span>
+                        </button>
+                        <div class="home-hero-carousel__pagination"></div>
+                        <button class="home-hero-carousel__button home-hero-carousel__button--next" type="button" aria-label="{% tr 'Next image' 'Image suivante' %}">
+                            <span aria-hidden="true">&rarr;</span>
+                        </button>
                     </div>
                 </div>
             </div>

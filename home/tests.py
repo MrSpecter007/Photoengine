@@ -124,13 +124,11 @@ class NavigationTests(WagtailPageTestCase):
         self.assertContains(response, "Portfolio")
         self.assertNotContains(response, "All Portfolio")
 
-    def test_homepage_projects_cta_prefers_selected_page(self):
-        self.homepage.projects_button_page = self.gallery_page
-        self.homepage.save()
-
+    def test_homepage_renders_centered_carousel_markup(self):
         response = self.client.get(self.homepage.url)
 
-        self.assertContains(response, 'href="%s"' % self.gallery_page.url)
+        self.assertContains(response, "home-hero-carousel__slider")
+        self.assertNotContains(response, "about-text-wrap")
 
     def test_homepage_about_section_no_longer_renders_signature_block(self):
         response = self.client.get(self.homepage.url)

@@ -427,6 +427,24 @@ class HomePage(TranslationImageSyncMixin, Page):
 
         return ""
 
+    @property
+    def hero_carousel_images(self):
+        images = []
+        seen_ids = set()
+
+        for image in [
+            self.about_image,
+            self.project_image_one,
+            self.project_image_two,
+            self.project_image_three,
+            self.project_image_four,
+        ]:
+            if image and image.id not in seen_ids:
+                images.append(image)
+                seen_ids.add(image.id)
+
+        return images
+
 
 class AboutPage(TranslationImageSyncMixin, Page):
     template = "home/about_page.html"
