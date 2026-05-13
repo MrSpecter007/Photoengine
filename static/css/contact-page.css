@@ -242,8 +242,8 @@
   margin-top: 1rem;
 }
 
-.contact-page-form__actions .button.style-3 {
-  min-width: 21rem;
+.contact-page-form__actions .contact-page-submit {
+  max-width: 32rem;
 }
 
 @media (max-width: 1199px) {
