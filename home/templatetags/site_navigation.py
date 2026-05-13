@@ -28,6 +28,7 @@ def get_site_navigation(context):
     current_page = context.get("page")
     if current_page is not None:
         current_page = getattr(current_page, "specific", current_page)
+    resolver_match = getattr(request, "resolver_match", None)
     current_language = (
         getattr(request, "LANGUAGE_CODE", None)
         or context.get("LANGUAGE_CODE")
@@ -63,6 +64,7 @@ def get_site_navigation(context):
     portfolio_menu = []
     active_portfolio_key = None
     current_page_path = getattr(current_page, "path", "")
+    current_page_id = getattr(current_page, "id", None)
     if portfolio_page:
         portfolio_categories = list(
             PortfolioCategoryPage.objects.child_of(portfolio_page)
@@ -86,7 +88,15 @@ def get_site_navigation(context):
                 {
                     "key": category_key,
                     "page": category,
-                    "galleries": galleries,
+                    "galleries": [
+                        {
+                            "page": gallery,
+                            "is_active": bool(
+                                current_page_path and current_page_path.startswith(gallery.path)
+                            ),
+                        }
+                        for gallery in galleries
+                    ],
                     "is_active": is_active,
                     "is_default": index == 0,
                 }
@@ -98,16 +108,32 @@ def get_site_navigation(context):
         default_item["is_active"] = True
 
     has_portfolio_children = any(item["galleries"] for item in portfolio_menu)
+    home_is_active = bool(homepage and current_page_id == homepage.id)
+    about_is_active = bool(about_page and current_page_path and current_page_path.startswith(about_page.path))
+    portfolio_is_active = bool(
+        portfolio_page
+        and current_page_path
+        and current_page_path.startswith(portfolio_page.path)
+    )
+    contact_is_active = bool(
+        contact_page and current_page_path and current_page_path.startswith(contact_page.path)
+    )
+    proofing_is_active = bool(resolver_match and resolver_match.namespace == "proofing")
 
     return {
         "home": homepage,
+        "home_is_active": home_is_active,
         "about": about_page,
+        "about_is_active": about_is_active,
         "portfolio": portfolio_page,
+        "portfolio_is_active": portfolio_is_active,
         "portfolio_categories": portfolio_categories,
         "portfolio_menu": portfolio_menu,
         "active_portfolio_key": active_portfolio_key,
         "has_portfolio_children": has_portfolio_children,
         "contact": contact_page,
+        "contact_is_active": contact_is_active,
+        "proofing_is_active": proofing_is_active,
         "labels": {
             "home": choose_translation(en="Home", fr="Accueil", language_code=current_language),
             "portfolio": choose_translation(

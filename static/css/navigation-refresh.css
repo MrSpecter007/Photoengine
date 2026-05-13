@@ -83,9 +83,16 @@ h2.logo-title a {
 #header .sm-clean.mobile-menu > li > a:active,
 #header .sm-clean.mobile-menu > li > a.highlighted {
   padding: 6px 18px;
+  border-bottom: 2px solid transparent;
   font-size: 1.15rem;
   line-height: 1.2;
   letter-spacing: 0.14em;
+}
+
+#header .sm-clean.mobile-menu > li > a.is-current,
+#header .sm-clean.mobile-menu > li > a.is-current:hover,
+#header .sm-clean.mobile-menu > li > a.is-current:focus {
+  border-bottom-color: currentColor;
 }
 
 #header .sm-clean.mobile-menu > li > a .sub-arrow {
@@ -95,6 +102,16 @@ h2.logo-title a {
 
 #header .menu-item--portfolio {
   position: relative;
+}
+
+#header .menu-item--portfolio > .nav-tier-menu {
+  display: none !important;
+}
+
+#header .menu-item--portfolio:hover > .nav-tier-menu,
+#header .menu-item--portfolio:focus-within > .nav-tier-menu,
+#header .menu-item--portfolio.is-open > .nav-tier-menu {
+  display: block !important;
 }
 
 #header .nav-tier-menu {
@@ -168,11 +185,18 @@ h2.logo-title a {
 #header .nav-tier-menu__child-link:focus {
   display: inline-block;
   padding: 0 !important;
+  border-bottom: 2px solid transparent;
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.5;
   letter-spacing: 0.04em;
   text-transform: none;
+}
+
+#header .nav-tier-menu__child-link.is-current,
+#header .nav-tier-menu__child-link.is-current:hover,
+#header .nav-tier-menu__child-link.is-current:focus {
+  border-bottom-color: currentColor;
 }
 
 #header .site-language-switcher {
@@ -315,6 +339,13 @@ h2.logo-title a {
 
   #header .sm.mobile-menu.active {
     display: block;
+  }
+
+  #header .menu-item--portfolio > .nav-tier-menu,
+  #header .menu-item--portfolio:hover > .nav-tier-menu,
+  #header .menu-item--portfolio:focus-within > .nav-tier-menu,
+  #header .menu-item--portfolio.is-open > .nav-tier-menu {
+    display: block !important;
   }
 
   #header .nav-tier-menu {

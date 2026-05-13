@@ -41,14 +41,14 @@
                             <span class="screen-reader-text">{% tr "Open menu" "Ouvrir le menu" %}</span>
                         </button>
                         <ul id="main-menu" class="sm sm-clean mobile-menu">
-                            <li class="menu-item">
-                                <a href="{% if site_nav.home %}{{ site_nav.home.url }}{% else %}/{% endif %}">{{ site_nav.labels.home }}</a>
+                            <li class="menu-item{% if site_nav.home_is_active %} is-current{% endif %}">
+                                <a href="{% if site_nav.home %}{{ site_nav.home.url }}{% else %}/{% endif %}" class="menu-link{% if site_nav.home_is_active %} is-current{% endif %}"{% if site_nav.home_is_active %} aria-current="page"{% endif %}>{{ site_nav.labels.home }}</a>
                             </li>
-                            <li class="menu-item">
-                                <a href="{% if site_nav.about %}{{ site_nav.about.url }}{% else %}#{% endif %}">{{ site_nav.labels.about }}</a>
+                            <li class="menu-item{% if site_nav.about_is_active %} is-current{% endif %}">
+                                <a href="{% if site_nav.about %}{{ site_nav.about.url }}{% else %}#{% endif %}" class="menu-link{% if site_nav.about_is_active %} is-current{% endif %}"{% if site_nav.about_is_active %} aria-current="page"{% endif %}>{{ site_nav.labels.about }}</a>
                             </li>
-                            <li class="menu-item menu-item--portfolio{% if site_nav.portfolio_menu %} has-submenu{% endif %}">
-                                <a href="{% if site_nav.portfolio %}{{ site_nav.portfolio.url }}{% else %}#{% endif %}">{{ site_nav.labels.portfolio }}</a>
+                            <li class="menu-item menu-item--portfolio{% if site_nav.portfolio_menu %} has-submenu{% endif %}{% if site_nav.portfolio_is_active %} is-current is-open{% endif %}">
+                                <a href="{% if site_nav.portfolio %}{{ site_nav.portfolio.url }}{% else %}#{% endif %}" class="menu-link{% if site_nav.portfolio_is_active %} is-current{% endif %}"{% if site_nav.portfolio_is_active %} aria-current="page"{% endif %}>{{ site_nav.labels.portfolio }}</a>
                                 {% if site_nav.portfolio_menu %}
                                 <ul class="sub-menu nav-tier-menu" aria-label="{% tr 'Portfolio categories' 'Categories du portfolio' %}">
                                     <li class="nav-tier-menu__panel">
@@ -56,12 +56,13 @@
                                             {% for category in site_nav.portfolio_menu %}
                                             <a
                                                 href="{{ category.page.url }}"
-                                                class="nav-tier-menu__parent{% if category.galleries %} has-children{% endif %}{% if category.is_active %} is-active{% endif %}"
+                                                class="nav-tier-menu__parent{% if category.galleries %} has-children{% endif %}{% if category.is_active %} is-active is-current{% endif %}"
                                                 data-nav-parent="{{ category.key }}"
                                                 {% if category.galleries %}
                                                 aria-controls="nav-tier-panel-{{ category.key }}"
                                                 aria-expanded="{% if category.is_active %}true{% else %}false{% endif %}"
                                                 {% endif %}
+                                                {% if category.is_active %} aria-current="page"{% endif %}
                                             >
                                                 {{ category.page.title }}
                                             </a>
@@ -77,7 +78,7 @@
                                                 data-nav-panel="{{ category.key }}"
                                             >
                                                 {% for gallery in category.galleries %}
-                                                <a class="nav-tier-menu__child-link" href="{{ gallery.url }}">{{ gallery.title }}</a>
+                                                <a class="nav-tier-menu__child-link{% if gallery.is_active %} is-current{% endif %}" href="{{ gallery.page.url }}"{% if gallery.is_active %} aria-current="page"{% endif %}>{{ gallery.page.title }}</a>
                                                 {% endfor %}
                                             </div>
                                             {% endif %}
@@ -88,11 +89,11 @@
                                 </ul>
                                 {% endif %}
                             </li>
-                            <li class="menu-item">
-                                <a href="{% url 'proofing:portal' %}">{{ site_nav.labels.proofing_portal }}</a>
+                            <li class="menu-item{% if site_nav.proofing_is_active %} is-current{% endif %}">
+                                <a href="{% url 'proofing:portal' %}" class="menu-link{% if site_nav.proofing_is_active %} is-current{% endif %}"{% if site_nav.proofing_is_active %} aria-current="page"{% endif %}>{{ site_nav.labels.proofing_portal }}</a>
                             </li>
-                            <li class="menu-item">
-                                <a href="{% if site_nav.contact %}{{ site_nav.contact.url }}{% else %}#{% endif %}">{{ site_nav.labels.contact }}</a>
+                            <li class="menu-item{% if site_nav.contact_is_active %} is-current{% endif %}">
+                                <a href="{% if site_nav.contact %}{{ site_nav.contact.url }}{% else %}#{% endif %}" class="menu-link{% if site_nav.contact_is_active %} is-current{% endif %}"{% if site_nav.contact_is_active %} aria-current="page"{% endif %}>{{ site_nav.labels.contact }}</a>
                             </li>
                             <li class="menu-item menu-item--language-switcher has-submenu">
                                 <a href="#" aria-label="{% tr 'Language switcher' 'Selecteur de langue' %}">
