@@ -117,7 +117,7 @@ h2.logo-title a {
 #header .nav-tier-menu {
   left: 50% !important;
   right: auto !important;
-  width: min(1080px, calc(100vw - 80px));
+  width: min(980px, calc(100vw - 80px));
   margin-top: 18px !important;
   padding: 0 !important;
   transform: translateX(-50%);
@@ -129,18 +129,19 @@ h2.logo-title a {
 
 #header .nav-tier-menu__panel {
   display: block;
-  padding: 18px 24px 20px;
+  padding: 0;
 }
 
 #header .nav-tier-menu__parents {
-  display: flex;
-  flex-wrap: nowrap;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
   align-items: center;
-  justify-content: center;
-  gap: 28px;
+  width: 100%;
+  gap: 0;
   overflow-x: auto;
   scrollbar-width: none;
-  white-space: nowrap;
+  background: #101010;
 }
 
 #header .nav-tier-menu__parents::-webkit-scrollbar {
@@ -150,18 +151,21 @@ h2.logo-title a {
 #header .nav-tier-menu__parent,
 #header .nav-tier-menu__parent:hover,
 #header .nav-tier-menu__parent:focus {
-  display: inline-flex;
-  flex: 0 0 auto;
+  display: flex;
   align-items: center;
+  justify-content: center;
+  width: 100%;
   min-height: 38px;
-  padding: 0 2px 6px !important;
-  border-bottom: 1px solid transparent;
+  padding: 10px 16px 9px !important;
+  border-bottom: 2px solid transparent;
   font-size: 1rem;
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: inherit;
+  white-space: nowrap;
+  text-align: center;
 }
 
 #header .nav-tier-menu__parent:hover,
@@ -172,18 +176,20 @@ h2.logo-title a {
 
 #header .nav-tier-menu__children {
   position: relative;
-  min-height: 54px;
-  margin-top: 14px;
-  padding-top: 14px;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  min-height: 52px;
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+  background: #676c75;
 }
 
 #header .nav-tier-menu__child-row {
   display: none;
+  width: 100%;
   align-items: center;
-  justify-content: center;
+  justify-content: stretch;
   flex-wrap: nowrap;
-  gap: 24px;
+  gap: 0;
   overflow-x: auto;
   scrollbar-width: none;
   white-space: nowrap;
@@ -200,15 +206,19 @@ h2.logo-title a {
 #header .nav-tier-menu__child-link,
 #header .nav-tier-menu__child-link:hover,
 #header .nav-tier-menu__child-link:focus {
-  display: inline-block;
-  flex: 0 0 auto;
-  padding: 0 !important;
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 9px 16px 8px !important;
   border-bottom: 2px solid transparent;
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.5;
   letter-spacing: 0.04em;
   text-transform: none;
+  text-align: center;
 }
 
 #header .nav-tier-menu__child-link.is-current,
