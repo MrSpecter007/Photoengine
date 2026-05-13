@@ -117,8 +117,8 @@ h2.logo-title a {
 #header .nav-tier-menu {
   left: 50% !important;
   right: auto !important;
-  width: min(980px, calc(100vw - 80px));
-  margin-top: 18px !important;
+  width: min(760px, calc(100vw - 120px));
+  margin-top: 14px !important;
   padding: 0 !important;
   transform: translateX(-50%);
   border: 1px solid rgba(0, 0, 0, 0.08);
@@ -141,7 +141,7 @@ h2.logo-title a {
   gap: 0;
   overflow-x: auto;
   scrollbar-width: none;
-  background: #101010;
+  background: #ffffff;
 }
 
 #header .nav-tier-menu__parents::-webkit-scrollbar {
@@ -171,59 +171,6 @@ h2.logo-title a {
 #header .nav-tier-menu__parent:hover,
 #header .nav-tier-menu__parent:focus,
 #header .nav-tier-menu__parent.is-active {
-  border-bottom-color: currentColor;
-}
-
-#header .nav-tier-menu__children {
-  position: relative;
-  min-height: 52px;
-  margin-top: 0;
-  padding-top: 0;
-  border-top: 0;
-  background: #ffffff;
-}
-
-#header .nav-tier-menu__child-row {
-  display: none;
-  width: 100%;
-  align-items: center;
-  justify-content: stretch;
-  flex-wrap: nowrap;
-  gap: 0;
-  overflow-x: auto;
-  scrollbar-width: none;
-  white-space: nowrap;
-}
-
-#header .nav-tier-menu__child-row.is-active {
-  display: flex;
-}
-
-#header .nav-tier-menu__child-row::-webkit-scrollbar {
-  display: none;
-}
-
-#header .nav-tier-menu__child-link,
-#header .nav-tier-menu__child-link:hover,
-#header .nav-tier-menu__child-link:focus {
-  display: flex;
-  flex: 1 0 0;
-  align-items: center;
-  justify-content: center;
-  min-height: 52px;
-  padding: 9px 16px 8px !important;
-  border-bottom: 2px solid transparent;
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.5;
-  letter-spacing: 0.04em;
-  text-transform: none;
-  text-align: center;
-}
-
-#header .nav-tier-menu__child-link.is-current,
-#header .nav-tier-menu__child-link.is-current:hover,
-#header .nav-tier-menu__child-link.is-current:focus {
   border-bottom-color: currentColor;
 }
 
