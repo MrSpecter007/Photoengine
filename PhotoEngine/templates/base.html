@@ -26,72 +26,70 @@
                 ============================================= -->
         <header id="header">
             <div class="header-style1-wrap">
-                <div class="logo">
-                    <h2 class="logo-title">
-                        <a href="{% if site_nav.home %}{{ site_nav.home.url }}{% else %}/{% endif %}">NAJI PHOTO</a>
-                    </h2>
+                <div class="header-content-left">
+                    <!-- LOGO START
+                        ============================================= -->
+                    <div class="logo">
+                        <h2 class="logo-title">
+                            <a href="{% if site_nav.home %}{{ site_nav.home.url }}{% else %}/{% endif %}">NAJI PHOTO</a>
+                        </h2>
+                    </div>
+                    <!-- LOGO END -->
                 </div>
-                <nav class="main-nav">
-                    <button class="jepret-menu-mobile" type="button" aria-expanded="false" aria-controls="main-menu">
-                        <i class="icon icon-reorder"></i>
-                    </button>
-                    <ul id="main-menu" class="sm sm-clean mobile-menu">
-                        <li class="menu-item">
-                            <a href="{% if site_nav.home %}{{ site_nav.home.url }}{% else %}/{% endif %}">{{ site_nav.labels.home }}</a>
-                        </li>
-                        <li class="menu-item{% if site_nav.portfolio_sections %} has-submenu menu-item--mega{% endif %}">
-                            <a href="{% if site_nav.portfolio %}{{ site_nav.portfolio.url }}{% else %}#{% endif %}">{{ site_nav.labels.portfolio }}</a>
-                            {% if site_nav.portfolio_sections %}
-                            <ul class="sub-menu portfolio-mega-menu">
-                                {% for section in site_nav.portfolio_sections %}
-                                <li class="menu-item-sub portfolio-mega-menu__section{% if section.galleries %} has-submenu{% endif %}">
-                                    <a href="{{ section.page.url }}" class="portfolio-mega-menu__section-link">{{ section.page.title }}</a>
-                                    {% if section.galleries %}
-                                    <ul class="sub-menu portfolio-mega-menu__galleries">
-                                        {% for gallery in section.galleries %}
-                                        <li class="menu-item-sub">
-                                            <a href="{{ gallery.page.url }}" class="portfolio-mega-menu__gallery-link">{{ gallery.page.title }}</a>
-                                        </li>
-                                        {% endfor %}
-                                    </ul>
+                <div class="header-content-right">
+                    <!-- NAVIGATION START
+                        ============================================= -->
+                    <nav class="main-nav col-span-9  sm:col-span-12">
+                        <!-- Mobile menu toggle button -->
+                        <button class="jepret-menu-mobile">
+                            <i class="icon icon-reorder"></i>
+                        </button>
+                        <ul id="main-menu" class="sm sm-clean mobile-menu">
+                            <li class="menu-item">
+                                <a href="{% if site_nav.home %}{{ site_nav.home.url }}{% else %}/{% endif %}">{{ site_nav.labels.home }}</a>
+                            </li>
+                            <li class="menu-item{% if site_nav.portfolio_categories %} has-submenu{% endif %}">
+                                <a href="{% if site_nav.portfolio %}{{ site_nav.portfolio.url }}{% else %}#{% endif %}">{{ site_nav.labels.portfolio }}</a>
+                                {% if site_nav.portfolio_categories %}
+                                <ul class="sub-menu">
+                                    {% if site_nav.portfolio %}
+                                    <li class="menu-item-sub"><a href="{{ site_nav.portfolio.url }}">{{ site_nav.labels.all_portfolio }}</a></li>
                                     {% endif %}
-                                </li>
-                                {% endfor %}
-                                {% if site_nav.portfolio %}
-                                <li class="menu-item-sub portfolio-mega-menu__section portfolio-mega-menu__section--overview">
-                                    <a href="{{ site_nav.portfolio.url }}">{{ site_nav.labels.all_portfolio }}</a>
-                                </li>
+                                    {% for category in site_nav.portfolio_categories %}
+                                    <li class="menu-item-sub"><a href="{{ category.url }}">{{ category.title }}</a></li>
+                                    {% endfor %}
+                                </ul>
                                 {% endif %}
-                            </ul>
-                            {% endif %}
-                        </li>
-                        <li class="menu-item">
-                            <a href="{% url 'proofing:portal' %}">{{ site_nav.labels.proofing_portal }}</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="{% if site_nav.contact %}{{ site_nav.contact.url }}{% else %}#{% endif %}">{{ site_nav.labels.contact }}</a>
-                        </li>
-                        <li class="menu-item menu-item--language-switcher has-submenu">
-                            <a href="#" aria-label="{% tr 'Language switcher' 'Selecteur de langue' %}">
-                                {{ language_switcher.current_language|upper }}
-                            </a>
-                            <ul class="sub-menu site-language-switcher">
-                                {% for language in language_switcher.links %}
-                                <li class="menu-item-sub">
-                                    <a
-                                        href="{{ language.url }}"
-                                        class="site-language-switcher__link{% if language.is_active %} is-active{% endif %}"
-                                        lang="{{ language.code }}"
-                                        hreflang="{{ language.code }}"
-                                    >
-                                        {{ language.label }}
-                                    </a>
-                                </li>
-                                {% endfor %}
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
+                            </li>
+                            <li class="menu-item">
+                                <a href="{% url 'proofing:portal' %}">{{ site_nav.labels.proofing_portal }}</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="{% if site_nav.contact %}{{ site_nav.contact.url }}{% else %}#{% endif %}">{{ site_nav.labels.contact }}</a>
+                            </li>
+                            <li class="menu-item menu-item--language-switcher has-submenu">
+                                <a href="#" aria-label="{% tr 'Language switcher' 'Selecteur de langue' %}">
+                                    {{ language_switcher.current_language|upper }}
+                                </a>
+                                <ul class="sub-menu site-language-switcher">
+                                    {% for language in language_switcher.links %}
+                                    <li class="menu-item-sub">
+                                        <a
+                                            href="{{ language.url }}"
+                                            class="site-language-switcher__link{% if language.is_active %} is-active{% endif %}"
+                                            lang="{{ language.code }}"
+                                            hreflang="{{ language.code }}"
+                                        >
+                                            {{ language.label }}
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- NAVIGATION END -->
+                </div>
             </div>
         </header>
         <!-- HEADER END -->

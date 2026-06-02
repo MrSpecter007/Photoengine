@@ -18,7 +18,6 @@ $(document).ready(function () {
     var ShowMenu = widthScreen > 768 ? true : false
     MenuMobileButton.on('click', function () {
         ShowMenu = !ShowMenu
-        MenuMobileButton.attr('aria-expanded', ShowMenu ? 'true' : 'false')
         ShowMenu === true ? Menu.toggleClass('active') : Menu.removeClass('active')
     })
 
