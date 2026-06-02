@@ -101,10 +101,10 @@ docker compose exec web python manage.py createsuperuser
 4. Point DNS to the VPS.
 5. Set `DJANGO_SETTINGS_MODULE=PhotoEngine.settings.production`.
 6. Set `USE_S3_MEDIA=true` and fill in your S3-compatible object storage values.
-7. Build and start the production stack:
+7. Build and start the production stack with the safer updater:
 
 ```sh
-docker compose -f docker-compose.prod.yml up --build -d
+sh scripts/update_prod.sh
 ```
 
 8. Run a one-time superuser creation if needed:
@@ -120,6 +120,8 @@ docker compose -f docker-compose.prod.yml exec web python manage.py createsuperu
 - Wagtail image uploads work
 - proof gallery uploads work
 - final delivery links render correctly
+
+The updater waits for the Django `web` service to become healthy before it refreshes Nginx. This helps avoid the transient `502 Bad Gateway` window that can happen when Nginx comes up while Gunicorn is still booting.
 
 ## Migration from KVM 2 to Client KVM 4
 
