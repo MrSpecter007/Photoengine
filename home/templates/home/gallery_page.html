@@ -8,6 +8,31 @@
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/portfolio.css' %}">
 <link rel="stylesheet" href="{% static 'css/lightgallery.min.css' %}">
+<style>
+    @media (max-width: 768px) {
+        .portfolio-gallery-page__grid .gallery-grid-item-wrap.gallery-grid,
+        .portfolio-gallery-page__grid .gallery-masonry-item-wrap.gallery-masonry {
+            height: auto !important;
+        }
+
+        .portfolio-gallery-page__grid .gallery-grid-item-wrap.gallery-grid .gallery-grid-item,
+        .portfolio-gallery-page__grid .gallery-masonry-item-wrap.gallery-masonry .gallery-masonry-item {
+            position: static !important;
+            top: auto !important;
+            right: auto !important;
+            bottom: auto !important;
+            left: auto !important;
+            transform: none !important;
+            width: 100% !important;
+        }
+
+        .portfolio-gallery-page__grid .gallery-item {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    }
+</style>
 {% endblock extra_css %}
 
 {% block content %}
