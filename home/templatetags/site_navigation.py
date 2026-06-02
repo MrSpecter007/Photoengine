@@ -1,7 +1,12 @@
 from django import template
 from django.utils.translation import get_language
 
-from home.models import ContactPage, HomePage, PortfolioCategoryPage, PortfolioIndexPage
+from home.models import (
+    ContactPage,
+    HomePage,
+    PortfolioCategoryPage,
+    PortfolioIndexPage,
+)
 from home.i18n import choose_translation
 
 register = template.Library()
@@ -48,15 +53,27 @@ def get_site_navigation(context):
         contact_page = ContactPage.objects.live().public().first()
 
     portfolio_categories = []
+    portfolio_sections = []
     if portfolio_page:
         portfolio_categories = list(
             PortfolioCategoryPage.objects.child_of(portfolio_page).live().public()
         )
+        portfolio_sections = [
+            {
+                "page": category,
+                "galleries": [
+                    {"page": gallery}
+                    for gallery in category.get_children().live().public().specific()
+                ],
+            }
+            for category in portfolio_categories
+        ]
 
     return {
         "home": homepage,
         "portfolio": portfolio_page,
         "portfolio_categories": portfolio_categories,
+        "portfolio_sections": portfolio_sections,
         "contact": contact_page,
         "labels": {
             "home": choose_translation(en="Home", fr="Accueil", language_code=current_language),
