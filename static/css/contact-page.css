@@ -1,5 +1,8 @@
 .contact-page-shell {
   align-items: stretch;
+  background:
+    linear-gradient(180deg, rgba(11, 13, 16, 0.98) 0%, rgba(18, 23, 30, 0.98) 100%);
+  padding-bottom: 4rem;
 }
 
 .contact-page-shell__intro,
@@ -12,7 +15,8 @@
 
 .contact-page-shell__media {
   align-items: center;
-  background: #f6f6f6;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -29,7 +33,7 @@
 }
 
 .contact-page-shell__prompt {
-  color: #a40d24;
+  color: #e8bcc6;
   font-size: 1.45rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -40,7 +44,7 @@
 
 .contact-page-shell__jump-link {
   align-items: center;
-  color: #111111;
+  color: #f5f1e8;
   display: inline-flex;
   font-size: 1.55rem;
   font-weight: 700;
@@ -58,9 +62,18 @@
   color: inherit;
 }
 
+.contact-page-shell .the-title,
+.contact-page-shell .contact-detail p {
+  color: #f5f1e8;
+}
+
+.contact-page-shell .contact-detail p {
+  color: rgba(245, 241, 232, 0.74);
+}
+
 .contact-page-form-section {
   padding: 0 0 12rem;
-  background: #ffffff;
+  background: linear-gradient(180deg, rgba(18, 23, 30, 0.98) 0%, rgba(11, 13, 16, 0.98) 100%);
 }
 
 .contact-page-form-shell {
@@ -77,10 +90,12 @@
 
 .contact-page-form-title.client-proofing__title {
   font-size: 4.8rem;
+  color: #f5f1e8;
 }
 
 .contact-page-form-intro.client-proofing__intro {
   max-width: 72rem;
+  color: rgba(245, 241, 232, 0.72);
 }
 
 .contact-page-form-meta {
@@ -171,17 +186,17 @@
   text-transform: uppercase;
   letter-spacing: 0.12em;
   margin-bottom: 0.9rem;
-  color: #1b1b1b;
+  color: #f5f1e8;
 }
 
 .contact-page-field input,
 .contact-page-field select,
 .contact-page-field textarea {
   width: 100%;
-  border: 1px solid #d8d8d8;
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.84);
-  color: #1b1b1b;
+  background: rgba(255, 255, 255, 0.04);
+  color: #f5f1e8;
   font-family: "Poppins", Sans-serif;
   font-size: 1.5rem;
   padding: 1.4rem 1.6rem;
@@ -197,7 +212,7 @@
 .contact-page-field input:focus,
 .contact-page-field select:focus,
 .contact-page-field textarea:focus {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
   border-color: #da0d2b;
   box-shadow: 0 0 0 4px rgba(218, 13, 43, 0.1);
 }
@@ -210,8 +225,8 @@
 }
 
 .contact-page-privacy-note {
-  background: #f7f7f7;
-  border: 1px solid #e2e2e2;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 8px;
   margin-top: 1rem;
   padding: 1.4rem 1.6rem;
@@ -219,14 +234,14 @@
 
 .contact-page-privacy-note__text,
 .contact-page-privacy-note__contact {
-  color: #4d5960;
+  color: rgba(245, 241, 232, 0.7);
   font-size: 1.35rem;
   line-height: 1.8;
   margin: 0;
 }
 
 .contact-page-privacy-note a {
-  color: #111111;
+  color: #f5f1e8;
   font-weight: 700;
   text-decoration: underline;
 }

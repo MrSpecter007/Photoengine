@@ -143,7 +143,7 @@ def get_site_navigation(context):
             ),
             "about": choose_translation(
                 en="About",
-                fr="A propos",
+                fr="À propos",
                 language_code=current_language,
             ),
             "proofing_portal": choose_translation(
