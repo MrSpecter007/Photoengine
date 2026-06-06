@@ -693,7 +693,7 @@ class PortfolioCategoryPage(TranslationImageSyncMixin, Page):
     )
 
     parent_page_types = ["home.PortfolioIndexPage"]
-    subpage_types = ["home.GalleryPage"]
+    subpage_types = []
 
     content_panels = Page.content_panels + [
         FieldPanel("intro"),

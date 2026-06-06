@@ -47,25 +47,8 @@
                             <li class="menu-item{% if site_nav.about_is_active %} is-current{% endif %}">
                                 <a href="{% if site_nav.about %}{{ site_nav.about.url }}{% else %}#{% endif %}" class="menu-link{% if site_nav.about_is_active %} is-current{% endif %}"{% if site_nav.about_is_active %} aria-current="page"{% endif %}>{{ site_nav.labels.about }}</a>
                             </li>
-                            <li class="menu-item menu-item--portfolio{% if site_nav.portfolio_menu %} has-submenu{% endif %}{% if site_nav.portfolio_is_active %} is-current is-open{% endif %}">
+                            <li class="menu-item menu-item--portfolio{% if site_nav.portfolio_is_active %} is-current{% endif %}">
                                 <a href="{% if site_nav.portfolio %}{{ site_nav.portfolio.url }}{% else %}#{% endif %}" class="menu-link{% if site_nav.portfolio_is_active %} is-current{% endif %}"{% if site_nav.portfolio_is_active %} aria-current="page"{% endif %}>{{ site_nav.labels.portfolio }}</a>
-                                {% if site_nav.portfolio_menu %}
-                                <ul class="sub-menu nav-tier-menu" aria-label="{% tr 'Portfolio categories' 'Categories du portfolio' %}">
-                                    <li class="nav-tier-menu__panel">
-                                        <div class="nav-tier-menu__parents" role="list">
-                                            {% for category in site_nav.portfolio_menu %}
-                                            <a
-                                                href="{{ category.page.url }}"
-                                                class="nav-tier-menu__parent{% if category.is_active %} is-active is-current{% endif %}"
-                                                {% if category.is_active %} aria-current="page"{% endif %}
-                                            >
-                                                {{ category.page.title }}
-                                            </a>
-                                            {% endfor %}
-                                        </div>
-                                    </li>
-                                </ul>
-                                {% endif %}
                             </li>
                             <li class="menu-item{% if site_nav.proofing_is_active %} is-current{% endif %}">
                                 <a href="{% url 'proofing:portal' %}" class="menu-link{% if site_nav.proofing_is_active %} is-current{% endif %}"{% if site_nav.proofing_is_active %} aria-current="page"{% endif %}>{{ site_nav.labels.proofing_portal }}</a>

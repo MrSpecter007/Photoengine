@@ -4,7 +4,6 @@ from django.utils.translation import get_language
 from home.models import (
     AboutPage,
     ContactPage,
-    GalleryPage,
     HomePage,
     PortfolioCategoryPage,
     PortfolioIndexPage,
@@ -61,8 +60,6 @@ def get_site_navigation(context):
         contact_page = ContactPage.objects.live().public().first()
 
     portfolio_categories = []
-    portfolio_menu = []
-    active_portfolio_key = None
     current_page_path = getattr(current_page, "path", "")
     current_page_id = getattr(current_page, "id", None)
     if portfolio_page:
@@ -72,42 +69,6 @@ def get_site_navigation(context):
             .public()
             .order_by("path")
         )
-        for index, category in enumerate(portfolio_categories):
-            galleries = list(
-                GalleryPage.objects.child_of(category)
-                .live()
-                .public()
-                .order_by("path")
-            )
-            category_key = f"category-{category.id}"
-            is_active = bool(current_page_path and current_page_path.startswith(category.path))
-            if is_active:
-                active_portfolio_key = category_key
-
-            portfolio_menu.append(
-                {
-                    "key": category_key,
-                    "page": category,
-                    "galleries": [
-                        {
-                            "page": gallery,
-                            "is_active": bool(
-                                current_page_path and current_page_path.startswith(gallery.path)
-                            ),
-                        }
-                        for gallery in galleries
-                    ],
-                    "is_active": is_active,
-                    "is_default": index == 0,
-                }
-            )
-
-    if portfolio_menu and active_portfolio_key is None:
-        default_item = next((item for item in portfolio_menu if item["galleries"]), portfolio_menu[0])
-        active_portfolio_key = default_item["key"]
-        default_item["is_active"] = True
-
-    has_portfolio_children = any(item["galleries"] for item in portfolio_menu)
     home_is_active = bool(homepage and current_page_id == homepage.id)
     about_is_active = bool(about_page and current_page_path and current_page_path.startswith(about_page.path))
     portfolio_is_active = bool(
@@ -128,9 +89,6 @@ def get_site_navigation(context):
         "portfolio": portfolio_page,
         "portfolio_is_active": portfolio_is_active,
         "portfolio_categories": portfolio_categories,
-        "portfolio_menu": portfolio_menu,
-        "active_portfolio_key": active_portfolio_key,
-        "has_portfolio_children": has_portfolio_children,
         "contact": contact_page,
         "contact_is_active": contact_is_active,
         "proofing_is_active": proofing_is_active,
