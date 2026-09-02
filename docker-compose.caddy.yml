@@ -1,6 +1,7 @@
 services:
   web:
     container_name: photo-app
+    ports: []
     networks:
       - catalystdev-local
       - default
