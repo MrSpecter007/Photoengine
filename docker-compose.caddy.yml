@@ -1,0 +1,14 @@
+services:
+  web:
+    container_name: photo-app
+    networks:
+      - catalystdev-local
+      - default
+
+  nginx:
+    profiles:
+      - disabled
+
+networks:
+  catalystdev-local:
+    external: true
