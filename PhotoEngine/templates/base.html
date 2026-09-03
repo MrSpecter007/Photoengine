@@ -12,12 +12,13 @@
     <link rel="stylesheet" href="{% static 'css/font.css' %}">
     <link rel="stylesheet" href="{% static 'css/navigation-refresh.css' %}">
     {% block extra_css %}{% endblock extra_css %}
+    <link rel="stylesheet" href="{% static 'css/photo-showroom.css' %}">
 
     <!-- document title -->
-    <title>{% block title %}Naji Photo - Modern Photography{% endblock %}</title>
+    <title>{% block title %}Atelier Lumen Nord{% endblock %}</title>
 </head>
 
-<body class="{% block body_class %}{% endblock body_class %}">
+<body class="photo-showroom {% block body_class %}{% endblock body_class %}">
     {% get_site_navigation as site_nav %}
     {% get_language_switcher as language_switcher %}
     <!-- MAIN WRAPPER START
@@ -28,10 +29,18 @@
         <header id="header">
             <div class="header-style1-wrap">
                 <div class="header-content-left">
-                    <div class="logo header-branding">
-                        <h2 class="logo-title">
-                            <a href="{% if site_nav.home %}{{ site_nav.home.url }}{% else %}/{% endif %}">NAJI PHOTO</a>
-                        </h2>
+                    <!-- LOGO START
+                        ============================================= -->
+                    <div class="logo">
+                        <div class="logo-title">
+                            <a href="{% if site_nav.home %}{{ site_nav.home.url }}{% else %}/{% endif %}" class="site-brand">
+                                <span class="site-brand__mark" aria-hidden="true">LN</span>
+                                <span class="site-brand__copy">
+                                    <span class="site-brand__name">Atelier Lumen Nord</span>
+                                    <span class="site-brand__tagline">{% tr "Photography studio · Montreal" "Studio photo · Montréal" %}</span>
+                                </span>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="header-content-right">
@@ -44,10 +53,10 @@
                             <li class="menu-item">
                                 <a href="{% if site_nav.home %}{{ site_nav.home.url }}{% else %}/{% endif %}">{{ site_nav.labels.home }}</a>
                             </li>
-                            <li class="menu-item menu-item--portfolio{% if site_nav.portfolio_menu %} has-submenu{% endif %}">
-                                <a href="{% if site_nav.portfolio %}{{ site_nav.portfolio.url }}{% else %}#{% endif %}">{{ site_nav.labels.portfolio }}</a>
-                                {% if site_nav.portfolio_menu %}
-                                <ul class="sub-menu nav-mega-menu">
+                            <li class="menu-item{% if site_nav.portfolio_categories %} has-submenu{% endif %}">
+                                <a href="{% if site_nav.portfolio %}{{ site_nav.portfolio.url }}{% elif site_nav.home %}{{ site_nav.home.url }}#portfolio{% else %}/#portfolio{% endif %}">{{ site_nav.labels.portfolio }}</a>
+                                {% if site_nav.portfolio_categories %}
+                                <ul class="sub-menu">
                                     {% if site_nav.portfolio %}
                                     <li class="menu-item-sub nav-mega-menu__overview">
                                         <a href="{{ site_nav.portfolio.url }}">{{ site_nav.labels.all_portfolio }}</a>
@@ -71,10 +80,13 @@
                                 {% endif %}
                             </li>
                             <li class="menu-item">
+                                <a href="{% url 'editions:catalog' %}">{{ site_nav.labels.editions }}</a>
+                            </li>
+                            <li class="menu-item">
                                 <a href="{% url 'proofing:portal' %}">{{ site_nav.labels.proofing_portal }}</a>
                             </li>
                             <li class="menu-item">
-                                <a href="{% if site_nav.contact %}{{ site_nav.contact.url }}{% else %}#{% endif %}">{{ site_nav.labels.contact }}</a>
+                                <a href="{% if site_nav.contact %}{{ site_nav.contact.url }}{% elif site_nav.home %}{{ site_nav.home.url }}#contact{% else %}/#contact{% endif %}">{{ site_nav.labels.contact }}</a>
                             </li>
                             <li class="menu-item menu-item--language-switcher has-submenu">
                                 <a href="#" aria-label="{% tr 'Language switcher' 'Selecteur de langue' %}">
@@ -122,8 +134,17 @@
         <!-- Footer -->
         <footer id="footer">
             <div class="copyright">
-                <p class="copyright-text">NAJI PHOTO</p>
+                <p class="copyright-text">Atelier Lumen Nord</p>
                 <div class="footer-links">
+                    <a href="{% if site_nav.home %}{{ site_nav.home.url }}{% else %}/{% endif %}" class="footer-link">
+                        {{ site_nav.labels.home }}
+                    </a>
+                    <a href="{% url 'editions:catalog' %}" class="footer-link">
+                        {{ site_nav.labels.editions }}
+                    </a>
+                    <a href="{% url 'proofing:portal' %}" class="footer-link">
+                        {{ site_nav.labels.proofing_portal }}
+                    </a>
                     <a href="{% url 'privacy_policy' %}" class="footer-link">
                         {% tr "Privacy Policy" "Politique de confidentialite" %}
                     </a>

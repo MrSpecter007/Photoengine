@@ -85,6 +85,11 @@ def get_site_navigation(context):
                 fr="Portfolio",
                 language_code=current_language,
             ),
+            "editions": choose_translation(
+                en="Editions",
+                fr="Editions",
+                language_code=current_language,
+            ),
             "all_portfolio": choose_translation(
                 en="All Portfolio",
                 fr="Tout le portfolio",

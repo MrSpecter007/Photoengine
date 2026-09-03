@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     "home",
     "proofing",
     "search",
+    "editions",
     "wagtail.contrib.forms",
     "wagtail.contrib.settings",
     "wagtail.contrib.simple_translation",
@@ -144,12 +145,18 @@ DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL", default="no-reply@example.com")
 
 
 REDIS_URL = env("REDIS_URL", default="redis://127.0.0.1:6379/0")
-CACHES = {
-    "default": {
-        "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": env("CACHE_URL", default=REDIS_URL),
+_cache_backend = env("CACHE_BACKEND", default="redis")
+if _cache_backend == "dummy":
+    CACHES = {"default": {"BACKEND": "django.core.cache.backends.dummy.DummyCache"}}
+elif _cache_backend == "locmem":
+    CACHES = {"default": {"BACKEND": "django.core.cache.backends.locmem.LocMemCache"}}
+else:
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.redis.RedisCache",
+            "LOCATION": env("CACHE_URL", default=REDIS_URL),
+        }
     }
-}
 
 CELERY_BROKER_URL = REDIS_URL
 CELERY_RESULT_BACKEND = env("CELERY_RESULT_BACKEND", default=REDIS_URL)

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static wagtailimages_tags site_i18n %}
 
-{% block title %}{{ page.title }}{% endblock title %}
+{% block title %}{{ page.title }} - Atelier Lumen Nord{% endblock title %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/proofing.css' %}">
@@ -27,7 +27,11 @@
                 {% image page.contact_image max-960x1200 as contact_img %}
                 <img src="{{ contact_img.url }}" alt="{{ page.contact_image.title|default:page.contact_heading }}" class="contact-img" loading="lazy" decoding="async">
             {% else %}
-                <img src="{% static 'img/image-contact.png' %}" alt="{{ page.contact_heading }}" class="contact-img">
+                <div class="studio-visual studio-visual--contact contact-img" role="img" aria-label="{{ page.contact_heading }}">
+                    <span class="studio-visual__kicker">{% tr "Inquiry" "Demande" %}</span>
+                    <span class="studio-visual__line"></span>
+                    <span class="studio-visual__caption">Atelier Lumen Nord</span>
+                </div>
             {% endif %}
         </div>
     </div>
@@ -122,7 +126,7 @@
 
                     <div class="contact-page-privacy-note" aria-label="{% tr 'Privacy notice' 'Avis de confidentialite' %}">
                         <p class="contact-page-privacy-note__text">
-                            {% tr "By submitting this form, you consent to Naji Photo using the information you provide to respond to your inquiry, discuss availability, and plan requested photography services. See the full" "En soumettant ce formulaire, vous consentez a ce que Naji Photo utilise les renseignements fournis pour repondre a votre demande, discuter des disponibilites et planifier les services photographiques demandes. Consultez la" %}
+                            {% tr "By submitting this form, you consent to Atelier Lumen Nord using the information you provide to respond to your inquiry, discuss availability, and plan requested photography services. See the full" "En soumettant ce formulaire, vous consentez a ce qu'Atelier Lumen Nord utilise les renseignements fournis pour repondre a votre demande, discuter des disponibilites et planifier les services photographiques demandes. Consultez la" %}
                             <a href="{% url 'privacy_policy' %}">{% tr "Privacy Policy" "Politique de confidentialite" %}</a>.
                         </p>
                     </div>

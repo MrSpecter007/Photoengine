@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static home_image_tags site_i18n %}
 
-{% block title %}{{ page.title }} - Naji Photo{% endblock title %}
+{% block title %}{{ page.title }} - Atelier Lumen Nord{% endblock title %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/portfolio.css' %}">
@@ -37,7 +37,9 @@
                             {% safe_rendition gallery.card_image "fill-900x900" as card_image %}
                             <img src="{{ card_image.url }}" alt="{{ gallery.title }}" class="gallery-item portfolio-card__image" loading="lazy" decoding="async">
                         {% else %}
-                            <img src="{% static 'img/tr-006-650x650.jpg' %}" alt="{{ gallery.title }}" class="gallery-item portfolio-card__image">
+                            <div class="portfolio-placeholder portfolio-placeholder--card" role="img" aria-label="{{ gallery.title }}">
+                                <span>{{ gallery.primary_category_name|default:"Atelier" }}</span>
+                            </div>
                         {% endif %}
                     </div>
                     <div class="portfolio-card__body">

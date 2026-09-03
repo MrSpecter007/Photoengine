@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% load static site_i18n %}
+
+{% block title %}Limited Editions - Atelier Lumen Nord{% endblock title %}
+{% block body_class %}editions-page editions-catalog{% endblock body_class %}
+{% block top_bar %}{% endblock top_bar %}
+{% block side_bars %}{% endblock side_bars %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/editions.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<main class="editions-shell">
+    <section class="editions-hero">
+        <div class="editions-container editions-hero__grid">
+            <div class="editions-hero__content">
+                <p class="editions-eyebrow">Atelier Lumen Nord editions</p>
+                <h1>Numbered fine art photographs, prepared for collectors.</h1>
+                <p>
+                    Explore active studio collections with edition status, available print
+                    formats, and inquiry-only acquisition paths for showroom review.
+                </p>
+                <div class="editions-hero__actions">
+                    <a class="editions-button" href="{% if contact_page %}{{ contact_page.url }}{% else %}#collections{% endif %}">Contact the studio</a>
+                    <a class="editions-link" href="#collections">View collections</a>
+                </div>
+            </div>
+            <div class="editions-hero__art" aria-hidden="true">
+                <div class="editions-hero__frame editions-placeholder editions-placeholder--urban-light"></div>
+                <div class="editions-hero__frame editions-placeholder editions-placeholder--northern-wilderness"></div>
+                <div class="editions-hero__frame editions-placeholder editions-placeholder--abstract-moments"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="editions-summary" aria-label="Edition studio details">
+        <div class="editions-container editions-summary__grid">
+            <div>
+                <span>{{ collections|length }}</span>
+                <p>Active collections</p>
+            </div>
+            <div>
+                <span>{{ formats|length }}</span>
+                <p>Archival formats</p>
+            </div>
+            <div>
+                <span>Inquiry only</span>
+                <p>No checkout or payment flow</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="editions-container editions-section" id="collections">
+        <div class="editions-section__header">
+            <p class="editions-eyebrow">Collections</p>
+            <h2>Available releases</h2>
+        </div>
+
+        <div class="edition-collection-list">
+            {% for collection in collections %}
+            <article class="edition-collection">
+                <div class="edition-collection__header">
+                    <div>
+                        <p class="editions-eyebrow">{{ collection.code|upper }}</p>
+                        <h3>{{ collection.title }}</h3>
+                    </div>
+                    {% if collection.launch_date %}
+                    <time datetime="{{ collection.launch_date|date:'Y-m-d' }}">{{ collection.launch_date|date:"F Y" }}</time>
+                    {% endif %}
+                </div>
+                {% if collection.description %}
+                <p class="edition-collection__description">{{ collection.description }}</p>
+                {% endif %}
+
+                <div class="edition-grid">
+                    {% for photograph in collection.active_photographs %}
+                    <article class="edition-card">
+                        <a class="edition-card__media" href="{% url 'editions:photograph_detail' collection.slug photograph.slug %}" aria-label="View {{ photograph.title }}">
+                            {% if photograph.image %}
+                            <img src="{{ photograph.image.url }}" alt="{{ photograph.title }}" loading="lazy" decoding="async">
+                            {% elif photograph.hero_image %}
+                            <img src="{{ photograph.hero_image.url }}" alt="{{ photograph.title }}" loading="lazy" decoding="async">
+                            {% else %}
+                            <div class="edition-placeholder edition-placeholder--{{ collection.slug }}">
+                                <span>{{ photograph.title|slice:":1" }}</span>
+                            </div>
+                            {% endif %}
+                        </a>
+                        <div class="edition-card__body">
+                            <p class="edition-card__meta">{{ photograph.formatted_collection_label }}</p>
+                            <h4><a href="{% url 'editions:photograph_detail' collection.slug photograph.slug %}">{{ photograph.title }}</a></h4>
+                            <p class="edition-card__story">{{ photograph.story|truncatechars:138 }}</p>
+                            <div class="edition-card__footer">
+                                <span class="edition-availability{% if photograph.is_sold_out %} edition-availability--sold-out{% endif %}">
+                                    {{ photograph.availability_label }}
+                                </span>
+                                <a class="edition-card__link" href="{% url 'editions:photograph_detail' collection.slug photograph.slug %}">Details</a>
+                            </div>
+                        </div>
+                    </article>
+                    {% empty %}
+                    <p class="edition-empty">This collection is ready for photographs.</p>
+                    {% endfor %}
+                </div>
+            </article>
+            {% empty %}
+            <div class="edition-empty edition-empty--panel">
+                <h3>No editions are active yet.</h3>
+                <p>Run the showroom seed command to publish the Atelier Lumen Nord collection data.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+{% endblock content %}

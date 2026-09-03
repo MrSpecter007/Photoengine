@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ photograph.title }} - Atelier Lumen Nord{% endblock title %}
+{% block body_class %}editions-page edition-detail-page{% endblock body_class %}
+{% block top_bar %}{% endblock top_bar %}
+{% block side_bars %}{% endblock side_bars %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/editions.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<main class="editions-shell edition-detail">
+    <nav class="editions-container editions-breadcrumb" aria-label="Breadcrumb">
+        <a href="{% url 'editions:catalog' %}">Editions</a>
+        <span aria-hidden="true">/</span>
+        <span>{{ photograph.title }}</span>
+    </nav>
+
+    <article class="editions-container edition-detail__grid">
+        <div class="edition-detail__media">
+            {% if photograph.hero_image %}
+            <img src="{{ photograph.hero_image.url }}" alt="{{ photograph.title }}" decoding="async" fetchpriority="high">
+            {% elif photograph.image %}
+            <img src="{{ photograph.image.url }}" alt="{{ photograph.title }}" decoding="async" fetchpriority="high">
+            {% else %}
+            <div class="edition-placeholder edition-placeholder--detail edition-placeholder--{{ photograph.collection.slug }}">
+                <span>{{ photograph.title|slice:":1" }}</span>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="edition-detail__content">
+            <p class="editions-eyebrow">{{ photograph.collection.title }}</p>
+            <h1>{{ photograph.title }}</h1>
+            {% if photograph.location_name %}
+            <p class="edition-detail__location">{{ photograph.location_name }}</p>
+            {% endif %}
+
+            <div class="edition-detail__availability">
+                <span class="edition-availability{% if photograph.is_sold_out %} edition-availability--sold-out{% endif %}">
+                    {{ photograph.availability_label }}
+                </span>
+                {% if photograph.is_preorder %}
+                <span class="edition-pill">Preorder</span>
+                {% endif %}
+            </div>
+
+            {% if photograph.story %}
+            <div class="edition-detail__story">
+                <h2>Story</h2>
+                <p>{{ photograph.story }}</p>
+            </div>
+            {% endif %}
+
+            {% if photograph.edition_details_text %}
+            <div class="edition-detail__note">
+                <h2>Edition notes</h2>
+                <p>{{ photograph.edition_details_text }}</p>
+            </div>
+            {% endif %}
+
+            <div class="edition-detail__actions">
+                <a class="editions-button" href="{% if contact_page %}{{ contact_page.url }}?edition={{ photograph.slug }}{% else %}#edition-inquiry{% endif %}">
+                    Contact about this work
+                </a>
+                <a class="editions-link" href="{% url 'editions:catalog' %}">Back to editions</a>
+            </div>
+        </div>
+    </article>
+
+    <section class="editions-container edition-detail__meta-grid">
+        <div class="edition-panel">
+            <p class="editions-eyebrow">Available sizes</p>
+            <h2>Print dimensions</h2>
+            <ul class="edition-token-list">
+                {% for size in sizes %}
+                <li>{{ size.label }}</li>
+                {% empty %}
+                <li>Custom sizing by inquiry</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="edition-panel">
+            <p class="editions-eyebrow">Formats</p>
+            <h2>Archival production</h2>
+            <div class="edition-format-list">
+                {% for format in formats %}
+                <article>
+                    <h3>{{ format.name }}</h3>
+                    {% if format.short_description %}
+                    <p>{{ format.short_description }}</p>
+                    {% endif %}
+                </article>
+                {% empty %}
+                <p>Edition formats are configured in the studio dashboard.</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="edition-panel">
+            <p class="editions-eyebrow">Edition status</p>
+            <h2>Public edition</h2>
+            <ol class="edition-status-list">
+                {% for edition in photograph.editions.all %}
+                    {% if edition.edition_type == "public" %}
+                    <li class="edition-status-list__item edition-status-list__item--{{ edition.status }}">
+                        <span>{{ edition.edition_display }}</span>
+                        <strong>{{ edition.get_status_display }}</strong>
+                    </li>
+                    {% endif %}
+                {% empty %}
+                <li class="edition-status-list__item">
+                    <span>Edition</span>
+                    <strong>Configured in admin</strong>
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+    </section>
+
+    {% if not contact_page %}
+    <section class="editions-container edition-inquiry" id="edition-inquiry">
+        <div class="edition-panel">
+            <p class="editions-eyebrow">Inquiry only</p>
+            <h2>Showroom contact path</h2>
+            <p>
+                This demo keeps print acquisition out of checkout. In a production build,
+                this CTA would connect to the studio contact workflow configured in Wagtail.
+            </p>
+        </div>
+    </section>
+    {% endif %}
+</main>
+{% endblock content %}

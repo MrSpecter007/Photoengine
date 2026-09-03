@@ -52,14 +52,14 @@ class AdminExperienceSettingsTests(TestCase):
     def test_admin_experience_settings_load_defaults(self):
         settings_obj = AdminExperienceSettings.load()
 
-        self.assertEqual(settings_obj.admin_brand_name, "Naji Photo Studio")
-        self.assertEqual(settings_obj.admin_primary_color, "#DA0D2B")
+        self.assertEqual(settings_obj.admin_brand_name, "Catalystdev · Photo Studio")
+        self.assertEqual(settings_obj.admin_primary_color, "#5B26ED")
         self.assertEqual(settings_obj.admin_sidebar_color, "#241A33")
-        self.assertEqual(settings_obj.admin_text_color, "#101418")
+        self.assertEqual(settings_obj.admin_text_color, "#180024")
         self.assertEqual(settings_obj.admin_sidebar_text_color, "#F8F7FB")
-        self.assertEqual(settings_obj.admin_sidebar_hover_color, "#000000")
+        self.assertEqual(settings_obj.admin_sidebar_hover_color, "#4A0A75")
         self.assertEqual(settings_obj.admin_sidebar_hover_text_color, "#FFFFFF")
-        self.assertEqual(settings_obj.admin_sidebar_selected_color, "#000000")
+        self.assertEqual(settings_obj.admin_sidebar_selected_color, "#5B26ED")
         self.assertEqual(settings_obj.admin_sidebar_selected_text_color, "#FFFFFF")
 
 class HomeTests(WagtailPageTestCase):
@@ -109,7 +109,7 @@ class NavigationTests(WagtailPageTestCase):
     def test_navigation_uses_site_pages_and_branding(self):
         response = self.client.get(self.homepage.url)
 
-        self.assertContains(response, "NAJI PHOTO")
+        self.assertContains(response, "Atelier Lumen Nord")
         self.assertContains(response, 'href="%s"' % self.portfolio_index.url)
         self.assertContains(response, 'href="%s"' % self.category_page.url)
         self.assertContains(response, 'href="%s"' % reverse("privacy_policy"))

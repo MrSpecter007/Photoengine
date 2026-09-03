@@ -2,29 +2,15 @@ from django.db import migrations
 
 
 def bootstrap_french_locale(apps, schema_editor):
-    from wagtail.models import Locale, Site
+    from wagtail.models import Locale
 
+    # Ensure en locale exists and fr locale is registered.
+    # Page-copying is skipped: on a fresh install the HomePage model is ahead of
+    # the migration state (projects_button_page_id doesn't exist yet), so calling
+    # .specific would abort the PostgreSQL transaction.
     Locale.objects.filter(language_code="en-us").update(language_code="en")
     Locale.objects.get_or_create(language_code="en")
-    french_locale, _ = Locale.objects.get_or_create(language_code="fr")
-
-    for site in Site.objects.select_related("root_page"):
-        root_page = site.root_page.specific
-        pages = [root_page] + list(root_page.get_descendants().specific().order_by("path"))
-
-        for page in pages:
-            if page.locale_id == french_locale.id:
-                continue
-
-            existing_translation = page.get_translations().filter(locale=french_locale).first()
-            if existing_translation is not None:
-                if page.live and not existing_translation.live:
-                    existing_translation.save_revision().publish()
-                continue
-
-            translated_page = page.copy_for_translation(french_locale, copy_parents=True)
-            if page.live:
-                translated_page.save_revision().publish()
+    Locale.objects.get_or_create(language_code="fr")
 
 
 class Migration(migrations.Migration):

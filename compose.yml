@@ -1,0 +1,60 @@
+services:
+  photo-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    container_name: photo-app
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgres://showroom:showroom_secret@photo-db:5432/photoengine_showroom
+      SHOWROOM_MODE: "true"
+      DEBUG: "true"
+      SECRET_KEY: "django-insecure-showroom-photoengine-catalystdev"
+      ALLOWED_HOSTS: "*"
+      CSRF_TRUSTED_ORIGINS: "http://photo.localhost,http://localhost:8006"
+      WAGTAIL_SITE_NAME: "Catalystdev · Photo Studio"
+      WAGTAILADMIN_BASE_URL: "http://photo.localhost"
+      # Disable Redis dependency for showroom — use local memory cache
+      CACHE_BACKEND: "locmem"
+      CELERY_TASK_ALWAYS_EAGER: "true"
+      USE_S3_MEDIA: "false"
+      STATIC_ROOT: "/app/staticfiles"
+    volumes:
+      - .:/app
+      - photo_staticfiles:/app/staticfiles
+      - photo_media:/app/media
+    ports:
+      - "8006:8000"
+    networks:
+      - catalystdev-local
+      - default
+    depends_on:
+      photo-db:
+        condition: service_healthy
+
+  photo-db:
+    image: postgres:15-alpine
+    container_name: photo-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: photoengine_showroom
+      POSTGRES_USER: showroom
+      POSTGRES_PASSWORD: showroom_secret
+    volumes:
+      - photo_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U showroom -d photoengine_showroom"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    networks:
+      - default
+
+volumes:
+  photo_db_data:
+  photo_staticfiles:
+  photo_media:
+
+networks:
+  catalystdev-local:
+    external: true

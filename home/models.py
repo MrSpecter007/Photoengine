@@ -31,7 +31,7 @@ from PhotoEngine.translation_images import TranslationImageSyncMixin
 
 hex_color_validator = RegexValidator(
     regex=r"^#[0-9A-Fa-f]{6}$",
-    message="Enter a valid hex color like #DA0D2B.",
+    message="Enter a valid hex color like #5B26ED.",
 )
 
 
@@ -56,18 +56,18 @@ class GalleryPageAdminForm(WagtailAdminPageForm):
 class AdminExperienceSettings(BaseGenericSetting):
     admin_brand_name = models.CharField(
         max_length=80,
-        default="Naji Photo Studio",
+        default="Catalystdev · Photo Studio",
         help_text="Short name used for the Wagtail admin experience.",
     )
     admin_welcome_title = models.CharField(
         max_length=120,
-        default="Welcome back to the studio",
+        default="Welcome to the Photo Studio",
         help_text="Headline shown on the admin dashboard.",
     )
     admin_welcome_message = models.TextField(
         default=(
-            "Use this workspace to publish galleries, manage inquiries, and keep client "
-            "projects moving with confidence."
+            "Manage public pages, client proofing, and limited-edition print records "
+            "inside a Catalystdev showroom workspace."
         ),
         help_text="A short dashboard message to make the admin feel personal and familiar.",
     )
@@ -81,13 +81,13 @@ class AdminExperienceSettings(BaseGenericSetting):
     )
     admin_primary_color = models.CharField(
         max_length=7,
-        default="#DA0D2B",
+        default="#5B26ED",
         validators=[hex_color_validator],
         help_text="Primary action color for buttons and highlights.",
     )
     admin_surface_color = models.CharField(
         max_length=7,
-        default="#1B1B1B",
+        default="#150021",
         validators=[hex_color_validator],
         help_text="Dark surface color used for the admin chrome.",
     )
@@ -99,7 +99,7 @@ class AdminExperienceSettings(BaseGenericSetting):
     )
     admin_text_color = models.CharField(
         max_length=7,
-        default="#101418",
+        default="#180024",
         validators=[hex_color_validator],
         help_text="Main text color for custom admin welcome content and dashboard accents.",
     )
@@ -111,7 +111,7 @@ class AdminExperienceSettings(BaseGenericSetting):
     )
     admin_sidebar_hover_color = models.CharField(
         max_length=7,
-        default="#000000",
+        default="#4A0A75",
         validators=[hex_color_validator],
         help_text="Sidebar menu background color on hover.",
     )
@@ -123,7 +123,7 @@ class AdminExperienceSettings(BaseGenericSetting):
     )
     admin_sidebar_selected_color = models.CharField(
         max_length=7,
-        default="#000000",
+        default="#5B26ED",
         validators=[hex_color_validator],
         help_text="Sidebar menu background color for the selected item.",
     )
@@ -135,7 +135,7 @@ class AdminExperienceSettings(BaseGenericSetting):
     )
     admin_soft_color = models.CharField(
         max_length=7,
-        default="#F6E8EC",
+        default="#EFE6FF",
         validators=[hex_color_validator],
         help_text="Soft tint used for cards, focus states, and welcome accents.",
     )
@@ -186,20 +186,22 @@ class HomePage(TranslationImageSyncMixin, Page):
         "partner_four_image",
     )
 
-    about_eyebrow = models.CharField(max_length=80, default="about")
+    about_eyebrow = models.CharField(max_length=80, default="Studio")
     about_heading = models.TextField(
-        default="I'm Michel Groch,\nA Professional Photographer\nLiving In Indonesia."
+        default="Atelier Lumen Nord\nPhotographic stories from Montreal."
     )
     about_paragraph_one = models.TextField(
         default=(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod "
-            "tempor incididunt ut labore et dolore magna aliqua."
+            "Atelier Lumen Nord is a fictional Montreal photography studio built for "
+            "the Photoengine showroom. The studio creates calm portrait sessions, "
+            "editorial commissions, and image libraries for independent brands."
         )
     )
     about_paragraph_two = models.TextField(
         default=(
-            "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut "
-            "aliquip ex ea commodo consequat duis."
+            "The public site, private proofing portal, and limited-edition archive "
+            "share one restrained visual system so clients and collectors always know "
+            "where they are."
         )
     )
     about_image = models.ForeignKey(
@@ -210,20 +212,20 @@ class HomePage(TranslationImageSyncMixin, Page):
         related_name="+",
     )
     projects_eyebrow = models.CharField(max_length=80, default="Portfolio")
-    projects_heading = models.TextField(default="A Good Ending Is The Most Important")
+    projects_heading = models.TextField(default="Portraits, commissions,\nand quiet commercial stories")
     projects_paragraph_one = models.TextField(
         default=(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod "
-            "tempor incididunt ut labore et dolore magna aliqua."
+            "Browse selected studio projects spanning editorial portraits, interior "
+            "studies, maker profiles, and atmospheric product work."
         )
     )
     projects_paragraph_two = models.TextField(
         default=(
-            "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut "
-            "aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit."
+            "Each gallery is structured for a real client workflow: a curated public "
+            "portfolio, private proofing access, and clear final delivery."
         )
     )
-    projects_button_text = models.CharField(max_length=80, default="view portfolio")
+    projects_button_text = models.CharField(max_length=80, default="View portfolio")
     projects_button_page = models.ForeignKey(
         "wagtailcore.Page",
         null=True,
@@ -263,8 +265,8 @@ class HomePage(TranslationImageSyncMixin, Page):
 
     testimonial_quote = models.TextField(
         default=(
-            '" I\'m very picky with whom I give my energy to. I prefer to reserve my '
-            'time, intensity and spirit exclusively to those who reflect sincerity. "'
+            '"The studio made selection easy. Our proofing gallery felt private, calm, '
+            'and organized, and the final images matched the brief exactly."'
         )
     )
     testimonial_client_image = models.ForeignKey(
@@ -274,14 +276,14 @@ class HomePage(TranslationImageSyncMixin, Page):
         on_delete=models.SET_NULL,
         related_name="+",
     )
-    testimonial_client_name = models.CharField(max_length=120, default="Tommy Rivers")
-    testimonial_client_job = models.CharField(max_length=120, default="Photographer")
+    testimonial_client_name = models.CharField(max_length=120, default="Elise Marceau")
+    testimonial_client_job = models.CharField(max_length=120, default="Creative Director, Alder & Finch")
 
-    partners_heading = models.CharField(max_length=80, default="Partner")
+    partners_heading = models.CharField(max_length=80, default="Studio Services")
     partners_intro = models.TextField(
         default=(
-            "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut "
-            "aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit."
+            "A compact set of photography services designed for people who need images "
+            "that feel considered, useful, and easy to approve."
         )
     )
     partner_one_image = models.ForeignKey(
@@ -291,9 +293,9 @@ class HomePage(TranslationImageSyncMixin, Page):
         on_delete=models.SET_NULL,
         related_name="+",
     )
-    partner_one_name = models.CharField(max_length=120, default="Fanter Studio")
+    partner_one_name = models.CharField(max_length=120, default="Editorial Portraits")
     partner_one_description = models.TextField(
-        default="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi"
+        default="Natural, composed portraits for founders, artists, and small teams."
     )
     partner_two_image = models.ForeignKey(
         "wagtailimages.Image",
@@ -302,9 +304,9 @@ class HomePage(TranslationImageSyncMixin, Page):
         on_delete=models.SET_NULL,
         related_name="+",
     )
-    partner_two_name = models.CharField(max_length=120, default="GendatGraphic")
+    partner_two_name = models.CharField(max_length=120, default="Architecture & Interiors")
     partner_two_description = models.TextField(
-        default="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi"
+        default="Quiet room studies, spatial details, and hospitality environments."
     )
     partner_three_image = models.ForeignKey(
         "wagtailimages.Image",
@@ -313,9 +315,9 @@ class HomePage(TranslationImageSyncMixin, Page):
         on_delete=models.SET_NULL,
         related_name="+",
     )
-    partner_three_name = models.CharField(max_length=120, default="Motor Heads")
+    partner_three_name = models.CharField(max_length=120, default="Private Proofing")
     partner_three_description = models.TextField(
-        default="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi"
+        default="Secure client galleries for reviewing, favoriting, and approving images."
     )
     partner_four_image = models.ForeignKey(
         "wagtailimages.Image",
@@ -324,15 +326,15 @@ class HomePage(TranslationImageSyncMixin, Page):
         on_delete=models.SET_NULL,
         related_name="+",
     )
-    partner_four_name = models.CharField(max_length=120, default="Panthere")
+    partner_four_name = models.CharField(max_length=120, default="Fine Art Editions")
     partner_four_description = models.TextField(
-        default="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi"
+        default="Numbered print releases with availability and format details."
     )
 
-    contact_eyebrow = models.CharField(max_length=120, default="So What's Next?")
-    contact_heading = models.CharField(max_length=120, default="Are You Ready?")
-    contact_heading_emphasis = models.CharField(max_length=120, default="Let's Work!")
-    contact_link = models.CharField(max_length=255, blank=True, default="#")
+    contact_eyebrow = models.CharField(max_length=120, default="Inquiries")
+    contact_heading = models.CharField(max_length=120, default="Planning a session?")
+    contact_heading_emphasis = models.CharField(max_length=120, default="Start here.")
+    contact_link = models.CharField(max_length=255, blank=True, default="/contact/")
 
     content_panels = Page.content_panels + [
         MultiFieldPanel(
@@ -487,7 +489,7 @@ class ContactPage(TranslationImageSyncMixin, Page):
 
     contact_heading = models.CharField(
         max_length=120,
-        default="In Case You Need Photos",
+        default="Plan a session or print inquiry",
     )
     contact_image = models.ForeignKey(
         "wagtailimages.Image",
@@ -498,39 +500,39 @@ class ContactPage(TranslationImageSyncMixin, Page):
     )
     contact_detail_heading = models.CharField(
         max_length=120,
-        default="Contact Detail",
+        default="Studio Contact",
     )
     contact_phone = models.CharField(
         max_length=50,
         blank=True,
-        default="(0) 6452 2711 22",
+        default="514-555-0187",
     )
     contact_email = models.EmailField(
         blank=True,
-        default="michelgroch@support.com",
+        default="hello@lumen-nord.example.com",
     )
     address_heading = models.CharField(
         max_length=120,
-        default="Address",
+        default="Atelier",
     )
     address_text = models.TextField(
         blank=True,
-        default="Lokgebouw 226 5617AC, Eindhoven\nThe Netherlands",
+        default="4020 Rue Saint-Ambroise, Suite 214\nMontreal, QC H4C 2C7",
     )
     form_heading = models.CharField(
         max_length=120,
-        default="Tell Me About Your Shoot",
+        default="Tell us about the work",
     )
     form_intro = models.TextField(
         blank=True,
         default=(
-            "Share a few details and I will get back to you with availability, "
-            "pricing, and next steps."
+            "Share a few details and the studio will reply with availability, "
+            "recommended coverage, and next steps."
         ),
     )
     success_message = models.CharField(
         max_length=255,
-        default="Thanks for reaching out. Your inquiry has been received.",
+        default="Thanks for reaching out. Your inquiry has been received by the studio.",
     )
 
     parent_page_types = ["home.HomePage"]

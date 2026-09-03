@@ -2,8 +2,10 @@ services:
   web:
     container_name: photo-app
     ports: []
-    # catalystdev-local joined manually after startup to avoid DB hostname collision:
+    # catalystdev-local is joined manually after startup to avoid DNS collision:
     #   docker network connect catalystdev-local photo-app
+    # (another container on catalystdev-local also has alias "db", which would
+    #  shadow photo's own postgres if joined at compose-time)
 
   nginx:
     profiles:

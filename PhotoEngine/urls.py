@@ -27,6 +27,7 @@ if settings.DEBUG:
 
 urlpatterns += i18n_patterns(
     path("privacy/", home_views.privacy_policy, name="privacy_policy"),
+    path("editions/", include(("editions.urls", "editions"), namespace="editions")),
     path("proofing/", include(("proofing.urls", "proofing"), namespace="proofing")),
     path("search/", search_views.search, name="search"),
     path("", include(wagtail_urls)),

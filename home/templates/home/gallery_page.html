@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static wagtailcore_tags home_image_tags site_i18n %}
 
-{% block title %}{{ page.title }} - Naji Photo{% endblock title %}
+{% block title %}{{ page.title }} - Atelier Lumen Nord{% endblock title %}
 
 {% block body_class %}{{ page.body_class }}{% endblock body_class %}
 
@@ -130,6 +130,10 @@
                 {% if page.card_image %}
                     {% safe_rendition page.card_image "fill-1200x900" as hero_image %}
                     <img src="{{ hero_image.url }}" alt="{{ page.title }}" class="portfolio-gallery-page__hero-image">
+                {% else %}
+                    <div class="portfolio-placeholder portfolio-placeholder--hero" role="img" aria-label="{{ page.title }}">
+                        <span>{{ page.primary_category_name|default:"Atelier Lumen Nord" }}</span>
+                    </div>
                 {% endif %}
             </div>
         </div>
@@ -216,7 +220,9 @@
                                 {% safe_rendition gallery.card_image "fill-700x700" as related_image %}
                                 <img src="{{ related_image.url }}" alt="{{ gallery.title }}" class="gallery-item portfolio-card__image" loading="lazy" decoding="async">
                             {% else %}
-                                <img src="{% static 'img/photo-1448518184296-a22facb4446f-650x650.jpg' %}" alt="{{ gallery.title }}" class="gallery-item portfolio-card__image">
+                                <div class="portfolio-placeholder portfolio-placeholder--card" role="img" aria-label="{{ gallery.title }}">
+                                    <span>{{ gallery.primary_category_name|default:"Atelier" }}</span>
+                                </div>
                             {% endif %}
                         </div>
                         <div class="portfolio-card__body">

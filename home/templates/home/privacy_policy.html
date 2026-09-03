@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static site_i18n %}
 
-{% block title %}{% tr "Privacy Policy" "Politique de confidentialite" %} - Naji Photo{% endblock title %}
+{% block title %}{% tr "Privacy Policy" "Politique de confidentialite" %} - Atelier Lumen Nord{% endblock title %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/proofing.css' %}">
@@ -16,7 +16,7 @@
                 <p class="client-proofing__eyebrow">{% tr "Site-wide privacy" "Confidentialite du site" %}</p>
                 <h1 class="client-proofing__title">{% tr "Privacy Policy" "Politique de confidentialite" %}</h1>
                 <p class="client-proofing__intro">
-                    {% tr "This policy explains how Naji Photo collects, uses, stores, and protects personal information shared through this website, including the contact form and public browsing features." "Cette politique explique comment Naji Photo recueille, utilise, conserve et protege les renseignements personnels transmis par ce site Web, y compris le formulaire de contact et les fonctions de navigation publique." %}
+                    {% tr "This policy explains how Atelier Lumen Nord collects, uses, stores, and protects personal information shared through this website, including the contact form and public browsing features." "Cette politique explique comment Atelier Lumen Nord recueille, utilise, conserve et protege les renseignements personnels transmis par ce site Web, y compris le formulaire de contact et les fonctions de navigation publique." %}
                 </p>
                 <div class="client-proofing__meta-row">
                     <span class="client-proofing__meta-pill">{% tr "Contact form" "Formulaire de contact" %}</span>
@@ -29,7 +29,7 @@
                 <div class="client-proofing__status-card client-proofing__status-card--active">
                     <p class="client-proofing__status-label">{% tr "Quick summary" "Resume rapide" %}</p>
                     <p class="client-proofing__status-copy">
-                        {% tr "Naji Photo collects only the details needed to respond to inquiries, plan photography services, maintain client communications, and operate the website securely." "Naji Photo recueille uniquement les renseignements necessaires pour repondre aux demandes, planifier les services photographiques, assurer les communications avec les clients et exploiter le site de facon securisee." %}
+                        {% tr "Atelier Lumen Nord collects only the details needed to respond to inquiries, plan photography services, maintain client communications, and operate the website securely." "Atelier Lumen Nord recueille uniquement les renseignements necessaires pour repondre aux demandes, planifier les services photographiques, assurer les communications avec les clients et exploiter le site de facon securisee." %}
                     </p>
                     <div class="client-proofing__status-list">
                         <p class="client-proofing__status-list-item">{% tr "We use inquiry details to reply and plan requested services." "Nous utilisons les renseignements des demandes pour repondre et organiser les services demandes." %}</p>
@@ -81,7 +81,7 @@
 
             <article class="client-proofing__legal-card">
                 <h2>{% tr "8. Privacy contact" "8. Responsable de la confidentialite" %}</h2>
-                <p>{% tr "Naji Photo is responsible for personal information handled through this website. Privacy-related requests may be directed through the website contact page or the published contact email below." "Naji Photo est responsable des renseignements personnels traites par ce site Web. Les demandes relatives a la confidentialite peuvent etre transmises par la page de contact du site ou a l'adresse courriel publiee ci-dessous." %}</p>
+                <p>{% tr "Atelier Lumen Nord is responsible for personal information handled through this website. Privacy-related requests may be directed through the website contact page or the published contact email below." "Atelier Lumen Nord est responsable des renseignements personnels traites par ce site Web. Les demandes relatives a la confidentialite peuvent etre transmises par la page de contact du site ou a l'adresse courriel publiee ci-dessous." %}</p>
                 {% if contact_page %}
                 <p class="contact-page-privacy-note__contact">
                     {% if contact_page.contact_email %}E: <a href="mailto:{{ contact_page.contact_email }}">{{ contact_page.contact_email }}</a><br>{% endif %}
