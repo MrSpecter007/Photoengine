@@ -591,10 +591,8 @@ body.photo-showroom {
 
 .photo-showroom .testimonial-block {
   background:
-    linear-gradient(rgba(23, 18, 29, 0.86), rgba(23, 18, 29, 0.86)),
-    url("./img/1_kwZMFqHiiPhhl1zHW09NHg2x.jpg");
-  background-position: center;
-  background-size: cover;
+    linear-gradient(135deg, rgba(23, 18, 29, 0.96), rgba(59, 0, 98, 0.94)),
+    var(--ln-night);
   min-height: 620px;
 }
 
