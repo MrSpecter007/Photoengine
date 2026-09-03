@@ -1,0 +1,3315 @@
+[
+  {
+    "model": "home.adminexperiencesettings",
+    "pk": 1,
+    "fields": {
+      "admin_brand_name": "Naji Photo Studio",
+      "admin_welcome_title": "Welcome back to the studio",
+      "admin_welcome_message": "Use this workspace to publish galleries, manage inquiries, and keep client projects moving with confidence.",
+      "admin_logo": null,
+      "admin_primary_color": "#ffffff",
+      "admin_surface_color": "#1b1b1b",
+      "admin_sidebar_color": "#241a33",
+      "admin_text_color": "#101418",
+      "admin_sidebar_text_color": "#f8f7fb",
+      "admin_sidebar_hover_color": "#000000",
+      "admin_sidebar_hover_text_color": "#FFFFFF",
+      "admin_sidebar_selected_color": "#000000",
+      "admin_sidebar_selected_text_color": "#FFFFFF",
+      "admin_soft_color": "#f6e8ec"
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 1,
+    "fields": {
+      "sort_order": 1,
+      "page": 7,
+      "image": 5,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 2,
+    "fields": {
+      "sort_order": 2,
+      "page": 7,
+      "image": 6,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 3,
+    "fields": {
+      "sort_order": 3,
+      "page": 7,
+      "image": 7,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 4,
+    "fields": {
+      "sort_order": 4,
+      "page": 7,
+      "image": 8,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 5,
+    "fields": {
+      "sort_order": 5,
+      "page": 7,
+      "image": 9,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 6,
+    "fields": {
+      "sort_order": 6,
+      "page": 7,
+      "image": 10,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 7,
+    "fields": {
+      "sort_order": 7,
+      "page": 7,
+      "image": 11,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 8,
+    "fields": {
+      "sort_order": 8,
+      "page": 7,
+      "image": 12,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 9,
+    "fields": {
+      "sort_order": 9,
+      "page": 7,
+      "image": 13,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 10,
+    "fields": {
+      "sort_order": 10,
+      "page": 7,
+      "image": 14,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 11,
+    "fields": {
+      "sort_order": 11,
+      "page": 7,
+      "image": 15,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 12,
+    "fields": {
+      "sort_order": 12,
+      "page": 7,
+      "image": 16,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 13,
+    "fields": {
+      "sort_order": 13,
+      "page": 7,
+      "image": 17,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 14,
+    "fields": {
+      "sort_order": 14,
+      "page": 7,
+      "image": 18,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 15,
+    "fields": {
+      "sort_order": 15,
+      "page": 7,
+      "image": 19,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 16,
+    "fields": {
+      "sort_order": 16,
+      "page": 7,
+      "image": 20,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 17,
+    "fields": {
+      "sort_order": 17,
+      "page": 7,
+      "image": 21,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 18,
+    "fields": {
+      "sort_order": 18,
+      "page": 7,
+      "image": 22,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 19,
+    "fields": {
+      "sort_order": 19,
+      "page": 7,
+      "image": 23,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 20,
+    "fields": {
+      "sort_order": 20,
+      "page": 7,
+      "image": 24,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 21,
+    "fields": {
+      "sort_order": 21,
+      "page": 7,
+      "image": 25,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 22,
+    "fields": {
+      "sort_order": 22,
+      "page": 7,
+      "image": 26,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 23,
+    "fields": {
+      "sort_order": 23,
+      "page": 7,
+      "image": 27,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 24,
+    "fields": {
+      "sort_order": 24,
+      "page": 7,
+      "image": 28,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 25,
+    "fields": {
+      "sort_order": 25,
+      "page": 7,
+      "image": 29,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 26,
+    "fields": {
+      "sort_order": 26,
+      "page": 7,
+      "image": 30,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 27,
+    "fields": {
+      "sort_order": 27,
+      "page": 7,
+      "image": 31,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 28,
+    "fields": {
+      "sort_order": 1,
+      "page": 13,
+      "image": 5,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 29,
+    "fields": {
+      "sort_order": 2,
+      "page": 13,
+      "image": 6,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 30,
+    "fields": {
+      "sort_order": 3,
+      "page": 13,
+      "image": 7,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 31,
+    "fields": {
+      "sort_order": 4,
+      "page": 13,
+      "image": 8,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 32,
+    "fields": {
+      "sort_order": 5,
+      "page": 13,
+      "image": 9,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 33,
+    "fields": {
+      "sort_order": 6,
+      "page": 13,
+      "image": 10,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 34,
+    "fields": {
+      "sort_order": 7,
+      "page": 13,
+      "image": 11,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 35,
+    "fields": {
+      "sort_order": 8,
+      "page": 13,
+      "image": 12,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 36,
+    "fields": {
+      "sort_order": 9,
+      "page": 13,
+      "image": 13,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 37,
+    "fields": {
+      "sort_order": 10,
+      "page": 13,
+      "image": 14,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 38,
+    "fields": {
+      "sort_order": 11,
+      "page": 13,
+      "image": 15,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 39,
+    "fields": {
+      "sort_order": 12,
+      "page": 13,
+      "image": 16,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 40,
+    "fields": {
+      "sort_order": 13,
+      "page": 13,
+      "image": 17,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 41,
+    "fields": {
+      "sort_order": 14,
+      "page": 13,
+      "image": 18,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 42,
+    "fields": {
+      "sort_order": 15,
+      "page": 13,
+      "image": 19,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 43,
+    "fields": {
+      "sort_order": 16,
+      "page": 13,
+      "image": 20,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 44,
+    "fields": {
+      "sort_order": 17,
+      "page": 13,
+      "image": 21,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 45,
+    "fields": {
+      "sort_order": 18,
+      "page": 13,
+      "image": 22,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 46,
+    "fields": {
+      "sort_order": 19,
+      "page": 13,
+      "image": 23,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 47,
+    "fields": {
+      "sort_order": 20,
+      "page": 13,
+      "image": 24,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 48,
+    "fields": {
+      "sort_order": 21,
+      "page": 13,
+      "image": 25,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 49,
+    "fields": {
+      "sort_order": 22,
+      "page": 13,
+      "image": 26,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 50,
+    "fields": {
+      "sort_order": 23,
+      "page": 13,
+      "image": 27,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 51,
+    "fields": {
+      "sort_order": 24,
+      "page": 13,
+      "image": 28,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 52,
+    "fields": {
+      "sort_order": 25,
+      "page": 13,
+      "image": 29,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 53,
+    "fields": {
+      "sort_order": 26,
+      "page": 13,
+      "image": 30,
+      "caption": ""
+    }
+  },
+  {
+    "model": "home.gallerypageimage",
+    "pk": 54,
+    "fields": {
+      "sort_order": 27,
+      "page": 13,
+      "image": 31,
+      "caption": ""
+    }
+  },
+  {
+    "model": "wagtailcore.site",
+    "pk": 2,
+    "fields": {
+      "hostname": "localhost",
+      "port": 80,
+      "site_name": "",
+      "root_page": 3,
+      "is_default_site": true
+    }
+  },
+  {
+    "model": "wagtailcore.locale",
+    "pk": 1,
+    "fields": {
+      "language_code": "en"
+    }
+  },
+  {
+    "model": "wagtailcore.locale",
+    "pk": 2,
+    "fields": {
+      "language_code": "fr"
+    }
+  },
+  {
+    "model": "wagtailcore.collection",
+    "pk": 1,
+    "fields": {
+      "path": "0001",
+      "depth": 1,
+      "numchild": 0,
+      "name": "Root"
+    }
+  },
+  {
+    "model": "taggit.tag",
+    "pk": 1,
+    "fields": {
+      "name": "Portrait",
+      "slug": "portrait"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$B3mFrVdaddR2Pt3NdxLCMd$/JIOmsMOgpkJ/YPT62+vA2gX0BsvG4XeplxOsSntHP4=",
+      "last_login": "2026-05-04T20:09:23.401Z",
+      "is_superuser": true,
+      "username": "mrspecter",
+      "first_name": "",
+      "last_name": "",
+      "email": "danypres.antoine@gmail.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2026-05-02T21:30:10.656Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "wagtailusers.userprofile",
+    "pk": 1,
+    "fields": {
+      "user": [
+        "mrspecter"
+      ],
+      "submitted_notifications": true,
+      "approved_notifications": true,
+      "rejected_notifications": true,
+      "updated_comments_notifications": true,
+      "preferred_language": "",
+      "current_time_zone": "",
+      "avatar": "",
+      "dismissibles": {},
+      "theme": "system",
+      "contrast": "system",
+      "density": "default",
+      "keyboard_shortcuts": true
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 2,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4187",
+      "file": "original_images/DSC_4187.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-02T22:30:12.886Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": 7430984,
+      "file_hash": "cd4a4450a8c60cd7f9913bd28b79f7affdc42812"
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 3,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4199",
+      "file": "original_images/DSC_4199.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T02:08:10.905Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": 8836846,
+      "file_hash": "53d43a5def27158b8e3d548498ba0860087e6f2f"
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 4,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4196",
+      "file": "original_images/DSC_4196.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T02:12:39.721Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": 9144505,
+      "file_hash": "d7acd90f983cfffcbfe829b92cccfaca25e7bb53"
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 5,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4052",
+      "file": "original_images/DSC_4052.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T02:36:43.472Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 6,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4053",
+      "file": "original_images/DSC_4053.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T02:36:43.850Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 7,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4054",
+      "file": "original_images/DSC_4054.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T02:36:44.209Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 8,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4055",
+      "file": "original_images/DSC_4055.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T02:36:44.564Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 9,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4056",
+      "file": "original_images/DSC_4056.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T02:36:44.944Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 10,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4057",
+      "file": "original_images/DSC_4057.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T02:36:45.287Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 11,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4058",
+      "file": "original_images/DSC_4058.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T02:36:45.614Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 12,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4059",
+      "file": "original_images/DSC_4059.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T02:36:45.952Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 13,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4060",
+      "file": "original_images/DSC_4060.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T02:36:46.299Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 14,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4061",
+      "file": "original_images/DSC_4061.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T02:36:46.634Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 15,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4062",
+      "file": "original_images/DSC_4062.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T02:36:46.969Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 16,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4063",
+      "file": "original_images/DSC_4063.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T02:36:47.318Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 17,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4064",
+      "file": "original_images/DSC_4064.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T02:36:47.676Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 18,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4065",
+      "file": "original_images/DSC_4065.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T02:36:48.080Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 19,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4066",
+      "file": "original_images/DSC_4066.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T02:36:48.508Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 20,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4067",
+      "file": "original_images/DSC_4067.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T02:36:48.899Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 21,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4068",
+      "file": "original_images/DSC_4068.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T02:36:49.246Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 22,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4069",
+      "file": "original_images/DSC_4069.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T02:36:49.583Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 23,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4070",
+      "file": "original_images/DSC_4070.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T02:36:49.927Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 24,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4071",
+      "file": "original_images/DSC_4071.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T02:36:50.280Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 25,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4072",
+      "file": "original_images/DSC_4072.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T02:36:50.636Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 26,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4073",
+      "file": "original_images/DSC_4073.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T02:36:50.983Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 27,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4074",
+      "file": "original_images/DSC_4074.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T02:36:51.281Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 28,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4075",
+      "file": "original_images/DSC_4075.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T02:36:51.536Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 29,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4076",
+      "file": "original_images/DSC_4076.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T02:36:51.790Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 30,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4077",
+      "file": "original_images/DSC_4077.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T02:36:52.049Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 31,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4078",
+      "file": "original_images/DSC_4078.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T02:36:52.313Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 32,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4609",
+      "file": "original_images/DSC_4609.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:18.621Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 33,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4616",
+      "file": "original_images/DSC_4616.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:18.907Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 34,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4624",
+      "file": "original_images/DSC_4624.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:19.175Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 35,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4627",
+      "file": "original_images/DSC_4627.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:19.437Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 36,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4630",
+      "file": "original_images/DSC_4630.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:19.707Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 37,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4632",
+      "file": "original_images/DSC_4632.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:19.985Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 38,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4634",
+      "file": "original_images/DSC_4634.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:20.249Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 39,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4644",
+      "file": "original_images/DSC_4644.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:20.521Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 40,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4645",
+      "file": "original_images/DSC_4645.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:20.792Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 41,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4646",
+      "file": "original_images/DSC_4646.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:21.083Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 42,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4647",
+      "file": "original_images/DSC_4647.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:21.346Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 43,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4648",
+      "file": "original_images/DSC_4648.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:21.614Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 44,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4650",
+      "file": "original_images/DSC_4650.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:21.881Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 45,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4651",
+      "file": "original_images/DSC_4651.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:22.146Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 46,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4652",
+      "file": "original_images/DSC_4652.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:22.409Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 47,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4653",
+      "file": "original_images/DSC_4653.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:22.695Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 48,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4657",
+      "file": "original_images/DSC_4657.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:22.971Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 49,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4659",
+      "file": "original_images/DSC_4659.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:23.236Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 50,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4662",
+      "file": "original_images/DSC_4662.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:23.492Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 51,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4664",
+      "file": "original_images/DSC_4664.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:23.761Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 52,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4665",
+      "file": "original_images/DSC_4665.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:24.024Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 53,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4666",
+      "file": "original_images/DSC_4666.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:24.285Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 54,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4668",
+      "file": "original_images/DSC_4668.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:24.546Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 55,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4671",
+      "file": "original_images/DSC_4671.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:24.830Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 56,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4672",
+      "file": "original_images/DSC_4672.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:25.123Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 57,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4675",
+      "file": "original_images/DSC_4675.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:25.394Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 58,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4676",
+      "file": "original_images/DSC_4676.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:25.666Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 59,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4677",
+      "file": "original_images/DSC_4677.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:25.936Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 60,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4678",
+      "file": "original_images/DSC_4678.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:26.231Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 61,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4682",
+      "file": "original_images/DSC_4682.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:26.502Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 62,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4684",
+      "file": "original_images/DSC_4684.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:26.846Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 63,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4685",
+      "file": "original_images/DSC_4685.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:27.175Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 64,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4686",
+      "file": "original_images/DSC_4686.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:27.507Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 65,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4687",
+      "file": "original_images/DSC_4687.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:27.780Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 66,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4688",
+      "file": "original_images/DSC_4688.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:28.065Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 67,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4690",
+      "file": "original_images/DSC_4690.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:28.332Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 68,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4691",
+      "file": "original_images/DSC_4691.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:28.601Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 69,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4694",
+      "file": "original_images/DSC_4694.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:28.897Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 70,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4695",
+      "file": "original_images/DSC_4695.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:29.225Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 71,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4697",
+      "file": "original_images/DSC_4697.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:29.505Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 72,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4700",
+      "file": "original_images/DSC_4700.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:29.775Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 73,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4701",
+      "file": "original_images/DSC_4701.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:30.063Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 74,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4702",
+      "file": "original_images/DSC_4702.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:30.691Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 75,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4703",
+      "file": "original_images/DSC_4703.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:31.090Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 76,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4706",
+      "file": "original_images/DSC_4706.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:31.424Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 77,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4710",
+      "file": "original_images/DSC_4710.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:31.674Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 78,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4711",
+      "file": "original_images/DSC_4711.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:31.941Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 79,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4717",
+      "file": "original_images/DSC_4717.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:32.262Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 80,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4718",
+      "file": "original_images/DSC_4718.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:32.536Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 81,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4720",
+      "file": "original_images/DSC_4720.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:32.789Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 82,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4721",
+      "file": "original_images/DSC_4721.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:33.072Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 83,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4722",
+      "file": "original_images/DSC_4722.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:33.339Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 84,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4723",
+      "file": "original_images/DSC_4723.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:33.593Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 85,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4724",
+      "file": "original_images/DSC_4724.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T03:25:33.834Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": null,
+      "file_hash": ""
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 86,
+    "fields": {
+      "collection": 1,
+      "title": "Logo_HEC_Montreal",
+      "file": "original_images/png-clipart-hec-montreal-universite-de-montreal-hec.png",
+      "description": "",
+      "width": 900,
+      "height": 800,
+      "created_at": "2026-05-03T14:18:37.207Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": 4763,
+      "file_hash": "baa4636d0509d9033461e3f0a867eb0782ff10a6"
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 87,
+    "fields": {
+      "collection": 1,
+      "title": "8N5A0225",
+      "file": "original_images/8N5A0225.jpg",
+      "description": "",
+      "width": 5464,
+      "height": 8192,
+      "created_at": "2026-05-03T14:30:20.217Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": 24974273,
+      "file_hash": "dec8521e549ed493f662da2ab90d23574cabd11e"
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 88,
+    "fields": {
+      "collection": 1,
+      "title": "8N5A0455",
+      "file": "original_images/8N5A0455.jpg",
+      "description": "",
+      "width": 5464,
+      "height": 8192,
+      "created_at": "2026-05-03T14:30:45.862Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": 16674974,
+      "file_hash": "3ce52f2c1e5833769a9c058ade2b9d4a65563b66"
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 89,
+    "fields": {
+      "collection": 1,
+      "title": "8N5A0637",
+      "file": "original_images/8N5A0637.jpg",
+      "description": "",
+      "width": 5464,
+      "height": 8192,
+      "created_at": "2026-05-03T14:31:07.096Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": 22305979,
+      "file_hash": "131fdc794b35eefd605184e12d48e9521131d90b"
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 90,
+    "fields": {
+      "collection": 1,
+      "title": "8N5A9860",
+      "file": "original_images/8N5A9860.jpg",
+      "description": "",
+      "width": 5464,
+      "height": 8192,
+      "created_at": "2026-05-03T14:31:34.949Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": 20587078,
+      "file_hash": "4133afbe6dfac3a3ad7dc597029b5dc3dc46e152"
+    }
+  },
+  {
+    "model": "wagtailimages.image",
+    "pk": 91,
+    "fields": {
+      "collection": 1,
+      "title": "DSC_4034",
+      "file": "original_images/DSC_4034.JPG",
+      "description": "",
+      "width": 5568,
+      "height": 3712,
+      "created_at": "2026-05-03T19:38:27.164Z",
+      "uploaded_by_user": [
+        "mrspecter"
+      ],
+      "focal_point_x": null,
+      "focal_point_y": null,
+      "focal_point_width": null,
+      "focal_point_height": null,
+      "file_size": 7615138,
+      "file_hash": "012abe509ef4c32e213e012984bbe211beabe3d2"
+    }
+  },
+  {
+    "model": "wagtailcore.page",
+    "pk": 1,
+    "fields": {
+      "path": "0001",
+      "depth": 1,
+      "numchild": 2,
+      "translation_key": "4d4f5c32-f4dd-4f38-ac16-6b2e0f51ecc4",
+      "locale": 1,
+      "latest_revision": null,
+      "live": true,
+      "has_unpublished_changes": false,
+      "first_published_at": null,
+      "last_published_at": null,
+      "live_revision": null,
+      "go_live_at": null,
+      "expire_at": null,
+      "expired": false,
+      "locked": false,
+      "locked_at": null,
+      "locked_by": null,
+      "title": "Root",
+      "draft_title": "Root",
+      "slug": "root",
+      "content_type": [
+        "wagtailcore",
+        "page"
+      ],
+      "url_path": "/",
+      "owner": null,
+      "seo_title": "",
+      "show_in_menus": false,
+      "search_description": "",
+      "latest_revision_created_at": null,
+      "alias_of": null
+    }
+  },
+  {
+    "model": "wagtailcore.page",
+    "pk": 3,
+    "fields": {
+      "path": "00010001",
+      "depth": 2,
+      "numchild": 3,
+      "translation_key": "0b58ed83-109f-4e8a-b730-3e5a2cf5afee",
+      "locale": 1,
+      "latest_revision": null,
+      "live": true,
+      "has_unpublished_changes": false,
+      "first_published_at": "2026-05-02T22:30:16.089Z",
+      "last_published_at": "2026-05-03T14:37:55.788Z",
+      "live_revision": null,
+      "go_live_at": null,
+      "expire_at": null,
+      "expired": false,
+      "locked": false,
+      "locked_at": null,
+      "locked_by": null,
+      "title": "Home",
+      "draft_title": "Home",
+      "slug": "home",
+      "content_type": [
+        "home",
+        "homepage"
+      ],
+      "url_path": "/home/",
+      "owner": null,
+      "seo_title": "",
+      "show_in_menus": false,
+      "search_description": "",
+      "latest_revision_created_at": null,
+      "alias_of": null
+    }
+  },
+  {
+    "model": "wagtailcore.page",
+    "pk": 5,
+    "fields": {
+      "path": "000100010001",
+      "depth": 3,
+      "numchild": 1,
+      "translation_key": "a66e4a65-abd2-4a09-acd9-a104cee2345c",
+      "locale": 1,
+      "latest_revision": null,
+      "live": true,
+      "has_unpublished_changes": false,
+      "first_published_at": "2026-05-03T02:03:51.431Z",
+      "last_published_at": "2026-05-03T02:03:51.431Z",
+      "live_revision": null,
+      "go_live_at": null,
+      "expire_at": null,
+      "expired": false,
+      "locked": false,
+      "locked_at": null,
+      "locked_by": null,
+      "title": "Portfolio",
+      "draft_title": "Portfolio",
+      "slug": "portfolio",
+      "content_type": [
+        "home",
+        "portfolioindexpage"
+      ],
+      "url_path": "/home/portfolio/",
+      "owner": [
+        "mrspecter"
+      ],
+      "seo_title": "",
+      "show_in_menus": false,
+      "search_description": "",
+      "latest_revision_created_at": null,
+      "alias_of": null
+    }
+  },
+  {
+    "model": "wagtailcore.page",
+    "pk": 6,
+    "fields": {
+      "path": "0001000100010001",
+      "depth": 4,
+      "numchild": 1,
+      "translation_key": "e6085b2d-5e18-4d15-84c4-f88ea112abc5",
+      "locale": 1,
+      "latest_revision": null,
+      "live": true,
+      "has_unpublished_changes": false,
+      "first_published_at": "2026-05-03T02:08:17.933Z",
+      "last_published_at": "2026-05-03T02:08:17.933Z",
+      "live_revision": null,
+      "go_live_at": null,
+      "expire_at": null,
+      "expired": false,
+      "locked": false,
+      "locked_at": null,
+      "locked_by": null,
+      "title": "Portrait",
+      "draft_title": "Portrait",
+      "slug": "portrait",
+      "content_type": [
+        "home",
+        "portfoliocategorypage"
+      ],
+      "url_path": "/home/portfolio/portrait/",
+      "owner": [
+        "mrspecter"
+      ],
+      "seo_title": "",
+      "show_in_menus": false,
+      "search_description": "",
+      "latest_revision_created_at": null,
+      "alias_of": null
+    }
+  },
+  {
+    "model": "wagtailcore.page",
+    "pk": 7,
+    "fields": {
+      "path": "00010001000100010001",
+      "depth": 5,
+      "numchild": 0,
+      "translation_key": "c64e83f9-8b5b-432b-87cc-b031d920a7f5",
+      "locale": 1,
+      "latest_revision": null,
+      "live": true,
+      "has_unpublished_changes": false,
+      "first_published_at": "2026-05-03T02:29:04.593Z",
+      "last_published_at": "2026-05-03T03:57:30.019Z",
+      "live_revision": null,
+      "go_live_at": null,
+      "expire_at": null,
+      "expired": false,
+      "locked": false,
+      "locked_at": null,
+      "locked_by": null,
+      "title": "PM and Sam",
+      "draft_title": "PM and Sam",
+      "slug": "pm-and-sam",
+      "content_type": [
+        "home",
+        "gallerypage"
+      ],
+      "url_path": "/home/portfolio/portrait/pm-and-sam/",
+      "owner": [
+        "mrspecter"
+      ],
+      "seo_title": "",
+      "show_in_menus": false,
+      "search_description": "",
+      "latest_revision_created_at": null,
+      "alias_of": null
+    }
+  },
+  {
+    "model": "wagtailcore.page",
+    "pk": 8,
+    "fields": {
+      "path": "000100010002",
+      "depth": 3,
+      "numchild": 0,
+      "translation_key": "334d8b46-2389-457f-805e-ae1dee1426fe",
+      "locale": 1,
+      "latest_revision": null,
+      "live": true,
+      "has_unpublished_changes": false,
+      "first_published_at": "2026-05-03T03:25:34.014Z",
+      "last_published_at": "2026-05-03T04:47:51.042Z",
+      "live_revision": null,
+      "go_live_at": null,
+      "expire_at": null,
+      "expired": false,
+      "locked": false,
+      "locked_at": null,
+      "locked_by": null,
+      "title": "Street Culture",
+      "draft_title": "Street Culture",
+      "slug": "street-culture",
+      "content_type": [
+        "proofing",
+        "clientproofinggallery"
+      ],
+      "url_path": "/home/street-culture/",
+      "owner": [
+        "mrspecter"
+      ],
+      "seo_title": "",
+      "show_in_menus": false,
+      "search_description": "",
+      "latest_revision_created_at": null,
+      "alias_of": null
+    }
+  },
+  {
+    "model": "wagtailcore.page",
+    "pk": 9,
+    "fields": {
+      "path": "000100010003",
+      "depth": 3,
+      "numchild": 0,
+      "translation_key": "ab446c9b-cd4b-413d-81ef-18313ecaf920",
+      "locale": 1,
+      "latest_revision": null,
+      "live": true,
+      "has_unpublished_changes": false,
+      "first_published_at": "2026-05-03T14:50:00.167Z",
+      "last_published_at": "2026-05-03T21:16:35.989Z",
+      "live_revision": null,
+      "go_live_at": null,
+      "expire_at": null,
+      "expired": false,
+      "locked": false,
+      "locked_at": null,
+      "locked_by": null,
+      "title": "Contact",
+      "draft_title": "Contact",
+      "slug": "contact",
+      "content_type": [
+        "home",
+        "contactpage"
+      ],
+      "url_path": "/home/contact/",
+      "owner": [
+        "mrspecter"
+      ],
+      "seo_title": "",
+      "show_in_menus": false,
+      "search_description": "",
+      "latest_revision_created_at": null,
+      "alias_of": null
+    }
+  },
+  {
+    "model": "wagtailcore.page",
+    "pk": 10,
+    "fields": {
+      "path": "00010002",
+      "depth": 2,
+      "numchild": 3,
+      "translation_key": "0b58ed83-109f-4e8a-b730-3e5a2cf5afee",
+      "locale": 2,
+      "latest_revision": null,
+      "live": true,
+      "has_unpublished_changes": false,
+      "first_published_at": "2026-05-03T18:43:09.667Z",
+      "last_published_at": "2026-05-03T18:43:09.667Z",
+      "live_revision": null,
+      "go_live_at": null,
+      "expire_at": null,
+      "expired": false,
+      "locked": false,
+      "locked_at": null,
+      "locked_by": null,
+      "title": "Accueil",
+      "draft_title": "Accueil",
+      "slug": "home-fr",
+      "content_type": [
+        "home",
+        "homepage"
+      ],
+      "url_path": "/home-fr/",
+      "owner": null,
+      "seo_title": "",
+      "show_in_menus": false,
+      "search_description": "",
+      "latest_revision_created_at": null,
+      "alias_of": null
+    }
+  },
+  {
+    "model": "wagtailcore.page",
+    "pk": 11,
+    "fields": {
+      "path": "000100020001",
+      "depth": 3,
+      "numchild": 1,
+      "translation_key": "a66e4a65-abd2-4a09-acd9-a104cee2345c",
+      "locale": 2,
+      "latest_revision": null,
+      "live": true,
+      "has_unpublished_changes": false,
+      "first_published_at": "2026-05-03T19:08:49.740Z",
+      "last_published_at": "2026-05-03T19:08:49.740Z",
+      "live_revision": null,
+      "go_live_at": null,
+      "expire_at": null,
+      "expired": false,
+      "locked": false,
+      "locked_at": null,
+      "locked_by": null,
+      "title": "Portfolio",
+      "draft_title": "Portfolio",
+      "slug": "portfolio",
+      "content_type": [
+        "home",
+        "portfolioindexpage"
+      ],
+      "url_path": "/home-fr/portfolio/",
+      "owner": [
+        "mrspecter"
+      ],
+      "seo_title": "",
+      "show_in_menus": false,
+      "search_description": "",
+      "latest_revision_created_at": null,
+      "alias_of": null
+    }
+  },
+  {
+    "model": "wagtailcore.page",
+    "pk": 12,
+    "fields": {
+      "path": "0001000200010001",
+      "depth": 4,
+      "numchild": 1,
+      "translation_key": "e6085b2d-5e18-4d15-84c4-f88ea112abc5",
+      "locale": 2,
+      "latest_revision": null,
+      "live": true,
+      "has_unpublished_changes": false,
+      "first_published_at": "2026-05-03T19:08:49.776Z",
+      "last_published_at": "2026-05-03T19:08:49.776Z",
+      "live_revision": null,
+      "go_live_at": null,
+      "expire_at": null,
+      "expired": false,
+      "locked": false,
+      "locked_at": null,
+      "locked_by": null,
+      "title": "Portrait",
+      "draft_title": "Portrait",
+      "slug": "portrait",
+      "content_type": [
+        "home",
+        "portfoliocategorypage"
+      ],
+      "url_path": "/home-fr/portfolio/portrait/",
+      "owner": [
+        "mrspecter"
+      ],
+      "seo_title": "",
+      "show_in_menus": false,
+      "search_description": "",
+      "latest_revision_created_at": null,
+      "alias_of": null
+    }
+  },
+  {
+    "model": "wagtailcore.page",
+    "pk": 13,
+    "fields": {
+      "path": "00010002000100010001",
+      "depth": 5,
+      "numchild": 0,
+      "translation_key": "c64e83f9-8b5b-432b-87cc-b031d920a7f5",
+      "locale": 2,
+      "latest_revision": null,
+      "live": true,
+      "has_unpublished_changes": false,
+      "first_published_at": "2026-05-03T19:08:49.858Z",
+      "last_published_at": "2026-05-03T19:08:49.858Z",
+      "live_revision": null,
+      "go_live_at": null,
+      "expire_at": null,
+      "expired": false,
+      "locked": false,
+      "locked_at": null,
+      "locked_by": null,
+      "title": "PM and Sam",
+      "draft_title": "PM and Sam",
+      "slug": "pm-and-sam",
+      "content_type": [
+        "home",
+        "gallerypage"
+      ],
+      "url_path": "/home-fr/portfolio/portrait/pm-and-sam/",
+      "owner": [
+        "mrspecter"
+      ],
+      "seo_title": "",
+      "show_in_menus": false,
+      "search_description": "",
+      "latest_revision_created_at": null,
+      "alias_of": null
+    }
+  },
+  {
+    "model": "wagtailcore.page",
+    "pk": 14,
+    "fields": {
+      "path": "000100020002",
+      "depth": 3,
+      "numchild": 0,
+      "translation_key": "334d8b46-2389-457f-805e-ae1dee1426fe",
+      "locale": 2,
+      "latest_revision": null,
+      "live": true,
+      "has_unpublished_changes": false,
+      "first_published_at": "2026-05-03T19:08:50.018Z",
+      "last_published_at": "2026-05-03T19:08:50.018Z",
+      "live_revision": null,
+      "go_live_at": null,
+      "expire_at": null,
+      "expired": false,
+      "locked": false,
+      "locked_at": null,
+      "locked_by": null,
+      "title": "Street Culture",
+      "draft_title": "Street Culture",
+      "slug": "street-culture",
+      "content_type": [
+        "proofing",
+        "clientproofinggallery"
+      ],
+      "url_path": "/home-fr/street-culture/",
+      "owner": [
+        "mrspecter"
+      ],
+      "seo_title": "",
+      "show_in_menus": false,
+      "search_description": "",
+      "latest_revision_created_at": null,
+      "alias_of": null
+    }
+  },
+  {
+    "model": "wagtailcore.page",
+    "pk": 15,
+    "fields": {
+      "path": "000100020003",
+      "depth": 3,
+      "numchild": 0,
+      "translation_key": "ab446c9b-cd4b-413d-81ef-18313ecaf920",
+      "locale": 2,
+      "latest_revision": null,
+      "live": true,
+      "has_unpublished_changes": false,
+      "first_published_at": "2026-05-03T19:08:50.100Z",
+      "last_published_at": "2026-05-03T20:10:53.025Z",
+      "live_revision": null,
+      "go_live_at": null,
+      "expire_at": null,
+      "expired": false,
+      "locked": false,
+      "locked_at": null,
+      "locked_by": null,
+      "title": "Contact",
+      "draft_title": "Contact",
+      "slug": "contact",
+      "content_type": [
+        "home",
+        "contactpage"
+      ],
+      "url_path": "/home-fr/contact/",
+      "owner": [
+        "mrspecter"
+      ],
+      "seo_title": "",
+      "show_in_menus": false,
+      "search_description": "",
+      "latest_revision_created_at": null,
+      "alias_of": null
+    }
+  },
+  {
+    "model": "home.gallerypage",
+    "pk": 7,
+    "fields": {
+      "excerpt": "",
+      "presentation_style": "masonry",
+      "featured_image": 5,
+      "body": "[]"
+    }
+  },
+  {
+    "model": "home.gallerypage",
+    "pk": 13,
+    "fields": {
+      "excerpt": "",
+      "presentation_style": "masonry",
+      "featured_image": 5,
+      "body": "[]"
+    }
+  },
+  {
+    "model": "home.gallerypagetag",
+    "pk": 11,
+    "fields": {
+      "tag": [
+        "Portrait"
+      ],
+      "content_object": 7
+    }
+  },
+  {
+    "model": "home.gallerypagetag",
+    "pk": 12,
+    "fields": {
+      "tag": [
+        "Portrait"
+      ],
+      "content_object": 13
+    }
+  },
+  {
+    "model": "home.portfoliocategorypage",
+    "pk": 6,
+    "fields": {
+      "intro": "",
+      "cover_image": 3
+    }
+  },
+  {
+    "model": "home.portfoliocategorypage",
+    "pk": 12,
+    "fields": {
+      "intro": "",
+      "cover_image": 3
+    }
+  },
+  {
+    "model": "home.portfolioindexpage",
+    "pk": 5,
+    "fields": {
+      "intro": ""
+    }
+  },
+  {
+    "model": "home.portfolioindexpage",
+    "pk": 11,
+    "fields": {
+      "intro": ""
+    }
+  },
+  {
+    "model": "home.contactpage",
+    "pk": 9,
+    "fields": {
+      "contact_heading": "In Case You Need Photos",
+      "contact_image": 91,
+      "contact_detail_heading": "Contact Detail",
+      "contact_phone": "(0) 6452 2711 22",
+      "contact_email": "michelgroch@support.com",
+      "address_heading": "Address",
+      "address_text": "Lokgebouw 226 5617AC, Eindhoven\r\nThe Netherlands",
+      "form_heading": "Tell Me About Your Shoot",
+      "form_intro": "Share a few details and I will get back to you with availability, pricing, and next steps.",
+      "success_message": "Thanks for reaching out. Your inquiry has been received."
+    }
+  },
+  {
+    "model": "home.contactpage",
+    "pk": 15,
+    "fields": {
+      "contact_heading": "L?? pour vos besoins en photo",
+      "contact_image": 91,
+      "contact_detail_heading": "Contact Detail",
+      "contact_phone": "(0) 6452 2711 22",
+      "contact_email": "michelgroch@support.com",
+      "address_heading": "Address",
+      "address_text": "Lokgebouw 226 5617AC, Eindhoven\r\nThe Netherlands",
+      "form_heading": "Parlez-moi de votre s??ance photo",
+      "form_intro": "Donnez-moi quelques d??tails et je vous r??pondrai pour vous indiquer mes disponibilit??s, mes tarifs et la marche ?? suivre.",
+      "success_message": "Merci de nous avoir contact??s. Nous avons bien re??u votre demande."
+    }
+  },
+  {
+    "model": "home.homepage",
+    "pk": 3,
+    "fields": {
+      "about_eyebrow": "about",
+      "about_heading": "I'm Mo Naji,\r\nA Professional Photographer\r\nLiving In Montreal.",
+      "about_paragraph_one": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "about_paragraph_two": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis.",
+      "about_image": 2,
+      "signature_image": null,
+      "projects_eyebrow": "Portfolio",
+      "projects_heading": "A Good Ending Is The Most Important",
+      "projects_paragraph_one": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "projects_paragraph_two": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit.",
+      "projects_button_text": "view portfolio",
+      "projects_button_link": "#",
+      "project_image_one": 87,
+      "project_image_two": 21,
+      "project_image_three": 89,
+      "project_image_four": 3,
+      "testimonial_quote": "\" I'm very picky with whom I give my energy to. I prefer to reserve my time, intensity and spirit exclusively to those who reflect sincerity. \"",
+      "testimonial_client_image": null,
+      "testimonial_client_name": "Tommy Rivers",
+      "testimonial_client_job": "Photographer",
+      "partners_heading": "Partner",
+      "partners_intro": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit.",
+      "partner_one_image": 86,
+      "partner_one_name": "Fanter Studio",
+      "partner_one_description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi",
+      "partner_two_image": null,
+      "partner_two_name": "GendatGraphic",
+      "partner_two_description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi",
+      "partner_three_image": null,
+      "partner_three_name": "Motor Heads",
+      "partner_three_description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi",
+      "partner_four_image": null,
+      "partner_four_name": "Panthere",
+      "partner_four_description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi",
+      "contact_eyebrow": "So What's Next?",
+      "contact_heading": "Are You Ready?",
+      "contact_heading_emphasis": "Let's Work!",
+      "contact_link": "#"
+    }
+  },
+  {
+    "model": "home.homepage",
+    "pk": 10,
+    "fields": {
+      "about_eyebrow": "about",
+      "about_heading": "Je suis Mo Naji,\r\nphotographe professionel\r\nde Montr??al.",
+      "about_paragraph_one": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "about_paragraph_two": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis.",
+      "about_image": 2,
+      "signature_image": null,
+      "projects_eyebrow": "Portfolio",
+      "projects_heading": "Une bonne fin est le plus important",
+      "projects_paragraph_one": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "projects_paragraph_two": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit.",
+      "projects_button_text": "voir portfolio",
+      "projects_button_link": "#",
+      "project_image_one": 87,
+      "project_image_two": 21,
+      "project_image_three": 89,
+      "project_image_four": 3,
+      "testimonial_quote": "?? Je suis tr??s s??lectif quant aux personnes ?? qui je consacre mon ??nergie. Je pr??f??re r??server mon temps, mon engagement et mon enthousiasme exclusivement ?? ceux qui font preuve de sinc??rit??. ??",
+      "testimonial_client_image": null,
+      "testimonial_client_name": "Tommy Rivers",
+      "testimonial_client_job": "Photographe",
+      "partners_heading": "Partner",
+      "partners_intro": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit.",
+      "partner_one_image": 86,
+      "partner_one_name": "Fanter Studio",
+      "partner_one_description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi",
+      "partner_two_image": null,
+      "partner_two_name": "GendatGraphic",
+      "partner_two_description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi",
+      "partner_three_image": null,
+      "partner_three_name": "Motor Heads",
+      "partner_three_description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi",
+      "partner_four_image": null,
+      "partner_four_name": "Panthere",
+      "partner_four_description": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi",
+      "contact_eyebrow": "Alors, la suite?",
+      "contact_heading": "Vous ??tes pr??ts?",
+      "contact_heading_emphasis": "Travaillons ensemble!",
+      "contact_link": "#"
+    }
+  }
+]
