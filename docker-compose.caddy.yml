@@ -2,14 +2,9 @@ services:
   web:
     container_name: photo-app
     ports: []
-    networks:
-      - catalystdev-local
-      - default
+    # catalystdev-local joined manually after startup to avoid DB hostname collision:
+    #   docker network connect catalystdev-local photo-app
 
   nginx:
     profiles:
       - disabled
-
-networks:
-  catalystdev-local:
-    external: true
