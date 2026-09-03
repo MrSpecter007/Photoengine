@@ -18,7 +18,12 @@ $(document).ready(function () {
     var ShowMenu = widthScreen > 768 ? true : false
     MenuMobileButton.on('click', function () {
         ShowMenu = !ShowMenu
-        ShowMenu === true ? Menu.toggleClass('active') : Menu.removeClass('active')
+        if (ShowMenu === true) {
+            Menu.toggleClass('active')
+        } else {
+            Menu.removeClass('active')
+        }
+        $(this).attr('aria-expanded', Menu.hasClass('active') ? 'true' : 'false')
     })
 
     // personal-photographer page js
