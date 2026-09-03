@@ -209,7 +209,7 @@ WAGTAILIMAGES_IMAGE_FORM_BASE = "PhotoEngine.image_forms.AutoTitleImageForm"
 
 STORAGES = {
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        "BACKEND": "PhotoEngine.storage.RelaxedCompressedManifestStorage",
     },
 }
 
